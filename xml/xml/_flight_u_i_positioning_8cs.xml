@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_flight_u_i_positioning_8cs" kind="file">
+    <compoundname>FlightUIPositioning.cs</compoundname>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">/*<sp/>TO<sp/>DO::</highlight></codeline>
+<codeline lineno="3"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>This<sp/>class<sp/>will<sp/>be<sp/>responsible<sp/>for<sp/>managing<sp/>the<sp/>positions<sp/>and<sp/>transitions<sp/>of<sp/>all<sp/>UI<sp/>elements</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>currently<sp/>it<sp/>grabs<sp/>references<sp/>for<sp/>the<sp/>two<sp/>main<sp/>elements<sp/>and<sp/>treats<sp/>them<sp/>in<sp/>an<sp/>ad-hoc<sp/>fashion</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>this<sp/>is<sp/>no<sp/>good<sp/>if<sp/>later<sp/>there<sp/>are<sp/>more<sp/>objects<sp/>to<sp/>handle...</highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Also,<sp/>no<sp/>transition<sp/>control<sp/>is<sp/>being<sp/>done<sp/>as<sp/>of<sp/>yet...<sp/>this<sp/>is<sp/>kinda<sp/>dependent<sp/>on<sp/>the<sp/>help<sp/>screens</highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>and<sp/>all<sp/>the<sp/>needed<sp/>transition<sp/>control<sp/>getting<sp/>done<sp/>before<sp/>that.</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Another<sp/>thing:</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>All<sp/>UI<sp/>repositioning<sp/>is<sp/>being<sp/>done<sp/>here<sp/>on<sp/>every<sp/>update...<sp/>this<sp/>is<sp/>highly<sp/>unnecessary...</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Once<sp/>we<sp/>get<sp/>some<sp/>form<sp/>of<sp/>visual<sp/>options<sp/>settings<sp/>in<sp/>place,<sp/>we<sp/>can<sp/>chage<sp/>this<sp/>thing<sp/>to<sp/>only<sp/>refresh</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>when<sp/>needed.<sp/>(for<sp/>now,<sp/>it<sp/>could<sp/>just<sp/>run<sp/>once<sp/>on<sp/>launch...<sp/>since<sp/>resolution<sp/>won&apos;t<sp/>change<sp/>after<sp/>that<sp/>on<sp/>a<sp/>build)</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"></highlight></codeline>
+<codeline lineno="18"><highlight class="comment">public<sp/>class<sp/>FlightUIPositioning<sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="19"><highlight class="comment">{</highlight></codeline>
+<codeline lineno="24"><highlight class="comment"></highlight></codeline>
+<codeline lineno="25"><highlight class="comment"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="26"><highlight class="comment"></highlight></codeline>
+<codeline lineno="27"><highlight class="comment"><sp/><sp/><sp/><sp/>public<sp/>Camera<sp/>mainCam,<sp/>sceneryCam,<sp/>flightCam,<sp/>flightAltCam,<sp/>tabCam;</highlight></codeline>
+<codeline lineno="28"><highlight class="comment"><sp/><sp/><sp/><sp/>public<sp/>Transform<sp/>uiBg,<sp/>tabContainer;</highlight></codeline>
+<codeline lineno="29"><highlight class="comment"><sp/><sp/><sp/><sp/>public<sp/>GameObject<sp/>flightUi;</highlight></codeline>
+<codeline lineno="30"><highlight class="comment"></highlight></codeline>
+<codeline lineno="31"><highlight class="comment"></highlight></codeline>
+<codeline lineno="32"><highlight class="comment"><sp/><sp/><sp/><sp/>private<sp/>bool<sp/>transitionInProgress;</highlight></codeline>
+<codeline lineno="33"><highlight class="comment"></highlight></codeline>
+<codeline lineno="34"><highlight class="comment"><sp/><sp/><sp/><sp/>public<sp/>bool<sp/>degub;</highlight></codeline>
+<codeline lineno="35"><highlight class="comment"></highlight></codeline>
+<codeline lineno="36"><highlight class="comment"><sp/><sp/><sp/><sp/>void<sp/>Awake()</highlight></codeline>
+<codeline lineno="37"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transitionInProgress<sp/>=<sp/>false;</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"></highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//mainCam<sp/>=<sp/>GameObject.Find(&quot;Main<sp/>Camera&quot;).camera;</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//sceneryCam<sp/>=<sp/>GameObject.Find(&quot;Scenery<sp/>Camera&quot;).camera;</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//tabCam<sp/>=<sp/>GameObject.Find(&quot;TabCamera&quot;).camera;</highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//flightCam<sp/>=<sp/>GameObject.Find(&quot;flightUiCamera&quot;).camera;</highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//flightAltCam<sp/>=<sp/>GameObject.Find(&quot;MaskCamera&quot;).camera;</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//flightUi<sp/>=<sp/>GameObject.Find(&quot;FlightUIElements&quot;);</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"></highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//tabContainer<sp/>=<sp/>flightUi.transform.FindChild(&quot;StageTabs&quot;);</highlight></codeline>
+<codeline lineno="48"><highlight class="comment"></highlight></codeline>
+<codeline lineno="49"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onFlightModeStarted.Add(flightOnScreen);</highlight></codeline>
+<codeline lineno="50"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onFlightModeSystemsShutDown.Add(flightOffScreen);</highlight></codeline>
+<codeline lineno="51"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onGamePaused.Add(flightOffScreen);</highlight></codeline>
+<codeline lineno="52"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onGameUnpaused.Add(flightOnScreen);</highlight></codeline>
+<codeline lineno="53"><highlight class="comment"></highlight></codeline>
+<codeline lineno="54"><highlight class="comment"></highlight></codeline>
+<codeline lineno="55"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//if<sp/>(!degub)<sp/>return;</highlight></codeline>
+<codeline lineno="56"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="comment"></highlight></codeline>
+<codeline lineno="58"><highlight class="comment"><sp/><sp/><sp/><sp/>void<sp/>OnDestroy()</highlight></codeline>
+<codeline lineno="59"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onFlightModeStarted.Remove(flightOnScreen);</highlight></codeline>
+<codeline lineno="61"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onFlightModeSystemsShutDown.Remove(flightOffScreen);</highlight></codeline>
+<codeline lineno="62"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onGamePaused.Remove(flightOffScreen);</highlight></codeline>
+<codeline lineno="63"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onGameUnpaused.Remove(flightOnScreen);</highlight></codeline>
+<codeline lineno="64"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="65"><highlight class="comment"></highlight></codeline>
+<codeline lineno="66"><highlight class="comment"><sp/><sp/><sp/><sp/>private<sp/>void<sp/>flightOnScreen()</highlight></codeline>
+<codeline lineno="67"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flightCam.enabled<sp/>=<sp/>true;</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flightAltCam.enabled<sp/>=<sp/>true;</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"></highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flightUi.transform.localPosition<sp/>=<sp/>new<sp/>Vector3((float)Screen.width<sp/>/<sp/>(float)Screen.height,<sp/>0f,<sp/>0f);</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tabContainer.localPosition<sp/>=<sp/>new<sp/>Vector3(-0.405f,<sp/>tabContainer.localPosition.y,<sp/>0f);</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="comment"></highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/><sp/>private<sp/>void<sp/>flightOffScreen()</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flightCam.enabled<sp/>=<sp/>false;</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flightAltCam.enabled<sp/>=<sp/>false;</highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="80"><highlight class="comment"></highlight></codeline>
+<codeline lineno="81"><highlight class="comment"></highlight></codeline>
+<codeline lineno="82"><highlight class="comment"><sp/><sp/><sp/><sp/>void<sp/>flightUpd()</highlight></codeline>
+<codeline lineno="83"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="84"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>flightUi.transform.localPosition<sp/>=<sp/>new<sp/>Vector3((float)Screen.width<sp/>/<sp/>(float)Screen.height,<sp/>0f,<sp/>0f);</highlight></codeline>
+<codeline lineno="85"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tabContainer.localPosition<sp/>=<sp/>new<sp/>Vector3(-0.405f,<sp/>tabContainer.localPosition.y,<sp/>0f);</highlight></codeline>
+<codeline lineno="86"><highlight class="comment"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="87"><highlight class="comment"></highlight></codeline>
+<codeline lineno="88"><highlight class="comment"></highlight></codeline>
+<codeline lineno="89"><highlight class="comment">}</highlight></codeline>
+<codeline lineno="90"><highlight class="comment"></highlight></codeline>
+<codeline lineno="91"><highlight class="comment">*/</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/UI Scripts/FlightUIPositioning.cs"/>
+  </compounddef>
+</doxygen>

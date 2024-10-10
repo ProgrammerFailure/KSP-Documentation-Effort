@@ -1,0 +1,537 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_steamworks_1_1_steam_utils" kind="class" prot="public">
+    <compoundname>Steamworks::SteamUtils</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a3aa0530b7536580a67b4d35782a675a4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.BOverlayNeedsPresent</definition>
+        <argsstring>()</argsstring>
+        <name>BOverlayNeedsPresent</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Normally this call is unneeded if your game has a constantly running frame loop that calls the</para><para>D3D Present API, or OGL SwapBuffers API every frame.</para><para>However, if you have a game that only refreshes the screen on an event driven basis then that can break</para><para>the overlay, as it uses your Present/SwapBuffers calls to drive it&apos;s internal frame loop and it may also</para><para>need to Present() to the screen any time an even needing a notification happens or when the overlay is</para><para>brought up over the game by a user. You can use this API to ask the overlay if it currently need a present</para><para>in that case, and then you can check for this periodically (roughly 33hz is desirable) and make sure you</para><para>refresh the screen with Present or SwapBuffers to allow the overlay to do it&apos;s work.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="164" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="164" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a63a8f0ff721dcf978e63960702d5beeb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUtils.CheckFileSignature</definition>
+        <argsstring>(string szFileName)</argsstring>
+        <name>CheckFileSignature</name>
+        <param>
+          <type>string</type>
+          <declname>szFileName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Asynchronous call to check if an executable file has been signed using the public key set on the signing tab</para><para>of the partner site, for example to refuse to load modified executable files.</para><para>The result is returned in <ref refid="struct_steamworks_1_1_check_file_signature__t" kindref="compound">CheckFileSignature_t</ref>.</para><para>k_ECheckFileSignatureNoSignaturesFoundForThisApp - This app has not been configured on the signing tab of the partner site to enable this function.</para><para>k_ECheckFileSignatureNoSignaturesFoundForThisFile - This file is not listed on the signing tab for the partner site.</para><para>k_ECheckFileSignatureFileNotFound - The file does not exist on disk.</para><para>k_ECheckFileSignatureInvalidSignature - The file exists, and the signing tab has been set for this file, but the file is either not signed or the signature does not match.</para><para>k_ECheckFileSignatureValidSignature - The file is signed and the signature is valid.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="179" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="179" bodyend="184"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a27af08669860f2b1d0e243ef98db3165" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_steamworks_1a2ee09aa640505b254ca8dc46d0b70bbf" kindref="member">ESteamAPICallFailure</ref></type>
+        <definition>static ESteamAPICallFailure Steamworks.SteamUtils.GetAPICallFailureReason</definition>
+        <argsstring>(SteamAPICall_t hSteamAPICall)</argsstring>
+        <name>GetAPICallFailureReason</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+          <declname>hSteamAPICall</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="113" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="113" bodyend="116"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a29016e6bb992478780d35223d5d29941" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.GetAPICallResult</definition>
+        <argsstring>(SteamAPICall_t hSteamAPICall, IntPtr pCallback, int cubCallback, int iCallbackExpected, out bool pbFailed)</argsstring>
+        <name>GetAPICallResult</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+          <declname>hSteamAPICall</declname>
+        </param>
+        <param>
+          <type><ref refid="isteamapplist_8cs_1acb03f660b5fb2d8f0d9349b3586ac20e" kindref="member">IntPtr</ref></type>
+          <declname>pCallback</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cubCallback</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>iCallbackExpected</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbFailed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="118" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="118" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a41c66a474820dc743ecff434ab95660b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_app_id__t" kindref="compound">AppId_t</ref></type>
+        <definition>static AppId_t Steamworks.SteamUtils.GetAppID</definition>
+        <argsstring>()</argsstring>
+        <name>GetAppID</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the appID of the current process</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="90" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="90" bodyend="93"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a82de01442fd3dc274bed47b255163e36" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_steamworks_1a911bb7210d000165ea3d4ccc1a6885dd" kindref="member">EUniverse</ref></type>
+        <definition>static EUniverse Steamworks.SteamUtils.GetConnectedUniverse</definition>
+        <argsstring>()</argsstring>
+        <name>GetConnectedUniverse</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>the universe this client is connecting to</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="31" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="31" bodyend="34"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1aaa14a215b27ddd6d558387112de6fad9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.GetCSERIPPort</definition>
+        <argsstring>(out uint unIP, out ushort usPort)</argsstring>
+        <name>GetCSERIPPort</name>
+        <param>
+          <type>out uint</type>
+          <declname>unIP</declname>
+        </param>
+        <param>
+          <type>out ushort</type>
+          <declname>usPort</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the IP of the reporting server for valve - currently only used in Source engine games</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="74" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="74" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a88480af905cdd9b6d269d93c0a54ca55" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>byte</type>
+        <definition>static byte Steamworks.SteamUtils.GetCurrentBatteryPower</definition>
+        <argsstring>()</argsstring>
+        <name>GetCurrentBatteryPower</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>return the amount of battery power left in the current system in % [0..100], 255 for being on AC power</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="82" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="82" bodyend="85"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a51356831a5a4d47836ca70c08a8c14b9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.GetEnteredGamepadTextInput</definition>
+        <argsstring>(out string pchText, uint cchText)</argsstring>
+        <name>GetEnteredGamepadTextInput</name>
+        <param>
+          <type>out string</type>
+          <declname>pchText</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>cchText</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="205" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="205" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a43e3525ebe4fc6dccb7dbb38b6fa0811" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint</type>
+        <definition>static uint Steamworks.SteamUtils.GetEnteredGamepadTextLength</definition>
+        <argsstring>()</argsstring>
+        <name>GetEnteredGamepadTextLength</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns previously entered text &amp; length</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="200" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="200" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1ab6decd5b631bdc6b2c442ccad99e1e44" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.GetImageRGBA</definition>
+        <argsstring>(int iImage, byte[] pubDest, int nDestBufferSize)</argsstring>
+        <name>GetImageRGBA</name>
+        <param>
+          <type>int</type>
+          <declname>iImage</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>pubDest</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nDestBufferSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns true if the image exists, and the buffer was successfully filled out</para><para>results are returned in RGBA format</para><para>the destination buffer size should be 4 * height * width * sizeof(char)</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="66" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="66" bodyend="69"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a9e3b917b26efb75e7a23eef56a1d3ac7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.GetImageSize</definition>
+        <argsstring>(int iImage, out uint pnWidth, out uint pnHeight)</argsstring>
+        <name>GetImageSize</name>
+        <param>
+          <type>int</type>
+          <declname>iImage</declname>
+        </param>
+        <param>
+          <type>out uint</type>
+          <declname>pnWidth</declname>
+        </param>
+        <param>
+          <type>out uint</type>
+          <declname>pnHeight</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns true if the image exists, and valid sizes were filled out</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="56" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="56" bodyend="59"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a1a95ff0fb6787eeff9971ce99f85a480" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint</type>
+        <definition>static uint Steamworks.SteamUtils.GetIPCCallCount</definition>
+        <argsstring>()</argsstring>
+        <name>GetIPCCallCount</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the number of IPC calls made since the last time this function was called</para><para>Used for perf debugging so you can understand how many IPC calls your game makes per frame</para><para>Every IPC call is at minimum a thread context switch if not a process one so you want to rate</para><para>control how often you do them.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="129" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="129" bodyend="132"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1add6a58838c32184cc0579665b3c795a4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Steamworks.SteamUtils.GetIPCountry</definition>
+        <argsstring>()</argsstring>
+        <name>GetIPCountry</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the 2 digit ISO 3166-1-alpha-2 format country code this client is running in (as looked up via an IP-to-location database)</para><para>e.g &quot;US&quot; or &quot;UK&quot;.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="48" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="48" bodyend="51"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1af04a3b9ab7156793d4ebd1affd2f8697" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint</type>
+        <definition>static uint Steamworks.SteamUtils.GetSecondsSinceAppActive</definition>
+        <argsstring>()</argsstring>
+        <name>GetSecondsSinceAppActive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>return the number of seconds since the user</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="18" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1af9c2c13a7dc3ededa086f27bef17e22a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint</type>
+        <definition>static uint Steamworks.SteamUtils.GetSecondsSinceComputerActive</definition>
+        <argsstring>()</argsstring>
+        <name>GetSecondsSinceComputerActive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="23" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="23" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a2c3a9628bccdfddfb3691b08fce43976" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint</type>
+        <definition>static uint Steamworks.SteamUtils.GetServerRealTime</definition>
+        <argsstring>()</argsstring>
+        <name>GetServerRealTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Steam server time. Number of seconds since January 1, 1970, GMT (i.e unix time)</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="39" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="39" bodyend="42"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a7ff39a873a2a182a73087aa0cd48f5ed" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Steamworks.SteamUtils.GetSteamUILanguage</definition>
+        <argsstring>()</argsstring>
+        <name>GetSteamUILanguage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the language the steam client is running in, you probably want ISteamApps::GetCurrentGameLanguage instead, this is for very special usage cases</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="217" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="217" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1ab6f17a818577fca648b734bc437b2c8d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.IsAPICallCompleted</definition>
+        <argsstring>(SteamAPICall_t hSteamAPICall, out bool pbFailed)</argsstring>
+        <name>IsAPICallCompleted</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+          <declname>hSteamAPICall</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbFailed</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>API asynchronous call results</para><para>can be used directly, but more commonly used via the callback dispatch API (see steam_api.h)</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="108" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a3a9f2c4027d594b3df69398ca53fa86d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.IsOverlayEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>IsOverlayEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if the overlay is running &amp; the user can access it. The overlay process could take a few seconds to</para><para>start &amp; hook the game process, so this function will initially return false while the overlay is loading.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="149" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="149" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a4c1abf81c122cb19354782ae15b858c1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.IsSteamInBigPictureMode</definition>
+        <argsstring>()</argsstring>
+        <name>IsSteamInBigPictureMode</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns true if Steam &amp; the Steam Overlay are running in Big Picture mode</para><para>Games much be launched through the Steam client to enable the Big Picture overlay. During development,</para><para>a game can be added as a non-steam game to the developers library to test this feature</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="243" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="243" bodyend="246"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a8e587f753df708f1c3214d86a0ccd660" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.IsSteamRunningInVR</definition>
+        <argsstring>()</argsstring>
+        <name>IsSteamRunningInVR</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns true if Steam itself is running in VR mode</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="225" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="225" bodyend="228"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1abd2baf66e6d96af56a7fa74e565dfe80" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.IsVRHeadsetStreamingEnabled</definition>
+        <argsstring>()</argsstring>
+        <name>IsVRHeadsetStreamingEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns true if the HMD content will be streamed via Steam In-Home Streaming</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="259" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="259" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a444628695f428c8f478a3d3fd7e14fe3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Steamworks.SteamUtils.SetOverlayNotificationInset</definition>
+        <argsstring>(int nHorizontalInset, int nVerticalInset)</argsstring>
+        <name>SetOverlayNotificationInset</name>
+        <param>
+          <type>int</type>
+          <declname>nHorizontalInset</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nVerticalInset</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the inset of the overlay notification from the corner specified by SetOverlayNotificationPosition.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="233" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="233" bodyend="236"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a74e41139e3ea3a9d9810096592534630" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Steamworks.SteamUtils.SetOverlayNotificationPosition</definition>
+        <argsstring>(ENotificationPosition eNotificationPosition)</argsstring>
+        <name>SetOverlayNotificationPosition</name>
+        <param>
+          <type><ref refid="namespace_steamworks_1ae571077f0fd79c3f60fdb35a5f03f076" kindref="member">ENotificationPosition</ref></type>
+          <declname>eNotificationPosition</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the position where the overlay instance for the currently calling game should show notifications.</para><para>This position is per-game and if this function is called from outside of a game context it will do nothing.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="99" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="99" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a753bcb75a915a6883018cacfc2dcac9a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Steamworks.SteamUtils.SetVRHeadsetStreamingEnabled</definition>
+        <argsstring>(bool bEnabled)</argsstring>
+        <name>SetVRHeadsetStreamingEnabled</name>
+        <param>
+          <type>bool</type>
+          <declname>bEnabled</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set whether the HMD content will be streamed via Steam In-Home Streaming</para><para>If this is set to true, then the scene in the HMD headset will be streamed, and remote input will not be allowed.</para><para>If this is set to false, then the application window will be streamed instead, and remote input will be allowed.</para><para>The default is true unless &quot;VRHeadsetStreaming&quot; &quot;0&quot; is in the extended appinfo for a game.</para><para>(this is useful for games that have asymmetric multiplayer gameplay)</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="271" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="271" bodyend="274"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a9b72a5312665c318a93844513bd5c740" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Steamworks.SteamUtils.SetWarningMessageHook</definition>
+        <argsstring>(SteamAPIWarningMessageHook_t pFunction)</argsstring>
+        <name>SetWarningMessageHook</name>
+        <param>
+          <type><ref refid="namespace_steamworks_1a678748dc2be564db436af17b86b32fb4" kindref="member">SteamAPIWarningMessageHook_t</ref></type>
+          <declname>pFunction</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>API warning handling</para><para>&apos;int&apos; is the severity; 0 for msg, 1 for warning</para><para>&apos;const char *&apos; is the text of the message</para><para>callbacks will occur directly after the API function is called that generated the warning or message</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="140" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="140" bodyend="143"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a3acaac41c4a686ef9d1a5cf832bcde50" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUtils.ShowGamepadTextInput</definition>
+        <argsstring>(EGamepadTextInputMode eInputMode, EGamepadTextInputLineMode eLineInputMode, string pchDescription, uint unCharMax, string pchExistingText)</argsstring>
+        <name>ShowGamepadTextInput</name>
+        <param>
+          <type><ref refid="namespace_steamworks_1a57802f8a6e3588679802c319b0055b70" kindref="member">EGamepadTextInputMode</ref></type>
+          <declname>eInputMode</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_steamworks_1a85492a86e95cbb6d3b5f2231d10f25a5" kindref="member">EGamepadTextInputLineMode</ref></type>
+          <declname>eLineInputMode</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchDescription</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unCharMax</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchExistingText</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Activates the Big Picture text input dialog which only supports gamepad input</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="189" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="189" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_utils_1a76ab6bd473d45618ce340247df574a61" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void Steamworks.SteamUtils.StartVRDashboard</definition>
+        <argsstring>()</argsstring>
+        <name>StartVRDashboard</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>ask SteamUI to create and render its OpenVR dashboard</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="251" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="251" bodyend="254"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" line="14" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamutils.cs" bodystart="14" bodyend="275"/>
+    <listofallmembers>
+      <member refid="class_steamworks_1_1_steam_utils_1a3aa0530b7536580a67b4d35782a675a4" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>BOverlayNeedsPresent</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a63a8f0ff721dcf978e63960702d5beeb" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>CheckFileSignature</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a27af08669860f2b1d0e243ef98db3165" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetAPICallFailureReason</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a29016e6bb992478780d35223d5d29941" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetAPICallResult</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a41c66a474820dc743ecff434ab95660b" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetAppID</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a82de01442fd3dc274bed47b255163e36" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetConnectedUniverse</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1aaa14a215b27ddd6d558387112de6fad9" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetCSERIPPort</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a88480af905cdd9b6d269d93c0a54ca55" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetCurrentBatteryPower</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a51356831a5a4d47836ca70c08a8c14b9" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetEnteredGamepadTextInput</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a43e3525ebe4fc6dccb7dbb38b6fa0811" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetEnteredGamepadTextLength</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1ab6decd5b631bdc6b2c442ccad99e1e44" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetImageRGBA</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a9e3b917b26efb75e7a23eef56a1d3ac7" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetImageSize</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a1a95ff0fb6787eeff9971ce99f85a480" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetIPCCallCount</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1add6a58838c32184cc0579665b3c795a4" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetIPCountry</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1af04a3b9ab7156793d4ebd1affd2f8697" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetSecondsSinceAppActive</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1af9c2c13a7dc3ededa086f27bef17e22a" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetSecondsSinceComputerActive</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a2c3a9628bccdfddfb3691b08fce43976" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetServerRealTime</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a7ff39a873a2a182a73087aa0cd48f5ed" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>GetSteamUILanguage</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1ab6f17a818577fca648b734bc437b2c8d" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>IsAPICallCompleted</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a3a9f2c4027d594b3df69398ca53fa86d" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>IsOverlayEnabled</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a4c1abf81c122cb19354782ae15b858c1" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>IsSteamInBigPictureMode</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a8e587f753df708f1c3214d86a0ccd660" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>IsSteamRunningInVR</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1abd2baf66e6d96af56a7fa74e565dfe80" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>IsVRHeadsetStreamingEnabled</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a444628695f428c8f478a3d3fd7e14fe3" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>SetOverlayNotificationInset</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a74e41139e3ea3a9d9810096592534630" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>SetOverlayNotificationPosition</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a753bcb75a915a6883018cacfc2dcac9a" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>SetVRHeadsetStreamingEnabled</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a9b72a5312665c318a93844513bd5c740" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>SetWarningMessageHook</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a3acaac41c4a686ef9d1a5cf832bcde50" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>ShowGamepadTextInput</name></member>
+      <member refid="class_steamworks_1_1_steam_utils_1a76ab6bd473d45618ce340247df574a61" prot="public" virt="non-virtual"><scope>Steamworks::SteamUtils</scope><name>StartVRDashboard</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

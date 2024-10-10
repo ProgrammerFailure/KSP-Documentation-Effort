@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_local_particle_gravity_8cs" kind="file">
+    <compoundname>LocalParticleGravity.cs</compoundname>
+    <innerclass refid="class_local_particle_gravity" prot="public">LocalParticleGravity</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="class_local_particle_gravity" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_local_particle_gravity" kindref="compound">LocalParticleGravity</ref><sp/>:<sp/>MonoBehaviour<sp/></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_local_particle_gravity_1a0e75b86c1215d3e431507376b38552ad" kindref="member">gravScale</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Start<sp/>()<sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>START<sp/>LEGACY<sp/>TO<sp/>REMOVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*ParticleAnimator<sp/>p<sp/>=<sp/>GetComponent&lt;ParticleAnimator&gt;();</highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(FlightGlobals.fetch<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p.force<sp/>=<sp/>FlightGlobals.getGeeForceAtPosition(transform.position)<sp/>*<sp/>gravScale;</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline lineno="15"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="16"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>p.force<sp/>=<sp/>Vector3.down<sp/>*<sp/>9.80665f<sp/>*<sp/>gravScale;</highlight></codeline>
+<codeline lineno="17"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>END<sp/>LEGACY<sp/>TO<sp/>REMOVE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NEW<sp/>SYSTEM</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticleSystem<sp/>ps<sp/>=<sp/>GetComponent&lt;ParticleSystem&gt;();</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ps<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticleSystem.ForceOverLifetimeModule<sp/>forceModule<sp/>=<sp/>ps.forceOverLifetime;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>forceValue;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_flight_globals" kindref="compound">FlightGlobals</ref>.<ref refid="class_flight_globals_1a4b77d1c3f453a82629236e97dff4417e" kindref="member">fetch</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forceValue<sp/>=<sp/>FlightGlobals.getGeeForceAtPosition(transform.position)<sp/>*<sp/><ref refid="class_local_particle_gravity_1a0e75b86c1215d3e431507376b38552ad" kindref="member">gravScale</ref>;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forceValue<sp/>=<sp/>Vector3.down<sp/>*<sp/>(float)<ref refid="class_physics_globals" kindref="compound">PhysicsGlobals</ref>.<ref refid="class_physics_globals_1a0a62cc361f9d2388bfb6dc43e192ce50" kindref="member">GravitationalAcceleration</ref><sp/>*<sp/><ref refid="class_local_particle_gravity_1a0e75b86c1215d3e431507376b38552ad" kindref="member">gravScale</ref>;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Set<sp/>up<sp/>the<sp/>forcemodule<sp/>to<sp/>apply<sp/>gravity<sp/>-<sp/>the<sp/>prefab<sp/>is<sp/>rotated<sp/>so<sp/>we<sp/>always<sp/>apply<sp/>gravity<sp/>towards<sp/>the<sp/>planet<sp/>center</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forceModule.randomized<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forceModule.x<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ParticleSystem.MinMaxCurve(0);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forceModule.y<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ParticleSystem.MinMaxCurve(-forceValue.magnitude);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forceModule.z<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ParticleSystem.MinMaxCurve(0);</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>forceModule.enabled<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//----<sp/>EXAMPLE<sp/>OF<sp/>BAD<sp/>CODE<sp/>-<sp/>NEVER<sp/>USE<sp/>THE<sp/>BELOW<sp/>(TRIGGER)<sp/>-----</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>gets<sp/>a<sp/>curve<sp/>and<sp/>sets<sp/>the<sp/>force<sp/>to<sp/>be<sp/>in<sp/>an<sp/>arbitrary<sp/>direction<sp/>not<sp/>towards<sp/>the<sp/>planet<sp/>center</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>It<sp/>also<sp/>sets<sp/>the<sp/>value<sp/>and<sp/>never<sp/>applies<sp/>it<sp/>back<sp/>to<sp/>the<sp/>force<sp/>module</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>It<sp/>also<sp/>doesnt<sp/>set<sp/>the<sp/>curve<sp/>type<sp/>to<sp/>be<sp/>constant</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>And<sp/>lastly<sp/>it<sp/>doesnt<sp/>enable<sp/>the<sp/>forcemodule</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>In<sp/>a<sp/>nuteshell<sp/>the<sp/>below<sp/>6<sp/>lines<sp/>are<sp/>ineffective<sp/>and<sp/>a<sp/>waste<sp/>of<sp/>time<sp/>that<sp/>were<sp/>obviously<sp/>never<sp/>tested</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ParticleSystem.MinMaxCurve<sp/>forceX<sp/>=<sp/>forceModule.x;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ParticleSystem.MinMaxCurve<sp/>forceY<sp/>=<sp/>forceModule.y;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ParticleSystem.MinMaxCurve<sp/>forceZ<sp/>=<sp/>forceModule.z;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//forceX.constant<sp/>=<sp/>forceValue.x;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//forceY.constant<sp/>=<sp/>forceValue.y;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//forceZ.constant<sp/>=<sp/>forceValue.z;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/VFX/Particles/LocalParticleGravity.cs"/>
+  </compounddef>
+</doxygen>

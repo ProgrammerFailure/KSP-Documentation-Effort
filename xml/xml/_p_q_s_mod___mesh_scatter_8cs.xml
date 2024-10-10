@@ -1,0 +1,413 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_p_q_s_mod___mesh_scatter_8cs" kind="file">
+    <compoundname>PQSMod_MeshScatter.cs</compoundname>
+    <innerclass refid="class_p_q_s_mod___mesh_scatter" prot="public">PQSMod_MeshScatter</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="_celestial_body_8cs_1ac9eb0319ef2a2099d69ed9e5dcbfcb6aa8045a0a6c688b0635e3caccc408a1446" kindref="member">System.Collections.Generic</ref>;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">[AddComponentMenu(</highlight><highlight class="stringliteral">&quot;PQuadSphere/Mods/Terrain/Scatter&quot;</highlight><highlight class="normal">)]<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="6" refid="class_p_q_s_mod___mesh_scatter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_p_q_s_mod___mesh_scatter" kindref="compound">PQSMod_MeshScatter</ref><sp/>:<sp/><ref refid="class_p_q_s_mod" kindref="compound">PQSMod</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af2c4f178b93b991c9f1b9ee954e9c427" kindref="member">scatterName</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a231b248a266daceeeaa02ac6debe3f9e" kindref="member">seed</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1afb1328bd84d1b419d20789af504af774" kindref="member">maxCache</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ad97053c0cd72f35f338c003779a5cce2" kindref="member">maxScatter</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Material<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a84e212cc0cadc5912cdf01c0ac3d5920" kindref="member">material</ref>;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Texture2D<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a6e734dd7ff8c5c1dc24f8d851092b86d" kindref="member">scatterMap</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Color<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a5b818f6d23772fce8e17d0c3264b859c" kindref="member">baseColor</ref>;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Mesh<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa2a6d9ab50734ea1f31f7a36da670d91" kindref="member">baseMesh</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a107684c8c3288cc0efb5ec5e28ad33bd" kindref="member">minSubdivision</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a4e70e43485594ddc7fee6e03e3ee4042" kindref="member">countPerSqM</ref>;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a1549277f17df7ff0da1e5e8cfc4e3f95" kindref="member">verticalOffset</ref>;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector3<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aeb78afab808734c24f4f346cacabeb95" kindref="member">minScale</ref>;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector3<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a8dd7e2d5caccd55b4161a89cf718ad12" kindref="member">maxScale</ref>;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a0934de49f2bda5efa053762316a21a15" kindref="member">castShadows</ref>;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1add1700bc4791c9e2efe2fbce798d1c52" kindref="member">recieveShadows</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a18ffccc912a0dbe14da330f13b6269f7" kindref="member">triStride</ref>;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1acbc0156751a0e259e5a173eaf833c553" kindref="member">maxCacheCount</ref>;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>GameObject<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aeaef3ec82ebeebd2eddd0dbe4db93c42" kindref="member">scatterParent</ref>;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector3[]<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a33adb71215f3cd7013b4d09276882918" kindref="member">vertsUntrans</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector3[]<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ac25d60bafa8bb9e9f27a9c9c17fa941a" kindref="member">normUntrans</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector2[]<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a2cdc19cf09c0812c4200d3ecc1b5aa56" kindref="member">uvUntrans</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">[]<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a9c1c3a580ade003e6e05c04c7785e4b5" kindref="member">trisUntrans</ref>;</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector3[]<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a177ffdfdc4ae8bdd35f301055d7bc64f" kindref="member">verts</ref>;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector3[]<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa05c9affe182abfefce6312ccce55a9e" kindref="member">normals</ref>;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>List&lt;MeshFilter&gt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a27277a3fa3ab844a8478ee608f44af00" kindref="member">cacheUnassigned</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a541734dddf408ef9e434bea267744e3d" kindref="member">cacheUnassignedCount</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>List&lt;MeshFilter&gt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a167d678144ceb738393fba9d2d597662" kindref="member">cacheAssigned</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/>[HideInInspector]</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a5a234eee7159e533f62d33841883d8c3" kindref="member">cacheAssignedCount</ref>;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>scatterPos;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>rndCount;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter___quad_control" kindref="compound">PQSMod_MeshScatter_QuadControl</ref><sp/>qc;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>countFactor;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>scatterUp;</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>scatterScale;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Quaternion<sp/>scatterRot;</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>scatterAngle;</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>scatterLoop;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset()</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a231b248a266daceeeaa02ac6debe3f9e" kindref="member">seed</ref><sp/>=<sp/>UnityEngine.Random.Range(0,<sp/>int.MaxValue<sp/>/<sp/>2);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Unnamed&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a5b818f6d23772fce8e17d0c3264b859c" kindref="member">baseColor</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Color(0.5f,<sp/>0.5f,<sp/>0.5f);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a4e70e43485594ddc7fee6e03e3ee4042" kindref="member">countPerSqM</ref><sp/>=<sp/>0.01f;</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a107684c8c3288cc0efb5ec5e28ad33bd" kindref="member">minSubdivision</ref><sp/>=<sp/>11;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aeb78afab808734c24f4f346cacabeb95" kindref="member">minScale</ref><sp/>=<sp/>Vector3.one;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a8dd7e2d5caccd55b4161a89cf718ad12" kindref="member">maxScale</ref><sp/>=<sp/>Vector3.one;</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1afb1328bd84d1b419d20789af504af774" kindref="member">maxCache</ref><sp/>=<sp/>256;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a0324b80bed8690484c18cc8d761547d2" kindref="member">OnSetup</ref>()</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_p_q_s_mod___mesh_scatter_1aa2a6d9ab50734ea1f31f7a36da670d91" kindref="member">baseMesh</ref><sp/>==<sp/>null)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BuildCacheQuad();</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BuildCacheMesh(<ref refid="class_p_q_s_mod___mesh_scatter_1aa2a6d9ab50734ea1f31f7a36da670d91" kindref="member">baseMesh</ref>.vertices,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa2a6d9ab50734ea1f31f7a36da670d91" kindref="member">baseMesh</ref>.uv,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa2a6d9ab50734ea1f31f7a36da670d91" kindref="member">baseMesh</ref>.normals,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa2a6d9ab50734ea1f31f7a36da670d91" kindref="member">baseMesh</ref>.triangles);</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BuildCache();</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a45b4488c0a76a7a8af195eb69bb2739e" kindref="member">OnQuadBuilt</ref>(<ref refid="class_p_q" kindref="compound">PQ</ref><sp/>quad)</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(quad.<ref refid="class_p_q_1ac8e16908c70f94b687e7d4a1f06063cd" kindref="member">subdivision</ref><sp/>&lt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a107684c8c3288cc0efb5ec5e28ad33bd" kindref="member">minSubdivision</ref>)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a3ed2268e81dac4bac9bb4eda1b6c18d7" kindref="member">AddScatterMeshController</ref>(quad);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a3ed2268e81dac4bac9bb4eda1b6c18d7" kindref="member">AddScatterMeshController</ref>(<ref refid="class_p_q" kindref="compound">PQ</ref><sp/>quad)</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a231b248a266daceeeaa02ac6debe3f9e" kindref="member">seed</ref><sp/>=<sp/>this.seed<sp/>+</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((int)(quad.<ref refid="class_p_q_1a348d406fe516e50e5e89b8a405bcbc73" kindref="member">positionPlanetRelative</ref>.<ref refid="struct_vector3d_1a8b074c5ebd03db4c04ba78abc574ec9a" kindref="member">x</ref><sp/>*<sp/>1023)<sp/>&lt;&lt;<sp/>20)<sp/>+</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)(quad.positionPlanetRelative.y<sp/>*<sp/>1023)<sp/>&lt;&lt;<sp/>10)<sp/>+</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>((int)(quad.<ref refid="class_p_q_1a348d406fe516e50e5e89b8a405bcbc73" kindref="member">positionPlanetRelative</ref>.<ref refid="struct_vector3d_1a0543aef44b01310ddaffebca15106640" kindref="member">z</ref><sp/>*<sp/>1023));</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"></highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_p_q_s_mod___mesh_scatter_1a6e734dd7ff8c5c1dc24f8d851092b86d" kindref="member">scatterMap</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>countFactor<sp/>=<sp/>sphere.BilinearInterpFloatMap(quad.positionPlanetRelative,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a6e734dd7ff8c5c1dc24f8d851092b86d" kindref="member">scatterMap</ref>);</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(countFactor<sp/>&lt;<sp/>0.1d)</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rndCount<sp/>=<sp/>(int)Math.Floor(countFactor<sp/>*<sp/>quad.<ref refid="class_p_q_1a77a37328cefc7e86546c1e212c57c116" kindref="member">quadArea</ref><sp/>*<sp/>UnityEngine.Random.Range(0f,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a4e70e43485594ddc7fee6e03e3ee4042" kindref="member">countPerSqM</ref>));</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>rndCount<sp/>=<sp/>(int)Math.Floor(quad.<ref refid="class_p_q_1a77a37328cefc7e86546c1e212c57c116" kindref="member">quadArea</ref><sp/>*<sp/>UnityEngine.Random.Range(0f,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a4e70e43485594ddc7fee6e03e3ee4042" kindref="member">countPerSqM</ref>));</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"></highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(rndCount<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qc<sp/>=<sp/>quad.gameObject.AddComponent&lt;<ref refid="class_p_q_s_mod___mesh_scatter___quad_control" kindref="compound">PQSMod_MeshScatter_QuadControl</ref>&gt;();</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>qc.Setup(quad,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a231b248a266daceeeaa02ac6debe3f9e" kindref="member">seed</ref>,<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">,<sp/>rndCount);</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"></highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BuildCacheMesh(Vector3[]<sp/>vertBase,<sp/>Vector2[]<sp/>uvBase,<sp/>Vector3[]<sp/>normBase,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">[]<sp/>triBase)</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref><sp/>=<sp/>vertBase.Length;</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a18ffccc912a0dbe14da330f13b6269f7" kindref="member">triStride</ref><sp/>=<sp/>triBase.Length;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1acbc0156751a0e259e5a173eaf833c553" kindref="member">maxCacheCount</ref><sp/>=<sp/>16000<sp/>/<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>;</highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a33adb71215f3cd7013b4d09276882918" kindref="member">vertsUntrans</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3[<ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>];</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertBase.CopyTo(<ref refid="class_p_q_s_mod___mesh_scatter_1a33adb71215f3cd7013b4d09276882918" kindref="member">vertsUntrans</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ac25d60bafa8bb9e9f27a9c9c17fa941a" kindref="member">normUntrans</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3[<ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>];</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normBase.CopyTo(<ref refid="class_p_q_s_mod___mesh_scatter_1ac25d60bafa8bb9e9f27a9c9c17fa941a" kindref="member">normUntrans</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a2cdc19cf09c0812c4200d3ecc1b5aa56" kindref="member">uvUntrans</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector2[<ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>];</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uvBase.CopyTo(<ref refid="class_p_q_s_mod___mesh_scatter_1a2cdc19cf09c0812c4200d3ecc1b5aa56" kindref="member">uvUntrans</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a9c1c3a580ade003e6e05c04c7785e4b5" kindref="member">trisUntrans</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">[<ref refid="class_p_q_s_mod___mesh_scatter_1a18ffccc912a0dbe14da330f13b6269f7" kindref="member">triStride</ref>];</highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>triBase.CopyTo(<ref refid="class_p_q_s_mod___mesh_scatter_1a9c1c3a580ade003e6e05c04c7785e4b5" kindref="member">trisUntrans</ref>,<sp/>0);</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BuildCacheQuad()</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Create<sp/>our<sp/>base<sp/>mesh<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="172"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref><sp/>=<sp/>4;</highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3[]<sp/>vertBase<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3[<ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>];</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertBase[0]<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertBase[1]<sp/>=<sp/>Vector3.right;</highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertBase[2]<sp/>=<sp/>Vector3.up;</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertBase[3]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(1,<sp/>1,<sp/>0);</highlight></codeline>
+<codeline lineno="178"><highlight class="normal"></highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector2[]<sp/>uvBase<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector2[<ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>];</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uvBase[0]<sp/>=<sp/>Vector2.zero;</highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uvBase[1]<sp/>=<sp/>Vector2.right;</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uvBase[2]<sp/>=<sp/>Vector2.up;</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uvBase[3]<sp/>=<sp/>Vector2.one;</highlight></codeline>
+<codeline lineno="184"><highlight class="normal"></highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3[]<sp/>normalBase<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3[<ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>];</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normalBase[0]<sp/>=<sp/>Vector3.back;</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normalBase[1]<sp/>=<sp/>Vector3.back;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normalBase[2]<sp/>=<sp/>Vector3.back;</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normalBase[3]<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(1,<sp/>1,<sp/>0);</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"></highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a18ffccc912a0dbe14da330f13b6269f7" kindref="member">triStride</ref><sp/>=<sp/>6;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">[]<sp/>triBase<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal">[<ref refid="class_p_q_s_mod___mesh_scatter_1a18ffccc912a0dbe14da330f13b6269f7" kindref="member">triStride</ref>];</highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>triBase[0]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>triBase[1]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>triBase[2]<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>triBase[3]<sp/>=<sp/>2;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>triBase[4]<sp/>=<sp/>1;</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>triBase[5]<sp/>=<sp/>3;</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BuildCacheMesh(vertBase,<sp/>uvBase,<sp/>normalBase,<sp/>triBase);</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>BuildCache()</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Mesh<sp/>mesh;</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameObject<sp/>o;</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MeshFilter<sp/>mf;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MeshRenderer<sp/>mr;</highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startV,<sp/>endV;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sx,<sp/>sy,<sp/>dx,<sp/>dy;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>scaledVert;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>vertIndex<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>itr;</highlight></codeline>
+<codeline lineno="214"><highlight class="normal"></highlight></codeline>
+<codeline lineno="215"><highlight class="normal"></highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>List&lt;Vector3&gt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a177ffdfdc4ae8bdd35f301055d7bc64f" kindref="member">verts</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;Vector3&gt;();</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>List&lt;Vector3&gt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa05c9affe182abfefce6312ccce55a9e" kindref="member">normals</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;Vector3&gt;();</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>List&lt;Vector2&gt;<sp/>uvs<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;Vector2&gt;();</highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>List&lt;int&gt;<sp/>tris<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;int&gt;();</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"></highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>scatterLoop<sp/>=<sp/>0;<sp/>scatterLoop<sp/>&lt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ad97053c0cd72f35f338c003779a5cce2" kindref="member">maxScatter</ref>;<sp/>scatterLoop++)</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>startV<sp/>=<sp/>endV<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(startV<sp/>==<sp/>endV)</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sx<sp/>=<sp/>UnityEngine.Random.Range(1,<sp/>PQS.cacheRes<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sy<sp/>=<sp/>UnityEngine.Random.Range(1,<sp/>PQS.cacheRes<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dx<sp/>=<sp/>sx<sp/>+<sp/>UnityEngine.Random.Range(-1,<sp/>1);</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dy<sp/>=<sp/>sy<sp/>+<sp/>UnityEngine.Random.Range(-1,<sp/>1);</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>startV<sp/>=<sp/>PQS.vi(sx,<sp/>sy);</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>endV<sp/>=<sp/>PQS.vi(dx,<sp/>dy);</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterPos<sp/>=<sp/>Vector3.Lerp(PQS.cacheVerts[startV],<sp/>PQS.cacheVerts[endV],<sp/>UnityEngine.Random.value);</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterUp<sp/>=<sp/>scatterPos.normalized;</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterPos.y<sp/>+=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a1549277f17df7ff0da1e5e8cfc4e3f95" kindref="member">verticalOffset</ref>;</highlight></codeline>
+<codeline lineno="239"><highlight class="normal"></highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterAngle<sp/>=<sp/>UnityEngine.Random.value<sp/>*<sp/>360;</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterRot<sp/>=<sp/>Quaternion.AngleAxis(scatterAngle,<sp/>Vector3.up);</highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterScale<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a77a70031201c6b7959e3d02563e5dca3" kindref="member">RandomRange</ref>(<ref refid="class_p_q_s_mod___mesh_scatter_1aeb78afab808734c24f4f346cacabeb95" kindref="member">minScale</ref>,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a8dd7e2d5caccd55b4161a89cf718ad12" kindref="member">maxScale</ref>);</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"></highlight></codeline>
+<codeline lineno="244"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(itr<sp/>=<sp/>0;<sp/>itr<sp/>&lt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>;<sp/>itr++)</highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scaledVert<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a33adb71215f3cd7013b4d09276882918" kindref="member">vertsUntrans</ref>[itr];</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scaledVert.Scale(scatterScale);</highlight></codeline>
+<codeline lineno="248"><highlight class="normal"></highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>verts.Add(scatterPos<sp/>+<sp/>(scatterRot<sp/>*<sp/>scaledVert));</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>normals.Add(scatterRot<sp/>*<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ac25d60bafa8bb9e9f27a9c9c17fa941a" kindref="member">normUntrans</ref>[itr]);</highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"></highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uvs.AddRange(<ref refid="class_p_q_s_mod___mesh_scatter_1a2cdc19cf09c0812c4200d3ecc1b5aa56" kindref="member">uvUntrans</ref>);</highlight></codeline>
+<codeline lineno="254"><highlight class="normal"></highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(itr<sp/>=<sp/>0;<sp/>itr<sp/>&lt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a18ffccc912a0dbe14da330f13b6269f7" kindref="member">triStride</ref>;<sp/>itr++)</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tris.Add(<ref refid="class_p_q_s_mod___mesh_scatter_1a9c1c3a580ade003e6e05c04c7785e4b5" kindref="member">trisUntrans</ref>[itr]<sp/>+<sp/>vertIndex);</highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="259"><highlight class="normal"></highlight></codeline>
+<codeline lineno="260"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vertIndex<sp/>+=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>;</highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.verts<sp/>=<sp/>verts.ToArray();</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.normals<sp/>=<sp/>normals.ToArray();</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Mesh();</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"></highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh.vertices<sp/>=<sp/>this.verts;</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh.normals<sp/>=<sp/>this.normals;</highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh.uv<sp/>=<sp/>uvs.ToArray();</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh.triangles<sp/>=<sp/>tris.ToArray();</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mesh.RecalculateBounds();</highlight></codeline>
+<codeline lineno="273"><highlight class="normal"></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a27277a3fa3ab844a8478ee608f44af00" kindref="member">cacheUnassigned</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;MeshFilter&gt;(<ref refid="class_p_q_s_mod___mesh_scatter_1afb1328bd84d1b419d20789af504af774" kindref="member">maxCache</ref>);</highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a167d678144ceb738393fba9d2d597662" kindref="member">cacheAssigned</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>List&lt;MeshFilter&gt;(<ref refid="class_p_q_s_mod___mesh_scatter_1afb1328bd84d1b419d20789af504af774" kindref="member">maxCache</ref>);</highlight></codeline>
+<codeline lineno="276"><highlight class="normal"></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_p_q_s_mod___mesh_scatter_1aeaef3ec82ebeebd2eddd0dbe4db93c42" kindref="member">scatterParent</ref><sp/>==<sp/>null)</highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aeaef3ec82ebeebd2eddd0dbe4db93c42" kindref="member">scatterParent</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject();</highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterParent.name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Scatter<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af2c4f178b93b991c9f1b9ee954e9c427" kindref="member">scatterName</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterParent.transform.parent<sp/>=<sp/>transform;</highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterParent.transform.localPosition<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterParent.transform.localRotation<sp/>=<sp/>Quaternion.identity;</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterParent.transform.localScale<sp/>=<sp/>Vector3.one;</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1afb1328bd84d1b419d20789af504af774" kindref="member">maxCache</ref>;<sp/>i++)</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>o<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject();</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>o.name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Unass&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>o.transform.parent<sp/>=<sp/>scatterParent.transform;</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>o.transform.localPosition<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>o.transform.localRotation<sp/>=<sp/>Quaternion.identity;</highlight></codeline>
+<codeline lineno="294"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>o.transform.localScale<sp/>=<sp/>Vector3.one;</highlight></codeline>
+<codeline lineno="295"><highlight class="normal"></highlight></codeline>
+<codeline lineno="296"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf<sp/>=<sp/>o.AddComponent&lt;MeshFilter&gt;();</highlight></codeline>
+<codeline lineno="297"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.mesh<sp/>=<sp/>mesh;</highlight></codeline>
+<codeline lineno="298"><highlight class="normal"></highlight></codeline>
+<codeline lineno="299"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mr<sp/>=<sp/>o.AddComponent&lt;MeshRenderer&gt;();</highlight></codeline>
+<codeline lineno="300"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mr.sharedMaterial<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a84e212cc0cadc5912cdf01c0ac3d5920" kindref="member">material</ref>;</highlight></codeline>
+<codeline lineno="301"><highlight class="normal"></highlight></codeline>
+<codeline lineno="302"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_p_q_s_mod___mesh_scatter_1a0934de49f2bda5efa053762316a21a15" kindref="member">castShadows</ref>)</highlight></codeline>
+<codeline lineno="303"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mr.shadowCastingMode<sp/>=<sp/>UnityEngine.Rendering.ShadowCastingMode.On;</highlight></codeline>
+<codeline lineno="304"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="305"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mr.shadowCastingMode<sp/>=<sp/>UnityEngine.Rendering.ShadowCastingMode.Off;</highlight></codeline>
+<codeline lineno="306"><highlight class="normal"></highlight></codeline>
+<codeline lineno="307"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mr.receiveShadows<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1add1700bc4791c9e2efe2fbce798d1c52" kindref="member">recieveShadows</ref>;</highlight></codeline>
+<codeline lineno="308"><highlight class="normal"></highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.gameObject.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cacheUnassigned.Add(mf);</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a541734dddf408ef9e434bea267744e3d" kindref="member">cacheUnassignedCount</ref>++;</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="314"><highlight class="normal"></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"></highlight></codeline>
+<codeline lineno="316"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="317"><highlight class="normal"></highlight></codeline>
+<codeline lineno="318"><highlight class="normal"></highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>MeshFilter<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ad188b664017d2fcae2759dedd84f00db" kindref="member">AssignScatterMesh</ref>(<ref refid="class_p_q" kindref="compound">PQ</ref><sp/>quad,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a231b248a266daceeeaa02ac6debe3f9e" kindref="member">seed</ref>,<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>count)</highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_p_q_s_mod___mesh_scatter_1a541734dddf408ef9e434bea267744e3d" kindref="member">cacheUnassignedCount</ref><sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>null;</highlight></codeline>
+<codeline lineno="323"><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>startV,<sp/>endV;</highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>sx,<sp/>sy,<sp/>dx,<sp/>dy;</highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>itr;</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>v<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UnityEngine.Random.InitState(<ref refid="class_p_q_s_mod___mesh_scatter_1a231b248a266daceeeaa02ac6debe3f9e" kindref="member">seed</ref>);</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"></highlight></codeline>
+<codeline lineno="331"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(scatterLoop<sp/>=<sp/>0;<sp/>scatterLoop<sp/>&lt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ad97053c0cd72f35f338c003779a5cce2" kindref="member">maxScatter</ref>;<sp/>scatterLoop++)</highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>startV<sp/>=<sp/>endV<sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"></highlight></codeline>
+<codeline lineno="335"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(startV<sp/>==<sp/>endV)</highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="337"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sx<sp/>=<sp/>UnityEngine.Random.Range(1,<sp/>PQS.cacheRes<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="338"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sy<sp/>=<sp/>UnityEngine.Random.Range(1,<sp/>PQS.cacheRes<sp/>+<sp/>1);</highlight></codeline>
+<codeline lineno="339"><highlight class="normal"></highlight></codeline>
+<codeline lineno="340"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dx<sp/>=<sp/>sx<sp/>+<sp/>UnityEngine.Random.Range(-1,<sp/>1);</highlight></codeline>
+<codeline lineno="341"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dy<sp/>=<sp/>sy<sp/>+<sp/>UnityEngine.Random.Range(-1,<sp/>1);</highlight></codeline>
+<codeline lineno="342"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>startV<sp/>=<sp/>PQS.vi(sx,<sp/>sy);</highlight></codeline>
+<codeline lineno="343"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>endV<sp/>=<sp/>PQS.vi(dx,<sp/>dy);</highlight></codeline>
+<codeline lineno="344"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="345"><highlight class="normal"></highlight></codeline>
+<codeline lineno="346"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterPos<sp/>=<sp/>Vector3.Lerp(quad.verts[startV],<sp/>quad.verts[endV],<sp/>UnityEngine.Random.value);</highlight></codeline>
+<codeline lineno="347"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterUp<sp/>=<sp/>scatterPos.normalized;</highlight></codeline>
+<codeline lineno="348"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterPos<sp/>+=<sp/>scatterUp<sp/>*<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a1549277f17df7ff0da1e5e8cfc4e3f95" kindref="member">verticalOffset</ref>;</highlight></codeline>
+<codeline lineno="349"><highlight class="normal"></highlight></codeline>
+<codeline lineno="350"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterAngle<sp/>=<sp/>UnityEngine.Random.value<sp/>*<sp/>360;</highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterRot<sp/>=<sp/>Quaternion.AngleAxis(scatterAngle,<sp/>scatterUp)<sp/>*<sp/>(Quaternion)quad.quadRotation;</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scatterScale<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a77a70031201c6b7959e3d02563e5dca3" kindref="member">RandomRange</ref>(<ref refid="class_p_q_s_mod___mesh_scatter_1aeb78afab808734c24f4f346cacabeb95" kindref="member">minScale</ref>,<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a8dd7e2d5caccd55b4161a89cf718ad12" kindref="member">maxScale</ref>);</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(itr<sp/>=<sp/>0;<sp/>itr<sp/>&lt;<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1af62012a41e3088037b9946ddb6ea22c4" kindref="member">vertStride</ref>;<sp/>itr++,<sp/>v++)</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a177ffdfdc4ae8bdd35f301055d7bc64f" kindref="member">verts</ref>[v]<sp/>=<sp/>scatterPos<sp/>+<sp/>(scatterRot<sp/>*<sp/>Vector3.Scale(<ref refid="class_p_q_s_mod___mesh_scatter_1a33adb71215f3cd7013b4d09276882918" kindref="member">vertsUntrans</ref>[itr],<sp/>scatterScale));</highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa05c9affe182abfefce6312ccce55a9e" kindref="member">normals</ref>[v]<sp/>=<sp/>scatterRot<sp/>*<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1ac25d60bafa8bb9e9f27a9c9c17fa941a" kindref="member">normUntrans</ref>[itr];</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="360"><highlight class="normal"></highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MeshFilter<sp/>mf<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a27277a3fa3ab844a8478ee608f44af00" kindref="member">cacheUnassigned</ref>[0];</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.gameObject.name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Ass&quot;</highlight><highlight class="normal"><sp/>+<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a5a234eee7159e533f62d33841883d8c3" kindref="member">cacheAssignedCount</ref>;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.mesh.vertices<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a177ffdfdc4ae8bdd35f301055d7bc64f" kindref="member">verts</ref>;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.mesh.normals<sp/>=<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1aa05c9affe182abfefce6312ccce55a9e" kindref="member">normals</ref>;</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.mesh.RecalculateBounds();</highlight></codeline>
+<codeline lineno="366"><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.gameObject.SetActive(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="368"><highlight class="normal"></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cacheUnassigned.RemoveAt(0);</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a541734dddf408ef9e434bea267744e3d" kindref="member">cacheUnassignedCount</ref>--;</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cacheAssigned.Add(mf);</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a5a234eee7159e533f62d33841883d8c3" kindref="member">cacheAssignedCount</ref>++;</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"></highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>mf;</highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a57ae38b3bea3debac9a49c35c59921ed" kindref="member">UnassignScatterMesh</ref>(MeshFilter<sp/>mf)</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.gameObject.name<sp/>=<sp/></highlight><highlight class="stringliteral">&quot;Unass&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>mf.gameObject.SetActive(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"></highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cacheUnassigned.Add(mf);</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a541734dddf408ef9e434bea267744e3d" kindref="member">cacheUnassignedCount</ref>++;</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"></highlight></codeline>
+<codeline lineno="386"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cacheAssigned.Remove(mf);</highlight></codeline>
+<codeline lineno="387"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a5a234eee7159e533f62d33841883d8c3" kindref="member">cacheAssignedCount</ref>--;</highlight></codeline>
+<codeline lineno="388"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="389"><highlight class="normal"></highlight></codeline>
+<codeline lineno="390"><highlight class="normal"></highlight></codeline>
+<codeline lineno="391"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Vector3<sp/><ref refid="class_p_q_s_mod___mesh_scatter_1a77a70031201c6b7959e3d02563e5dca3" kindref="member">RandomRange</ref>(Vector3<sp/>min,<sp/>Vector3<sp/>max)</highlight></codeline>
+<codeline lineno="392"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="393"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(</highlight></codeline>
+<codeline lineno="394"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UnityEngine.Random.Range(min.x,<sp/>max.x),</highlight></codeline>
+<codeline lineno="395"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UnityEngine.Random.Range(min.y,<sp/>max.y),</highlight></codeline>
+<codeline lineno="396"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UnityEngine.Random.Range(min.z,<sp/>max.z));</highlight></codeline>
+<codeline lineno="397"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="398"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="399"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Scenery/PQS Library/Mods/PQSMod_MeshScatter.cs"/>
+  </compounddef>
+</doxygen>

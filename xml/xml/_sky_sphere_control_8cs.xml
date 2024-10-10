@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_sky_sphere_control_8cs" kind="file">
+    <compoundname>SkySphereControl.cs</compoundname>
+    <innerclass refid="class_sky_sphere_control" prot="public">SkySphereControl</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="class_sky_sphere_control" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_sky_sphere_control" kindref="compound">SkySphereControl</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>shaderPropertyColor2;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>shaderPropertyDayNightBlend;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>shaderPropertySpaceBlend;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_sky_sphere_control_1a5c9e8b69002016b75bf5d11c3e8d9120" kindref="member">skyFadeStart</ref><sp/>=<sp/>0.3f;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_sky_sphere_control_1acbf061d6e8267ea3a8659d0c4bce191a" kindref="member">atmosphereLimit</ref><sp/>=<sp/>15000f;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Color<sp/><ref refid="class_sky_sphere_control_1a491d24eac0ebfb71f78e6d698583eeca" kindref="member">dayTimeSpaceColorShift</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_sun" kindref="compound">Sun</ref><sp/><ref refid="class_sky_sphere_control_1a3c8234b111d8f434d2de36ca7eb00f4a" kindref="member">sunRef</ref>;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="_viewport_controller_8cs_1a8bc166d5dce2d4d9a440c02e1d2df8aea967d35e40f3f95b1f538bd248640bf3b" kindref="member">Camera</ref><sp/><ref refid="class_sky_sphere_control_1aa0122eece2e8c5c341116ee485828a16" kindref="member">tgt</ref>;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/><ref refid="class_sky_sphere_control_1ae5f78a61de62f0090232f211d082c8fa" kindref="member">sunSrfAngle</ref>,<sp/>sunCamAngle;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="struct_unity_engine_1_1_quaternion_d" kindref="compound">QuaternionD</ref><sp/>initRot;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Cached<sp/>Component<sp/>Variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>UnityEngine.Renderer<sp/>_renderer;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Start()</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>initRot<sp/>=<sp/>transform.rotation;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shaderPropertyDayNightBlend<sp/>=<sp/>Shader.PropertyToID(</highlight><highlight class="stringliteral">&quot;_dayNightBlend&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shaderPropertyColor2<sp/>=<sp/>Shader.PropertyToID(</highlight><highlight class="stringliteral">&quot;_Color2&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>shaderPropertySpaceBlend<sp/>=<sp/>Shader.PropertyToID(</highlight><highlight class="stringliteral">&quot;_spaceBlend&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update()</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>(!FlightGlobals.ready)<sp/>return;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sky_sphere_control_1ae5f78a61de62f0090232f211d082c8fa" kindref="member">sunSrfAngle</ref><sp/>=<sp/>Math.Acos(Vector3d.Dot(-sunRef.sunDirection,<sp/>FlightGlobals.getUpAxis(ScaledSpace.ScaledToLocalSpace(tgt.transform.position))))<sp/>*<sp/>Mathf.Rad2Deg;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sunCamAngle<sp/>=<sp/>Math.Acos(Vector3d.Dot(-sunRef.sunDirection,<sp/>tgt.transform.forward))<sp/>*<sp/>Mathf.Rad2Deg;<sp/></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_sky_sphere_control_1ae5f78a61de62f0090232f211d082c8fa" kindref="member">sunSrfAngle</ref><sp/>=<sp/>Math.Max(0.0,<sp/>Math.Min(1.0,<sp/>(<ref refid="class_sky_sphere_control_1ae5f78a61de62f0090232f211d082c8fa" kindref="member">sunSrfAngle</ref><sp/>-<sp/>80.0)<sp/>/<sp/>20.0));</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal">.IsNaN(<ref refid="class_sky_sphere_control_1ae5f78a61de62f0090232f211d082c8fa" kindref="member">sunSrfAngle</ref>))<sp/><ref refid="class_sky_sphere_control_1ae5f78a61de62f0090232f211d082c8fa" kindref="member">sunSrfAngle</ref><sp/>=<sp/>0.0;<sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sunCamAngle<sp/>=<sp/>Math.Max(0.0,<sp/>Math.Min(1.0,<sp/>(sunCamAngle<sp/>-<sp/>(tgt.fieldOfView<sp/>*<sp/>0.5))<sp/>/<sp/>20.0));</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;UnityEngine.Renderer&gt;(ref<sp/>_renderer).material.SetFloat(shaderPropertyDayNightBlend,<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)<ref refid="class_sky_sphere_control_1ae5f78a61de62f0090232f211d082c8fa" kindref="member">sunSrfAngle</ref>);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;UnityEngine.Renderer&gt;(ref<sp/>_renderer).material.SetColor(shaderPropertyColor2,<sp/><ref refid="class_map_view" kindref="compound">MapView</ref>.<ref refid="class_map_view_1af4e18e2604f6baddb6a0700d7ac1a76d" kindref="member">MapIsEnabled</ref><sp/>?<sp/>Color.white<sp/>:<sp/>Color.Lerp(<ref refid="class_sky_sphere_control_1a491d24eac0ebfb71f78e6d698583eeca" kindref="member">dayTimeSpaceColorShift</ref>,<sp/>Color.white,<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)sunCamAngle));</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;UnityEngine.Renderer&gt;(ref<sp/>_renderer).material.SetFloat(shaderPropertySpaceBlend,<sp/>Mathf.InverseLerp(<ref refid="class_sky_sphere_control_1acbf061d6e8267ea3a8659d0c4bce191a" kindref="member">atmosphereLimit</ref><sp/>*<sp/><ref refid="class_sky_sphere_control_1a5c9e8b69002016b75bf5d11c3e8d9120" kindref="member">skyFadeStart</ref>,<sp/><ref refid="class_sky_sphere_control_1acbf061d6e8267ea3a8659d0c4bce191a" kindref="member">atmosphereLimit</ref>,<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)<ref refid="class_flight_globals" kindref="compound">FlightGlobals</ref>.<ref refid="class_flight_globals_1a5a7fa38dac6d8869816f3da2cabe8882" kindref="member">getAltitudeAtPos</ref>(<ref refid="class_scaled_space" kindref="compound">ScaledSpace</ref>.<ref refid="class_scaled_space_1a664a334dc87ff274ed45695dc10365f2" kindref="member">ScaledToLocalSpace</ref>(<ref refid="class_sky_sphere_control_1aa0122eece2e8c5c341116ee485828a16" kindref="member">tgt</ref>.transform.position))));</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FixedUpdate()</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>(!FlightGlobals.ready)<sp/>return;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transform.rotation<sp/>=<sp/>Planetarium.Rotation<sp/>*<sp/>initRot;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scenery/atmosphere/Scripts/SkySphereControl.cs"/>
+  </compounddef>
+</doxygen>

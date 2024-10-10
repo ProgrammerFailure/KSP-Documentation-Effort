@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_p_q_s___collider_rigidbody_test_8cs" kind="file">
+    <compoundname>PQS_ColliderRigidbodyTest.cs</compoundname>
+    <innerclass refid="class_p_q_s___collider_rigidbody_test" prot="public">PQS_ColliderRigidbodyTest</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal">[RequireComponent(typeof(Rigidbody))]</highlight></codeline>
+<codeline lineno="7" refid="class_p_q_s___collider_rigidbody_test" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_p_q_s___collider_rigidbody_test" kindref="compound">PQS_ColliderRigidbodyTest</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="8"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s___collider_rigidbody_test_1a0dce85df5b1d89dc868df17f8773cf30" kindref="member">force</ref>;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s" kindref="compound">PQS</ref><sp/><ref refid="class_p_q_s___collider_rigidbody_test_1a00fb084434c4213e5dba756c90d05e51" kindref="member">rootSphere</ref>;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_p_q_s___collider_rigidbody_test_1ab1acfae04b6714562a4629d2b191fc23" kindref="member">sphereGravity</ref>;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>initPos;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Quaternion<sp/>initRot;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Cached<sp/>Component<sp/>Variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Rigidbody<sp/>_rigidbody;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Reset()</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s___collider_rigidbody_test_1a0dce85df5b1d89dc868df17f8773cf30" kindref="member">force</ref><sp/>=<sp/>100;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_p_q_s___collider_rigidbody_test_1ab1acfae04b6714562a4629d2b191fc23" kindref="member">sphereGravity</ref><sp/>=<sp/>-(float)<ref refid="class_physics_globals" kindref="compound">PhysicsGlobals</ref>.<ref refid="class_physics_globals_1a0a62cc361f9d2388bfb6dc43e192ce50" kindref="member">GravitationalAcceleration</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Start()</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;Rigidbody&gt;(ref<sp/>_rigidbody).useGravity<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>initPos<sp/>=<sp/>transform.position;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>initRot<sp/>=<sp/>transform.rotation;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FixedUpdate()</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Input.GetMouseButton(0))</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>camDir<sp/>=<sp/>(transform.position<sp/>-<sp/>Camera.main.transform.position).normalized;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;Rigidbody&gt;(ref<sp/>_rigidbody).AddForce(camDir<sp/>*<sp/><ref refid="class_p_q_s___collider_rigidbody_test_1a0dce85df5b1d89dc868df17f8773cf30" kindref="member">force</ref>);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Input.GetMouseButton(2))</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;Rigidbody&gt;(ref<sp/>_rigidbody).velocity<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">.GetComponentCached&lt;Rigidbody&gt;(ref<sp/>_rigidbody).angularVelocity<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(Input.GetKeyDown(KeyCode.R))</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transform.position<sp/>=<sp/>initPos;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transform.rotation<sp/>=<sp/>initRot;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;Rigidbody&gt;(ref<sp/>_rigidbody).velocity<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">.GetComponentCached&lt;Rigidbody&gt;(ref<sp/>_rigidbody).angularVelocity<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;Rigidbody&gt;(ref<sp/>_rigidbody).AddForce(<ref refid="class_p_q_s___collider_rigidbody_test_1ab1acfae04b6714562a4629d2b191fc23" kindref="member">sphereGravity</ref><sp/>*<sp/>(transform.position<sp/>-<sp/><ref refid="class_p_q_s___collider_rigidbody_test_1a00fb084434c4213e5dba756c90d05e51" kindref="member">rootSphere</ref>.transform.position).normalized);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fps;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update()</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fps<sp/>=<sp/>Mathf.Lerp(fps,<sp/>1f<sp/>/<sp/>Time.deltaTime,<sp/>10f<sp/>*<sp/>Time.deltaTime);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>UNITY_EDITOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>PQS_DEBUG</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>OnGUI()</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUI.color<sp/>=<sp/>Color.red;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.BeginArea(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Rect(20,<sp/>60,<sp/>400,<sp/>400));</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;Left<sp/>Btn<sp/>\t=<sp/>Cube<sp/>Force&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;Right<sp/>Btn\t=<sp/>Camera<sp/>Look&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;Middle<sp/>Btn\t=<sp/>Stop<sp/>Cube(CubeCam)<sp/>|<sp/>Put<sp/>Cube(OrbitCam)&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;R\t=<sp/>Reset<sp/>Cube&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Space(10);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;R.Alt\t=<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>(rootSphere.GetRelativeDistance(transform.position)<sp/>-<sp/><ref refid="class_p_q_s___collider_rigidbody_test_1a00fb084434c4213e5dba756c90d05e51" kindref="member">rootSphere</ref>.<ref refid="class_p_q_s_1ad7c15a7879ad68c613923b0e8887a840" kindref="member">GetSurfaceHeight</ref>(<ref refid="class_p_q_s___collider_rigidbody_test_1a00fb084434c4213e5dba756c90d05e51" kindref="member">rootSphere</ref>.<ref refid="class_p_q_s_1aa0f85a91ad0b97cca6702056b6673a35" kindref="member">GetRelativePosition</ref>(transform.position))).ToString(</highlight><highlight class="stringliteral">&quot;F2&quot;</highlight><highlight class="normal">));<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;Alt\t=<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>rootSphere.GetAltitude(transform.position).ToString(</highlight><highlight class="stringliteral">&quot;F2&quot;</highlight><highlight class="normal">));<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Space(10);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;FPS\t=<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>fps.ToString(</highlight><highlight class="stringliteral">&quot;F2&quot;</highlight><highlight class="normal">));<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.EndArea();</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Scenery/PQS Library/PQS_ColliderRigidbodyTest.cs"/>
+  </compounddef>
+</doxygen>

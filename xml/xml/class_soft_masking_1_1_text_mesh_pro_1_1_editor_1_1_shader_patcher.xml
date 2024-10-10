@@ -1,0 +1,494 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher" kind="class" prot="public">
+    <compoundname>SoftMasking::TextMeshPro::Editor::ShaderPatcher</compoundname>
+    <innerclass refid="struct_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1_1_names" prot="private">SoftMasking::TextMeshPro::Editor::ShaderPatcher::Names</innerclass>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a837478e2e74ce3623bc67dc6888d449b" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.FRAGMENT_PRAMGA_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>FRAGMENT_PRAMGA_PATTERN</name>
+        <initializer>= new Regex(@&quot;#pragma\s+fragment\s+(\w+)&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="34" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="34" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a6c17243e81623f7542c7a1032065e7a6" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.LAST_INCLUDE_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>LAST_INCLUDE_PATTERN</name>
+        <initializer>= LastDirectivePattern(&quot;include&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="80" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a517f0da84429ff7d7eb40f66d1069878" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.LAST_PRAGMA_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>LAST_PRAGMA_PATTERN</name>
+        <initializer>= LastDirectivePattern(&quot;pragma&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="79" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a8a7fb52ba7f59816fbb19453fb5de029" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.PROPERTIES_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>PROPERTIES_PATTERN</name>
+        <initializer>= new Regex(
+            @&quot;Properties\s*\{&quot; +
+                @&quot;(?:[^{}]|(?&lt;open&gt;\{)|(?&lt;-open&gt;\}))*&quot; + 
+                @&quot;(?(open)(?!))&quot; + 
+                @&quot;()$&quot; + 
+            @&quot;(\s*)\}&quot;, 
+            RegexOptions.Multiline)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="63" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae72801a40c24cb929ef86b1c913b53fb" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.RETURN_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>RETURN_PATTERN</name>
+        <initializer>= new Regex(@&quot;^([^\n]*)return\s+([^;]+);\s*$&quot;, RegexOptions.Multiline)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="135" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="135" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a0535d89110b3fc11606877deedccb921" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.SHADER_NAME_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>SHADER_NAME_PATTERN</name>
+        <initializer>= new Regex(@&quot;Shader\s+&quot;&quot;([^&quot;&quot;]+)&quot;&quot;&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="56" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="56" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae6abbc70303da1595e22ce140748b793" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.TEXCOORD_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>TEXCOORD_PATTERN</name>
+        <initializer>= new Regex(@&quot;TEXCOORD(\d+)&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="104" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="104" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae41f27d1fd1c61fa56bb7dc2ef68c772" prot="private" static="yes" mutable="no">
+        <type>readonly Regex</type>
+        <definition>readonly Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.VERTEX_PRAMGA_PATTERN</definition>
+        <argsstring></argsstring>
+        <name>VERTEX_PRAMGA_PATTERN</name>
+        <initializer>= new Regex(@&quot;#pragma\s+vertex\s+(\w+)&quot;)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="33" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="33" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a2694f8328374b259558f183a11d03aac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.Patch</definition>
+        <argsstring>(string shader)</argsstring>
+        <name>Patch</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="12" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="12" bodyend="24"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a971f8908b4a946a84706e8b6ba972737" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Names</type>
+        <definition>static Names SoftMasking.TextMeshPro.Editor.ShaderPatcher.Analyze</definition>
+        <argsstring>(string shader)</argsstring>
+        <name>Analyze</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="36" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="36" bodyend="54"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a3849b9e62d4ef28250f03fee6ce70851" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Match</type>
+        <definition>static Match SoftMasking.TextMeshPro.Editor.ShaderPatcher.EnsureLastMatch</definition>
+        <argsstring>(Regex regex, string pattern, string errorMessage)</argsstring>
+        <name>EnsureLastMatch</name>
+        <param>
+          <type>Regex</type>
+          <declname>regex</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pattern</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>errorMessage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="195" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="195" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1aea94d9658479b469aca4ef26fd62ee17" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Match</type>
+        <definition>static Match SoftMasking.TextMeshPro.Editor.ShaderPatcher.EnsureMatch</definition>
+        <argsstring>(Regex regex, string pattern, string errorMessage)</argsstring>
+        <name>EnsureMatch</name>
+        <param>
+          <type>Regex</type>
+          <declname>regex</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pattern</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>errorMessage</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="188" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="188" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ac5cae54c6e38d3226109014787338900" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.FixVertexInitialization</definition>
+        <argsstring>(string shader, string v2fStruct)</argsstring>
+        <name>FixVertexInitialization</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>v2fStruct</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="175" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="175" bodyend="186"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1abcac6637e4e3f360f60542142420c858" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Regex</type>
+        <definition>static Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.FunctionPattern</definition>
+        <argsstring>(string returnType, string function)</argsstring>
+        <name>FunctionPattern</name>
+        <param>
+          <type>string</type>
+          <declname>returnType</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="125" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="125" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a05a74381dad6291252f094ee21d33d93" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.InjectFragmentInstructions</definition>
+        <argsstring>(string shader, string function)</argsstring>
+        <name>InjectFragmentInstructions</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="143" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="143" bodyend="147"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a95b0675168b44d8d0524966e7c45dd7b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.InjectInclude</definition>
+        <argsstring>(string shader)</argsstring>
+        <name>InjectInclude</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="97" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="97" bodyend="102"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a5a051e25169eb406c830e802fbe1724e" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.InjectPragma</definition>
+        <argsstring>(string shader)</argsstring>
+        <name>InjectPragma</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="88" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="88" bodyend="95"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ab43286e3988e6fada7d09f764fcbc7f4" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.InjectProperty</definition>
+        <argsstring>(string shader)</argsstring>
+        <name>InjectProperty</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="71" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="71" bodyend="77"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a4c49b90735769ae2168e869d7a2ab04b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.InjectV2FFields</definition>
+        <argsstring>(string shader, string v2fStructName)</argsstring>
+        <name>InjectV2FFields</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>v2fStructName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="106" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="106" bodyend="119"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a6396fb11f555980a039581a49ba251a3" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.InjectVertexInstructions</definition>
+        <argsstring>(string shader, string v2fStruct, string v2fPositionField, string function)</argsstring>
+        <name>InjectVertexInstructions</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>v2fStruct</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>v2fPositionField</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="137" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="137" bodyend="141"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1aa92b4b9ff1b897f2e96ad72a0bd96f3c" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Regex</type>
+        <definition>static Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.LastDirectivePattern</definition>
+        <argsstring>(string directive)</argsstring>
+        <name>LastDirectivePattern</name>
+        <param>
+          <type>string</type>
+          <declname>directive</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="82" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="82" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a414f14b21d2ec4e7cda9c60f6b1ee9bc" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.ModifyFunctionReturn</definition>
+        <argsstring>(string shader, string returnType, string function, Func&lt; string, string, string &gt; modify)</argsstring>
+        <name>ModifyFunctionReturn</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>returnType</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>function</declname>
+        </param>
+        <param>
+          <type>Func&lt; string, string, string &gt;</type>
+          <declname>modify</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="149" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="149" bodyend="173"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a3d55592c23141bfd28dbdf20aeb117a5" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string SoftMasking.TextMeshPro.Editor.ShaderPatcher.UpdateShaderName</definition>
+        <argsstring>(string shader)</argsstring>
+        <name>UpdateShaderName</name>
+        <param>
+          <type>string</type>
+          <declname>shader</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="58" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="58" bodyend="61"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae5200e5929ce42210c0bf69f64bbb4ea" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Regex</type>
+        <definition>static Regex SoftMasking.TextMeshPro.Editor.ShaderPatcher.VertexFunctionPattern</definition>
+        <argsstring>(string v2fStruct, string function)</argsstring>
+        <name>VertexFunctionPattern</name>
+        <param>
+          <type>string</type>
+          <declname>v2fStruct</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>function</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="121" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="121" bodyend="123"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" line="11" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/Editor/TextMeshPro/ShaderPatcher.cs" bodystart="11" bodyend="206"/>
+    <listofallmembers>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a971f8908b4a946a84706e8b6ba972737" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>Analyze</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a3849b9e62d4ef28250f03fee6ce70851" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>EnsureLastMatch</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1aea94d9658479b469aca4ef26fd62ee17" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>EnsureMatch</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ac5cae54c6e38d3226109014787338900" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>FixVertexInitialization</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a837478e2e74ce3623bc67dc6888d449b" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>FRAGMENT_PRAMGA_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1abcac6637e4e3f360f60542142420c858" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>FunctionPattern</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a05a74381dad6291252f094ee21d33d93" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>InjectFragmentInstructions</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a95b0675168b44d8d0524966e7c45dd7b" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>InjectInclude</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a5a051e25169eb406c830e802fbe1724e" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>InjectPragma</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ab43286e3988e6fada7d09f764fcbc7f4" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>InjectProperty</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a4c49b90735769ae2168e869d7a2ab04b" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>InjectV2FFields</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a6396fb11f555980a039581a49ba251a3" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>InjectVertexInstructions</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a6c17243e81623f7542c7a1032065e7a6" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>LAST_INCLUDE_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a517f0da84429ff7d7eb40f66d1069878" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>LAST_PRAGMA_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1aa92b4b9ff1b897f2e96ad72a0bd96f3c" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>LastDirectivePattern</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a414f14b21d2ec4e7cda9c60f6b1ee9bc" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>ModifyFunctionReturn</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a2694f8328374b259558f183a11d03aac" prot="public" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>Patch</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a8a7fb52ba7f59816fbb19453fb5de029" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>PROPERTIES_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae72801a40c24cb929ef86b1c913b53fb" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>RETURN_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a0535d89110b3fc11606877deedccb921" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>SHADER_NAME_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae6abbc70303da1595e22ce140748b793" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>TEXCOORD_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1a3d55592c23141bfd28dbdf20aeb117a5" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>UpdateShaderName</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae41f27d1fd1c61fa56bb7dc2ef68c772" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>VERTEX_PRAMGA_PATTERN</name></member>
+      <member refid="class_soft_masking_1_1_text_mesh_pro_1_1_editor_1_1_shader_patcher_1ae5200e5929ce42210c0bf69f64bbb4ea" prot="private" virt="non-virtual"><scope>SoftMasking::TextMeshPro::Editor::ShaderPatcher</scope><name>VertexFunctionPattern</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

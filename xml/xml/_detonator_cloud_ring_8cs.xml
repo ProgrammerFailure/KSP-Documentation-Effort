@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_detonator_cloud_ring_8cs" kind="file">
+    <compoundname>DetonatorCloudRing.cs</compoundname>
+    <innerclass refid="class_detonator_cloud_ring" prot="public">DetonatorCloudRing</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal">[RequireComponent<sp/>(typeof<sp/>(<ref refid="class_detonator" kindref="compound">Detonator</ref>))]</highlight></codeline>
+<codeline lineno="3" refid="class_detonator_cloud_ring" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_detonator_cloud_ring" kindref="compound">DetonatorCloudRing</ref><sp/>:<sp/><ref refid="class_detonator_component" kindref="compound">DetonatorComponent</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_baseSize<sp/>=<sp/>1f;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>_baseDuration<sp/>=<sp/>5f;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>_baseVelocity<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(155f,<sp/>5f,<sp/>155f);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Color<sp/>_baseColor<sp/>=<sp/>Color.white;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>_baseForce<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(0.162f,<sp/>2.56f,<sp/>0f);</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>GameObject<sp/>_cloudRing;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="class_detonator_burst_emitter" kindref="compound">DetonatorBurstEmitter</ref><sp/>_cloudRingEmitter;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Material<sp/><ref refid="class_detonator_cloud_ring_1a82b90475e11b16dea6e2da513678bc90" kindref="member">cloudRingMaterial</ref>;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_detonator_cloud_ring_1aba7965c937dfdc9761d51c7a47104a25" kindref="member">Init</ref>()</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//make<sp/>sure<sp/>there<sp/>are<sp/>materials<sp/>at<sp/>all</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_cloud_ring_1a891f0896c1da2dfebb47f1e43a7611a8" kindref="member">FillMaterials</ref>(</highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_cloud_ring_1ae2fb26d90b037fa5b0ed6382f9dc2c2b" kindref="member">BuildCloudRing</ref>();</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>materials<sp/>are<sp/>empty<sp/>fill<sp/>them<sp/>with<sp/>defaults</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_detonator_cloud_ring_1a891f0896c1da2dfebb47f1e43a7611a8" kindref="member">FillMaterials</ref>(</highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>wipe)</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!<ref refid="class_detonator_cloud_ring_1a82b90475e11b16dea6e2da513678bc90" kindref="member">cloudRingMaterial</ref><sp/>||<sp/>wipe)</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_cloud_ring_1a82b90475e11b16dea6e2da513678bc90" kindref="member">cloudRingMaterial</ref><sp/>=<sp/><ref refid="class_detonator_component_1a3f02e59a502012814cc47a56b5af87e8" kindref="member">MyDetonator</ref>().smokeBMaterial;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Build<sp/>these<sp/>to<sp/>look<sp/>correct<sp/>at<sp/>the<sp/>stock<sp/>Detonator<sp/>size<sp/>of<sp/>10m...<sp/>then<sp/>let<sp/>the<sp/>size<sp/>parameter</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//cascade<sp/>through<sp/>to<sp/>the<sp/>emitters<sp/>and<sp/>let<sp/>them<sp/>do<sp/>the<sp/>scaling<sp/>work...<sp/>keep<sp/>these<sp/>absolute.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_detonator_cloud_ring_1ae2fb26d90b037fa5b0ed6382f9dc2c2b" kindref="member">BuildCloudRing</ref>()</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRing<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject(</highlight><highlight class="stringliteral">&quot;CloudRing&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter<sp/>=<sp/>(<ref refid="class_detonator_burst_emitter" kindref="compound">DetonatorBurstEmitter</ref>)_cloudRing.AddComponent&lt;<ref refid="class_detonator_burst_emitter" kindref="compound">DetonatorBurstEmitter</ref>&gt;();</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRing.transform.parent<sp/>=<sp/>this.transform;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRing.transform.localPosition<sp/>=<sp/><ref refid="class_detonator_component_1a5754ab8c25bce0b63a5f30c7b80ebb62" kindref="member">localPosition</ref>;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.material<sp/>=<sp/><ref refid="class_detonator_cloud_ring_1a82b90475e11b16dea6e2da513678bc90" kindref="member">cloudRingMaterial</ref>;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.useExplicitColorAnimation<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_detonator_cloud_ring_1a38206ea5eb3681f4da9aa7bad0931e45" kindref="member">UpdateCloudRing</ref>()</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRing.transform.localPosition<sp/>=<sp/>Vector3.Scale(<ref refid="class_detonator_component_1a5754ab8c25bce0b63a5f30c7b80ebb62" kindref="member">localPosition</ref>,(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(<ref refid="class_detonator_component_1a0d2404fad672bf746154295527257052" kindref="member">size</ref>,<sp/><ref refid="class_detonator_component_1a0d2404fad672bf746154295527257052" kindref="member">size</ref>,<sp/><ref refid="class_detonator_component_1a0d2404fad672bf746154295527257052" kindref="member">size</ref>)));</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.color<sp/>=<sp/><ref refid="class_detonator_component_1a81b9b56ea30ce3efc7776c8f94c73551" kindref="member">color</ref>;</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.duration<sp/>=<sp/><ref refid="class_detonator_component_1aa4e21aaf675f246caed583873c5ba797" kindref="member">duration</ref>;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.durationVariation<sp/>=<sp/><ref refid="class_detonator_component_1aa4e21aaf675f246caed583873c5ba797" kindref="member">duration</ref>/4f;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.count<sp/>=<sp/>(int)(<ref refid="class_detonator_component_1a1494de666a7d612295ae5999eb5c7432" kindref="member">detail</ref><sp/>*<sp/>50f);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.particleSize<sp/>=<sp/>10f;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.sizeVariation<sp/>=<sp/>2f;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.velocity<sp/>=<sp/><ref refid="class_detonator_component_1a9356c81a22d2802b632d3b74d51b8dc0" kindref="member">velocity</ref>;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.startRadius<sp/>=<sp/>3f;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.size<sp/>=<sp/><ref refid="class_detonator_component_1a0d2404fad672bf746154295527257052" kindref="member">size</ref>;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.force<sp/>=<sp/><ref refid="class_detonator_component_1aa29f0f454e377d69b10c20013a1df8c9" kindref="member">force</ref>;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.explodeDelayMin<sp/>=<sp/><ref refid="class_detonator_component_1a5d605143dd57b2cbf124efd025b9c7b1" kindref="member">explodeDelayMin</ref>;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.explodeDelayMax<sp/>=<sp/><ref refid="class_detonator_component_1a630c5c2825d9e3d6f1cbf402cb32e8f1" kindref="member">explodeDelayMax</ref>;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//make<sp/>the<sp/>starting<sp/>colors<sp/>more<sp/>intense,<sp/>towards<sp/>white</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Color<sp/>color1<sp/>=<sp/>Color.Lerp(<ref refid="class_detonator_component_1a81b9b56ea30ce3efc7776c8f94c73551" kindref="member">color</ref>,<sp/>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Color(.2f,<sp/>.2f,<sp/>.2f,<sp/>.6f)),<sp/>0.5f);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Color<sp/>color2<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Color(.2f,<sp/>.2f,<sp/>.2f,<sp/>.5f);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Color<sp/>color3<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Color(.2f,<sp/>.2f,<sp/>.2f,<sp/>.3f);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Color<sp/>color4<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Color(.2f,<sp/>.2f,<sp/>.2f,<sp/>0f);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.colorAnimation[0]<sp/>=<sp/>color1;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.colorAnimation[1]<sp/>=<sp/>color2;</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.colorAnimation[2]<sp/>=<sp/>color2;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.colorAnimation[3]<sp/>=<sp/>color3;</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.colorAnimation[4]<sp/>=<sp/>color4;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_detonator_cloud_ring_1ac82bc0f2890151be34ab8e0d5eecbb12" kindref="member">Reset</ref>()</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_cloud_ring_1a891f0896c1da2dfebb47f1e43a7611a8" kindref="member">FillMaterials</ref>(</highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1a42f3c5d20ada610b797deae310a8b780" kindref="member">on</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1a0d2404fad672bf746154295527257052" kindref="member">size</ref><sp/>=<sp/>_baseSize;</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1aa4e21aaf675f246caed583873c5ba797" kindref="member">duration</ref><sp/>=<sp/>_baseDuration;</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1a5d605143dd57b2cbf124efd025b9c7b1" kindref="member">explodeDelayMin</ref><sp/>=<sp/>0f;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1a630c5c2825d9e3d6f1cbf402cb32e8f1" kindref="member">explodeDelayMax</ref><sp/>=<sp/>0f;</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1a81b9b56ea30ce3efc7776c8f94c73551" kindref="member">color</ref><sp/>=<sp/>_baseColor;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1a9356c81a22d2802b632d3b74d51b8dc0" kindref="member">velocity</ref><sp/>=<sp/>_baseVelocity;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_component_1aa29f0f454e377d69b10c20013a1df8c9" kindref="member">force</ref><sp/>=<sp/>_baseForce;</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_detonator_cloud_ring_1ac0f7311f62d933ef00e0427e48606824" kindref="member">Explode</ref>()</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_detonator_component_1a42f3c5d20ada610b797deae310a8b780" kindref="member">on</ref>)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_detonator_cloud_ring_1a38206ea5eb3681f4da9aa7bad0931e45" kindref="member">UpdateCloudRing</ref>();</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>_cloudRingEmitter.Explode();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/Detonator Scripts/DetonatorCloudRing.cs"/>
+  </compounddef>
+</doxygen>

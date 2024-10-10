@@ -1,0 +1,2269 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_transfer_math" kind="class" prot="public">
+    <compoundname>TransferMath</compoundname>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_transfer_math_1ae87d021110cea9e6eb8c6a6b2401398b" prot="public" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double TransferMath.safetyEnvelope</definition>
+        <argsstring></argsstring>
+        <name>safetyEnvelope</name>
+        <initializer>= 1.025</initializer>
+        <briefdescription>
+<para>The safety Envelope for setting minimum Radius on Transfer Orbits. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="21" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="21" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_transfer_math_1a74a462b983d6c564d46993657a0c8194" prot="private" static="yes" mutable="no">
+        <type>double</type>
+        <definition>double TransferMath.epsilon</definition>
+        <argsstring></argsstring>
+        <name>epsilon</name>
+        <initializer>= 0.0001</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="25" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="25" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_transfer_math_1a6c20a1e1472c6008f175d443f57cf7b0" prot="private" static="yes" mutable="no">
+        <type>readonly <ref refid="class_patched_conics_1_1_solver_parameters" kindref="compound">PatchedConics.SolverParameters</ref></type>
+        <definition>readonly PatchedConics.SolverParameters TransferMath.solverParameters</definition>
+        <argsstring></argsstring>
+        <name>solverParameters</name>
+        <initializer>= new <ref refid="class_patched_conics_1_1_solver_parameters" kindref="compound">PatchedConics.SolverParameters</ref>()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="23" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="23" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_transfer_math_1afd44e31707e40638ab66d23daddae007" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>delegate double</type>
+        <definition>delegate double TransferMath.BisectFunc</definition>
+        <argsstring>(double x)</argsstring>
+        <name>BisectFunc</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+<para>Delegate for Bisect method. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>x</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="16" column="1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_transfer_math_1aa1ad09ba540138a5b2f66ed7daf96380" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.AlignmentTime</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, Orbit sourceOrbit, Orbit targetOrbit, double startUT, double offsetDegrees=0d)</argsstring>
+        <name>AlignmentTime</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>sourceOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>targetOrbit</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>startUT</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offsetDegrees</declname>
+          <defval>0d</defval>
+        </param>
+        <briefdescription>
+<para>The time in seconds from current UT that the phase angles of the Source and Target body orbits will align. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This is the instance of the <ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sourceOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This is the source <ref refid="class_orbit" kindref="compound">Orbit</ref></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This is the target <ref refid="class_orbit" kindref="compound">Orbit</ref></para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startUT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This is the starting UT to use for the calcs.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offsetDegrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This optional offset in degrees will be applied to the optimal angle calculation</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="37" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="37" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a45b52dff209a7a4aacf015e0191a203e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.Bisect</definition>
+        <argsstring>(BisectFunc f, double minimum, double maximum, double acceptableRange=0.01, int maxIter=15)</argsstring>
+        <name>Bisect</name>
+        <param>
+          <type><ref refid="class_transfer_math_1afd44e31707e40638ab66d23daddae007" kindref="member">BisectFunc</ref></type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>minimum</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maximum</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>acceptableRange</declname>
+          <defval>0.01</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxIter</declname>
+          <defval>15</defval>
+        </param>
+        <briefdescription>
+<para>Bisection method </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single dimension function</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>minimum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>minimum value</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maximum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum value</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>acceptableRange</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>acceptable range</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxIter</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum iterations</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1070" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1070" bodyend="1127"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1adb4ee369d6cd487032577d90ba2fdb93" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.CalcCircularizeDV</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, double newApoapsis)</argsstring>
+        <name>CalcCircularizeDV</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>newApoapsis</declname>
+        </param>
+        <briefdescription>
+<para>Calculate Circularization dV. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>newApoapsis</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Should include radius of CB</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="835" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="835" bodyend="862"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a6e3e0e56c733c7b87b85297ec22d031c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.CalcSameSOITransferDV</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, Orbit startOrbit)</argsstring>
+        <name>CalcSameSOITransferDV</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <briefdescription>
+<para>Calculate same SOI Hohmann Transfer dV. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref> data instance</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The starting orbit</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The dV to complete the transfer and circularization dV if required.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="504" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="504" bodyend="507"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a8fc515125eea8f24bf47b038e3233dc1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool TransferMath.CalculateCorrection</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, double startUT, SafeAbortBackgroundWorker bw)</argsstring>
+        <name>CalculateCorrection</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>startUT</declname>
+        </param>
+        <param>
+          <type><ref refid="class_safe_abort_background_worker" kindref="compound">SafeAbortBackgroundWorker</ref></type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+<para>Calculate a Correction Burn if orbits are inclined. Will only process if relative inclination is &gt; 1. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>bw</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>BackgroundWorker</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>the <ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref> data instance</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startUT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start UT to start from</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>True if a correction was made. False If a correct was not made.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="277" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="277" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ad26d7a6ce88463fde1516189072dccb7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.CalculateStartEndXferTimes</definition>
+        <argsstring>(CelestialBody sourceBody, CelestialBody targetBody, double offsetDegrees, out double startTime, out double endTime)</argsstring>
+        <name>CalculateStartEndXferTimes</name>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>sourceBody</declname>
+        </param>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>targetBody</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offsetDegrees</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>endTime</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the start and end transfer window times where the phase angle between source and target planet is within offset degrees occuring after the current time. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sourceBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting Celestial Body for the Transfer</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ending Celestial Body for the Transfer</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offsetDegrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>How many degrees either side of the optimum phase angle do we want to use for start and finish</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The start time in UT of the TRansfer Window</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The end time in UT of the TRansfer Window</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="779" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="779" bodyend="785"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a43e78baea2a7f3722136112701d4205a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.CalculateStartEndXferTimes</definition>
+        <argsstring>(CelestialBody sourceBody, CelestialBody targetBody, double afterUT, double offsetDegrees, out double startTime, out double endTime)</argsstring>
+        <name>CalculateStartEndXferTimes</name>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>sourceBody</declname>
+        </param>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>targetBody</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>afterUT</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offsetDegrees</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>endTime</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the start and end transfer window times where the phase angle between source and target planet is within offset degrees. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sourceBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting Celestial Body for the Transfer</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ending Celestial Body for the Transfer</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>afterUT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time after which the middled of the transfer should be</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offsetDegrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>How many degrees either side of the optimum phase angle do we want to use for start and finish</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time in seconds from afterUT to the start of the window</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time in seconds from afterUT to the end of the window</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="796" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="796" bodyend="808"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a33f5da60719a6dc14f4f34b12d9b56ea" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.CalculateStartEndXferTimes</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, CelestialBody sourceBody, CelestialBody targetBody, double offsetDegrees, out string startTime, out string endTime)</argsstring>
+        <name>CalculateStartEndXferTimes</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>sourceBody</declname>
+        </param>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>targetBody</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>offsetDegrees</declname>
+        </param>
+        <param>
+          <type>out string</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>out string</type>
+          <declname>endTime</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the start and end transfer window times where the phase angle between source and target planet is within offset degrees. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Transfer data object related to this transfer</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sourceBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting Celestial Body for the Transfer</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetBody</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ending Celestial Body for the Transfer</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>offsetDegrees</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>How many degrees either side of the optimum phase angle do we want to use for start and finish</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time in seconds from current UT to the start of the window</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>endTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time in seconds from current UT to the end of the window</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="819" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="819" bodyend="827"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ac838a45339894db62cd7c86abab47990" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool TransferMath.ChangingPeriapsis</definition>
+        <argsstring>(Orbit start, Orbit target, double UT)</argsstring>
+        <name>ChangingPeriapsis</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>start</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <briefdescription>
+<para>Are we changing Periapsis to reach target. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>start</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Start orbit</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>target</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Target orbit</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>UT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The burn start UT</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1419" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1419" bodyend="1430"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a8837ffa3539197191863f76432c49faa" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.DeltaVToInterceptAtTime</definition>
+        <argsstring>(Orbit o, double initialUT, Orbit target, double DT, out Vector3d secondDV)</argsstring>
+        <name>DeltaVToInterceptAtTime</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>initialUT</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>DT</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>secondDV</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="427" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="427" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ab88cab7ca34076e7daefea1df657c18a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.FinalizeLambert</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, double startUT, Orbit startOrbit, Orbit targetOrbit)</argsstring>
+        <name>FinalizeLambert</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>startUT</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>targetOrbit</declname>
+        </param>
+        <briefdescription>
+<para>Finalize Lambert solution. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startUT</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="235" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="235" bodyend="266"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a07fa996c5a4e8904359f9b9d2fc059a2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool TransferMath.FindIntercept</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, Orbit startOrbit, CelestialBody targetBody, Vector3d dV, double UT, bool sameSOIXfer, double initialClosestApproach, SafeAbortBackgroundWorker bw, out Vector3d adjustedDV)</argsstring>
+        <name>FindIntercept</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>targetBody</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>dV</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>sameSOIXfer</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>initialClosestApproach</declname>
+        </param>
+        <param>
+          <type><ref refid="class_safe_abort_background_worker" kindref="compound">SafeAbortBackgroundWorker</ref></type>
+          <declname>bw</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>adjustedDV</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="595" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="595" bodyend="632"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ac4f405771bf4487dc9233a88a355ecc0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.HohmannTimeOfFlight</definition>
+        <argsstring>(Orbit origin, Orbit destination)</argsstring>
+        <name>HohmannTimeOfFlight</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>origin</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>destination</declname>
+        </param>
+        <briefdescription>
+<para>Calculates the time of flight for a Hohmann transfer between <emphasis>origin</emphasis>  and <emphasis>destination</emphasis> , assuming the orbits are circular and coplanar. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>The time of flight.</para></simplesect>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>origin</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The origin orbit.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>destination</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The destination orbit.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1264" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1264" bodyend="1269"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1aa7e7c0cfa2e17027d2406897d11f04d9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.LambertSolver</definition>
+        <argsstring>(double mu, Vector3d r1, Vector3d v1, Vector3d r2, Vector3d v2, double tof, int nrev, out Vector3d vi, out Vector3d vf)</argsstring>
+        <name>LambertSolver</name>
+        <param>
+          <type>double</type>
+          <declname>mu</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>r1</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>r2</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>v2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tof</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nrev</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>vi</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>vf</declname>
+        </param>
+        <briefdescription>
+<para>Solve Lambert&apos;s Problem. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Gravity</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Position at Origin</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Velocity at Origin</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Position at Destination</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Velocity at Destination</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tof</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time of Flight (secs)</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>nrev</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of Orbits</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Velocity Vector at Ejection</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vf</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Velocity Vector at Arrival</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1579" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1579" bodyend="1668"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a172137591f776014e81e2cf579ef81e1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.Root</definition>
+        <argsstring>(BisectFunc f, double a, double b, double tol, int maxIterations=50, int sign=0)</argsstring>
+        <name>Root</name>
+        <param>
+          <type><ref refid="class_transfer_math_1afd44e31707e40638ab66d23daddae007" kindref="member">BisectFunc</ref></type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>a</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>b</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tol</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxIterations</declname>
+          <defval>50</defval>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>sign</declname>
+          <defval>0</defval>
+        </param>
+        <briefdescription>
+<para>Brent&apos;s Algorithm for root finding. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>single dimension function to find the root of</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>a</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>first value</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>b</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>second value</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tol</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>tolerance</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxIterations</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>maximum iterations</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sign</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1141" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1141" bodyend="1250"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a04cadaf037832ac87d21b399175ec05f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.SafeOrbitRadius</definition>
+        <argsstring>(CelestialBody body)</argsstring>
+        <name>SafeOrbitRadius</name>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>body</declname>
+        </param>
+        <briefdescription>
+<para>Returns the minimum safe orbit radius for body. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>body</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="932" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="932" bodyend="935"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a31648b335ba49f43c5fd596624991c2f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool TransferMath.SameSOITransfer</definition>
+        <argsstring>(TransferDataSimple transferDataSimple)</argsstring>
+        <name>SameSOITransfer</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <briefdescription>
+<para>Is the transfer within the Same SOI? </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="493" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="493" bodyend="496"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a030c110fbfc5bc04a2f35848e7b7fd26" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.SuperiorLambert</definition>
+        <argsstring>(double mu, Vector3d r1, Vector3d v1, Vector3d r2, Vector3d v2, double tof, out Vector3d vi, out Vector3d vf)</argsstring>
+        <name>SuperiorLambert</name>
+        <param>
+          <type>double</type>
+          <declname>mu</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>r1</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>v1</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>r2</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>v2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tof</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>vi</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>vf</declname>
+        </param>
+        <briefdescription>
+<para>Superior Lambert solution using Gim J. Der derivative on <ref refid="class_sun" kindref="compound">Sun</ref>&apos;s solution. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>mu</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r1</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v1</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>r2</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>v2</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>tof</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vi</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vf</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="2151" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="2151" bodyend="2253"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a75c9045fd1bcb4d273f4c6e7df2825c2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.TransferDV</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, double startUT)</argsstring>
+        <name>TransferDV</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>startUT</declname>
+        </param>
+        <briefdescription>
+<para>Calculate the Transfer dV for a simple Transfer. Target and Source body must have already been set. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This is the instance of the <ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>vessel</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This is the <ref refid="class_vessel" kindref="compound">Vessel</ref> - should be the ActiveVessel.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startUT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>This is the starting UT to use for the calcs.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="121" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="121" bodyend="156"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="package-static-func">
+      <memberdef kind="function" id="class_transfer_math_1a8de15d9e18deb81f30465bdca6b2e7e4" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.CalcSameSOITransferDV</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, Orbit startOrbit, double overrideTime)</argsstring>
+        <name>CalcSameSOITransferDV</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>overrideTime</declname>
+        </param>
+        <briefdescription>
+<para>Calculate same SOI Hohmann Transfer dV. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>transferDataSimple</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref> data instance</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The starting orbit</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The dV to complete the transfer and circularization dV if required.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="515" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="515" bodyend="592"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1af8cfbbdfc15a65952dea80de0d142e61" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool TransferMath.InterceptBody</definition>
+        <argsstring>(SafeAbortBackgroundWorker bw, Orbit startOrbit, CelestialBody target, Vector3d dV, double UT, int maxIter, out Orbit intercept, out double closestApproach)</argsstring>
+        <name>InterceptBody</name>
+        <param>
+          <type><ref refid="class_safe_abort_background_worker" kindref="compound">SafeAbortBackgroundWorker</ref></type>
+          <declname>bw</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>dV</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>maxIter</declname>
+        </param>
+        <param>
+          <type>out <ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>intercept</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>closestApproach</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="940" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="940" bodyend="1011"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1aa51537d55e551f0e6af504920e1f60c3" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.NoBurnRequired</definition>
+        <argsstring>(TransferDataSimple transferDataSimple)</argsstring>
+        <name>NoBurnRequired</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="377" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="377" bodyend="382"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1addfb0d165be285141c3b7c5c2c000e3d" prot="package" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool TransferMath.SolveLambert</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, double startUT, Orbit startOrbit, Orbit targetOrbit)</argsstring>
+        <name>SolveLambert</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>startUT</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>targetOrbit</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="158" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="158" bodyend="225"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_transfer_math_1aa7df5420e9903e0c3d5c6032d0f04ee5" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.CalcdV</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, Orbit startObit, bool findBestUT, double startPeriapsis, double newApoapsis)</argsstring>
+        <name>CalcdV</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startObit</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>findBestUT</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>startPeriapsis</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>newApoapsis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="698" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="698" bodyend="712"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1aa644145f4866462e179bfcdd6c967c7c" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.CalcdVReturn</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, Orbit startOrbit, double burnTime, double newPeriapsis)</argsstring>
+        <name>CalcdVReturn</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>burnTime</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>newPeriapsis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="714" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="714" bodyend="769"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a91573c92d1e62b4e1221750aeb506cb0" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.CalcEjectionValues</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, out double ejectionDVNormal, out double ejectionDVPrograde, out double ejectionHeading, out double ejectionAngle, out bool ejectionAngleisRetrograde)</argsstring>
+        <name>CalcEjectionValues</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>ejectionDVNormal</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>ejectionDVPrograde</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>ejectionHeading</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>ejectionAngle</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>ejectionAngleisRetrograde</declname>
+        </param>
+        <briefdescription>
+<para>This calculates the details of the Ejection Angles for the Eject burn </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="449" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="449" bodyend="486"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1aa6f8317dd1d5af5bc63a0e74d487d5f2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.CalcTransferTime</definition>
+        <argsstring>(Orbit origOrb, Orbit destOrb, double transTime, double arrivalPhaseAngle=double.NegativeInfinity)</argsstring>
+        <name>CalcTransferTime</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>origOrb</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>destOrb</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>transTime</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>arrivalPhaseAngle</declname>
+          <defval>double.NegativeInfinity</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1253" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1253" bodyend="1256"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a16a7e91e10fe57a71056bedd2e2b1346" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.CalculateCorrectionBurn</definition>
+        <argsstring>(TransferDataSimple transferDataSimple, Orbit currentOrbit, Orbit target, double burnUT)</argsstring>
+        <name>CalculateCorrectionBurn</name>
+        <param>
+          <type><ref refid="class_transfer_data_simple" kindref="compound">TransferDataSimple</ref></type>
+          <declname>transferDataSimple</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>currentOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>burnUT</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="384" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="384" bodyend="394"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a1712b46a8917b05575a2bce66aa8e339" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.D8RT</definition>
+        <argsstring>(double x)</argsstring>
+        <name>D8RT</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1925" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1925" bodyend="1928"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1afa8747d8c992103b95c14738bc2b0bb6" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.DVApPhaseHohmann</definition>
+        <argsstring>(Orbit o, Orbit target, double UT, out double aPPhaseAng)</argsstring>
+        <name>DVApPhaseHohmann</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>aPPhaseAng</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1353" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1353" bodyend="1410"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ae2f2e51e40ffe08bc33cdc9a9ca52557" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.DVTimeHohmann</definition>
+        <argsstring>(Orbit o, Orbit target, double UT, bool findBestUT, out double burnUT)</argsstring>
+        <name>DVTimeHohmann</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>findBestUT</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>burnUT</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1283" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1283" bodyend="1351"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a63579b3afc05ae0cf47df059ff9549af" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.DVTimeInterCBXfer</definition>
+        <argsstring>(Orbit o, double UT, Orbit target, bool syncPhaseAngle, out double burnUT, out double transferTime)</argsstring>
+        <name>DVTimeInterCBXfer</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>target</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>syncPhaseAngle</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>burnUT</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>transferTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="396" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="396" bodyend="425"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1aedf29935d5ef02115640a49bdb4e144d" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.DVToChangeApoapsis</definition>
+        <argsstring>(Orbit o, double UT, double newAp)</argsstring>
+        <name>DVToChangeApoapsis</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>newAp</declname>
+        </param>
+        <briefdescription>
+<para>Calculate the dV required to change the apoapsis of an orbit at UT. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>o</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_orbit" kindref="compound">Orbit</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>UT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UT.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>newAp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>New Apoapsis.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The required dV</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1497" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1497" bodyend="1550"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a47c0914362287b202a8029ff53aa21f2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+        <definition>static Vector3d TransferMath.DVToChangePeriapsis</definition>
+        <argsstring>(Orbit o, double UT, double newPe)</argsstring>
+        <name>DVToChangePeriapsis</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>newPe</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1432" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1432" bodyend="1488"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a5425d5f43fbe04765e63ea7410a2f704" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.EjectionAngleCalc</definition>
+        <argsstring>(Vector3d vsoi, double theta, Vector3d prograde)</argsstring>
+        <name>EjectionAngleCalc</name>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>vsoi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>theta</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>prograde</declname>
+        </param>
+        <briefdescription>
+<para>Solve the asymptote angle to get the ejectionAngle </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vsoi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Velocity of the Ejection Vector in the Planets SOI</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>theta</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Angle between departure vector and vector opposite the periapsis point (half the angle between injection and ejection asymptotes)</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>prograde</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>What direction is prograde</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Ejection Angle in Radians</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="872" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="872" bodyend="925"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ac46a05d14faf03e956c431f3b9527247" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.LambertRHG</definition>
+        <argsstring>(double GM, double R1, double R2, double TH, double TDELT, out int N, out double VR11, out double VT11, out double VR12, out double VT12, out double VR21, out double VT21, out double VR22, out double VT22)</argsstring>
+        <name>LambertRHG</name>
+        <param>
+          <type>double</type>
+          <declname>GM</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>R1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>R2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>TH</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>TDELT</declname>
+        </param>
+        <param>
+          <type>out int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VR11</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VT11</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VR12</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VT12</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VR21</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VT21</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VR22</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>VT22</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>GM</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Mu Gravity</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R1</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Radius at pos 1</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>R2</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Radius at pos 2</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TH</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Theta</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>TDELT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Time of flight between pos 1 and pos 2</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>N</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>make this an int - number of orbits = 0?</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VR11</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>vector 1</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VT11</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VR12</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VT12</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VR21</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VT21</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VR22</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>VT22</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1687" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1687" bodyend="1754"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a7a465c136a78daf9c7f63c6c1d00df8f" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.LamGTL</definition>
+        <argsstring>(double M, double Q, double QSQFM1, double X, double N, out double T, out double DT, out double D2T, out double D3T, ref int IGTL)</argsstring>
+        <name>LamGTL</name>
+        <param>
+          <type>double</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Q</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>QSQFM1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>X</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>T</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>DT</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>D2T</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>D3T</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>IGTL</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1930" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1930" bodyend="2135"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ae7602ca194e71a0dd47289aeb5cfe802" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void TransferMath.LamGXL</definition>
+        <argsstring>(double M, double Q, Double QSQFM1, double TIN, ref int N, ref double X, ref double XPL, ref int IGTL)</argsstring>
+        <name>LamGXL</name>
+        <param>
+          <type>double</type>
+          <declname>M</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Q</declname>
+        </param>
+        <param>
+          <type>Double</type>
+          <declname>QSQFM1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>TIN</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>N</declname>
+        </param>
+        <param>
+          <type>ref double</type>
+          <declname>X</declname>
+        </param>
+        <param>
+          <type>ref double</type>
+          <declname>XPL</declname>
+        </param>
+        <param>
+          <type>ref int</type>
+          <declname>IGTL</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1756" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1756" bodyend="1923"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1ad2c3d06df2f1b34b46a1b2dc34eb50d1" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.OrbitalPeriod</definition>
+        <argsstring>(CelestialBody body, double apoapsis, double periapsis)</argsstring>
+        <name>OrbitalPeriod</name>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>body</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>apoapsis</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>periapsis</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1272" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1272" bodyend="1281"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1a0314b0bd8962983fd0d84ca302795d5c" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool TransferMath.SearchDVRange</definition>
+        <argsstring>(double startDv, double endDv, double step, Vector3d dV, Orbit startOrbit, CelestialBody targetBody, double UT, ref double closestApproach, out Vector3d adjustedDV, out Vector3d newDV, SafeAbortBackgroundWorker bw)</argsstring>
+        <name>SearchDVRange</name>
+        <param>
+          <type>double</type>
+          <declname>startDv</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>endDv</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>step</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>dV</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>startOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_celestial_body" kindref="compound">CelestialBody</ref></type>
+          <declname>targetBody</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type>ref double</type>
+          <declname>closestApproach</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>adjustedDV</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>newDV</declname>
+        </param>
+        <param>
+          <type><ref refid="class_safe_abort_background_worker" kindref="compound">SafeAbortBackgroundWorker</ref></type>
+          <declname>bw</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="634" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="634" bodyend="696"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1abf440e37665e99d833029a1a7e708358" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>static double TransferMath.TimeToANDN</definition>
+        <argsstring>(Orbit currentOrbit, Orbit targetOrbit, double startTime, bool ascending, bool closest, out double otherNode)</argsstring>
+        <name>TimeToANDN</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>currentOrbit</declname>
+        </param>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>targetOrbit</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>startTime</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>ascending</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>closest</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>otherNode</declname>
+        </param>
+        <briefdescription>
+<para>Find the time from current orbit to next Ascending or Descending Node to targetOrbit from startTime. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>currentOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The current orbit.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>targetOrbit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The target orbit.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>startTime</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The time to look from.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ascending</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Set true if you want the time to ascending node, false if you want descending node.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>closest</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Set true if you want the time to the next ascending or descending node, whichever occurs first (overrides ascending bool value).</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>otherNode</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>is set to the other node (asc or desc) if closest is true.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1023" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1023" bodyend="1058"/>
+      </memberdef>
+      <memberdef kind="function" id="class_transfer_math_1aa29e7ee0d877ccc7dbdc698876d4d69f" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+        <definition>static Orbit TransferMath.TransferOrbit</definition>
+        <argsstring>(Orbit o, double UT, Vector3d dV)</argsstring>
+        <name>TransferOrbit</name>
+        <param>
+          <type><ref refid="class_orbit" kindref="compound">Orbit</ref></type>
+          <declname>o</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>UT</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vector3d" kindref="compound">Vector3d</ref></type>
+          <declname>dV</declname>
+        </param>
+        <briefdescription>
+<para>Creates and returns an <ref refid="class_orbit" kindref="compound">Orbit</ref> from the input orbit with the dV applied at the UT specified. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>o</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The starting <ref refid="class_orbit" kindref="compound">Orbit</ref>.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>UT</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The UT to apply the dV.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>dV</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The dV to apply.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="1559" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="1559" bodyend="1562"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="167611">
+        <label>TransferMath</label>
+        <link refid="class_transfer_math"/>
+        <childnode refid="167612" relation="usage">
+          <edgelabel>safetyEnvelope</edgelabel>
+        </childnode>
+      </node>
+      <node id="167612">
+        <label>static</label>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" line="10" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Manuever Planning/TransferMath.cs" bodystart="9" bodyend="2256"/>
+    <listofallmembers>
+      <member refid="class_transfer_math_1aa1ad09ba540138a5b2f66ed7daf96380" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>AlignmentTime</name></member>
+      <member refid="class_transfer_math_1a45b52dff209a7a4aacf015e0191a203e" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>Bisect</name></member>
+      <member refid="class_transfer_math_1afd44e31707e40638ab66d23daddae007" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>BisectFunc</name></member>
+      <member refid="class_transfer_math_1adb4ee369d6cd487032577d90ba2fdb93" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>CalcCircularizeDV</name></member>
+      <member refid="class_transfer_math_1aa7df5420e9903e0c3d5c6032d0f04ee5" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>CalcdV</name></member>
+      <member refid="class_transfer_math_1aa644145f4866462e179bfcdd6c967c7c" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>CalcdVReturn</name></member>
+      <member refid="class_transfer_math_1a91573c92d1e62b4e1221750aeb506cb0" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>CalcEjectionValues</name></member>
+      <member refid="class_transfer_math_1a6e3e0e56c733c7b87b85297ec22d031c" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>CalcSameSOITransferDV</name></member>
+      <member refid="class_transfer_math_1a8de15d9e18deb81f30465bdca6b2e7e4" prot="package" virt="non-virtual"><scope>TransferMath</scope><name>CalcSameSOITransferDV</name></member>
+      <member refid="class_transfer_math_1aa6f8317dd1d5af5bc63a0e74d487d5f2" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>CalcTransferTime</name></member>
+      <member refid="class_transfer_math_1a8fc515125eea8f24bf47b038e3233dc1" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>CalculateCorrection</name></member>
+      <member refid="class_transfer_math_1a16a7e91e10fe57a71056bedd2e2b1346" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>CalculateCorrectionBurn</name></member>
+      <member refid="class_transfer_math_1ad26d7a6ce88463fde1516189072dccb7" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>CalculateStartEndXferTimes</name></member>
+      <member refid="class_transfer_math_1a43e78baea2a7f3722136112701d4205a" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>CalculateStartEndXferTimes</name></member>
+      <member refid="class_transfer_math_1a33f5da60719a6dc14f4f34b12d9b56ea" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>CalculateStartEndXferTimes</name></member>
+      <member refid="class_transfer_math_1ac838a45339894db62cd7c86abab47990" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>ChangingPeriapsis</name></member>
+      <member refid="class_transfer_math_1a1712b46a8917b05575a2bce66aa8e339" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>D8RT</name></member>
+      <member refid="class_transfer_math_1a8837ffa3539197191863f76432c49faa" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>DeltaVToInterceptAtTime</name></member>
+      <member refid="class_transfer_math_1afa8747d8c992103b95c14738bc2b0bb6" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>DVApPhaseHohmann</name></member>
+      <member refid="class_transfer_math_1ae2f2e51e40ffe08bc33cdc9a9ca52557" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>DVTimeHohmann</name></member>
+      <member refid="class_transfer_math_1a63579b3afc05ae0cf47df059ff9549af" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>DVTimeInterCBXfer</name></member>
+      <member refid="class_transfer_math_1aedf29935d5ef02115640a49bdb4e144d" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>DVToChangeApoapsis</name></member>
+      <member refid="class_transfer_math_1a47c0914362287b202a8029ff53aa21f2" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>DVToChangePeriapsis</name></member>
+      <member refid="class_transfer_math_1a5425d5f43fbe04765e63ea7410a2f704" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>EjectionAngleCalc</name></member>
+      <member refid="class_transfer_math_1a74a462b983d6c564d46993657a0c8194" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>epsilon</name></member>
+      <member refid="class_transfer_math_1ab88cab7ca34076e7daefea1df657c18a" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>FinalizeLambert</name></member>
+      <member refid="class_transfer_math_1a07fa996c5a4e8904359f9b9d2fc059a2" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>FindIntercept</name></member>
+      <member refid="class_transfer_math_1ac4f405771bf4487dc9233a88a355ecc0" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>HohmannTimeOfFlight</name></member>
+      <member refid="class_transfer_math_1af8cfbbdfc15a65952dea80de0d142e61" prot="package" virt="non-virtual"><scope>TransferMath</scope><name>InterceptBody</name></member>
+      <member refid="class_transfer_math_1ac46a05d14faf03e956c431f3b9527247" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>LambertRHG</name></member>
+      <member refid="class_transfer_math_1aa7e7c0cfa2e17027d2406897d11f04d9" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>LambertSolver</name></member>
+      <member refid="class_transfer_math_1a7a465c136a78daf9c7f63c6c1d00df8f" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>LamGTL</name></member>
+      <member refid="class_transfer_math_1ae7602ca194e71a0dd47289aeb5cfe802" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>LamGXL</name></member>
+      <member refid="class_transfer_math_1aa51537d55e551f0e6af504920e1f60c3" prot="package" virt="non-virtual"><scope>TransferMath</scope><name>NoBurnRequired</name></member>
+      <member refid="class_transfer_math_1ad2c3d06df2f1b34b46a1b2dc34eb50d1" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>OrbitalPeriod</name></member>
+      <member refid="class_transfer_math_1a172137591f776014e81e2cf579ef81e1" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>Root</name></member>
+      <member refid="class_transfer_math_1a04cadaf037832ac87d21b399175ec05f" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>SafeOrbitRadius</name></member>
+      <member refid="class_transfer_math_1ae87d021110cea9e6eb8c6a6b2401398b" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>safetyEnvelope</name></member>
+      <member refid="class_transfer_math_1a31648b335ba49f43c5fd596624991c2f" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>SameSOITransfer</name></member>
+      <member refid="class_transfer_math_1a0314b0bd8962983fd0d84ca302795d5c" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>SearchDVRange</name></member>
+      <member refid="class_transfer_math_1addfb0d165be285141c3b7c5c2c000e3d" prot="package" virt="non-virtual"><scope>TransferMath</scope><name>SolveLambert</name></member>
+      <member refid="class_transfer_math_1a6c20a1e1472c6008f175d443f57cf7b0" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>solverParameters</name></member>
+      <member refid="class_transfer_math_1a030c110fbfc5bc04a2f35848e7b7fd26" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>SuperiorLambert</name></member>
+      <member refid="class_transfer_math_1abf440e37665e99d833029a1a7e708358" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>TimeToANDN</name></member>
+      <member refid="class_transfer_math_1a75c9045fd1bcb4d273f4c6e7df2825c2" prot="public" virt="non-virtual"><scope>TransferMath</scope><name>TransferDV</name></member>
+      <member refid="class_transfer_math_1aa29e7ee0d877ccc7dbdc698876d4d69f" prot="private" virt="non-virtual"><scope>TransferMath</scope><name>TransferOrbit</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

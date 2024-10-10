@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="interface_i_analytic_preview" kind="interface" prot="public">
+    <compoundname>IAnalyticPreview</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_i_analytic_preview_1a60429ba5568a05ba38b2885a1216f873" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IAnalyticPreview.AnalyticInfo</definition>
+        <argsstring>(FlightIntegrator fi, double sunAndBodyIn, double backgroundRadiation, double radArea, double absEmissRatio, double internalFlux, double convCoeff, double ambientTemp, double maxPartTemp)</argsstring>
+        <name>AnalyticInfo</name>
+        <param>
+          <type><ref refid="class_flight_integrator" kindref="compound">FlightIntegrator</ref></type>
+          <declname>fi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sunAndBodyIn</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>backgroundRadiation</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>radArea</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>absEmissRatio</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>internalFlux</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>convCoeff</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>ambientTemp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>maxPartTemp</declname>
+        </param>
+        <briefdescription>
+<para>Analytic will call this method once it has calculated these numbers, and before the final analytic temperature is calculated. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_flight_integrator" kindref="compound">FlightIntegrator</ref> for the vessel</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sunAndBodyIn</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Flux in from the sun and the body (in kW)</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>backgroundRadiation</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>background radiation temperature in K</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>radArea</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>weighted radiative area in m^2 (i.e. assume emissivity of 1.0)</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>absEmissRatio</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>ratio of weighted absorptivity to emissivity</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>internalFlux</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>existing internal flux in kW</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>convCoeff</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Convective coefficient</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>ambientTemp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Ambient atmospheric temperature in K</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>maxPartTemp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Maximum part temperature on the vessel</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" line="55" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_i_analytic_preview_1aab6efc4fa5bc1416ea9699aa13449655" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double IAnalyticPreview.InternalFluxAdjust</definition>
+        <argsstring>()</argsstring>
+        <name>InternalFluxAdjust</name>
+        <briefdescription>
+<para>This method is called after the Info method is called. The module can take the opportunity to report a change to internal generation, based on the preview numbers. The module should report the difference in kW between what it originally reported and the new number, <emphasis>not</emphasis> the new number itself, so if it originally reported 30kW, and now wants to only report 20, this should return -10. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>new internal gen - old internal gen, in kW</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" line="64" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This interface allows parts to get a preview of analytic numbers, and then adjust their internal generation. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" line="41" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" bodystart="40" bodyend="65"/>
+    <listofallmembers>
+      <member refid="interface_i_analytic_preview_1a60429ba5568a05ba38b2885a1216f873" prot="public" virt="non-virtual"><scope>IAnalyticPreview</scope><name>AnalyticInfo</name></member>
+      <member refid="interface_i_analytic_preview_1aab6efc4fa5bc1416ea9699aa13449655" prot="public" virt="non-virtual"><scope>IAnalyticPreview</scope><name>InternalFluxAdjust</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

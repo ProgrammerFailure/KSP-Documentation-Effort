@@ -1,0 +1,661 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_assembly_loader" kind="class" prot="public">
+    <compoundname>AssemblyLoader</compoundname>
+    <innerclass refid="class_assembly_loader_1_1_assembly_dependency" prot="public">AssemblyLoader::AssemblyDependency</innerclass>
+    <innerclass refid="class_assembly_loader_1_1_loaded_assembly" prot="public">AssemblyLoader::LoadedAssembly</innerclass>
+    <innerclass refid="class_assembly_loader_1_1_loaded_assemby_list" prot="public">AssemblyLoader::LoadedAssembyList</innerclass>
+    <innerclass refid="class_assembly_loader_1_1_loaded_types" prot="public">AssemblyLoader::LoadedTypes</innerclass>
+    <innerclass refid="class_assembly_loader_1_1_loaded_types_dictionary" prot="public">AssemblyLoader::LoadedTypesDictionary</innerclass>
+    <innerclass refid="class_assembly_loader_1_1_proxy_domain" prot="private">AssemblyLoader::ProxyDomain</innerclass>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_assembly_loader_1a4ddb45deb905ea6a8b358a2f54b32f7c" prot="public" static="yes" mutable="no">
+        <type><ref refid="class_assembly_loader_1_1_loaded_assemby_list" kindref="compound">LoadedAssembyList</ref></type>
+        <definition>LoadedAssembyList AssemblyLoader.loadedAssemblies</definition>
+        <argsstring></argsstring>
+        <name>loadedAssemblies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="558" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="558" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_assembly_loader_1a7252edfe49df9c9cca52fd1532863de7" prot="public" static="yes" mutable="no">
+        <type>List&lt; System.Type &gt;</type>
+        <definition>List&lt;System.Type&gt; AssemblyLoader.loadedTypes</definition>
+        <argsstring></argsstring>
+        <name>loadedTypes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="556" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="556" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_assembly_loader_1ad429405a98766af50ebafc4394a41e83" prot="private" static="yes" mutable="no">
+        <type>List&lt; <ref refid="class_assembly_info" kindref="compound">AssemblyInfo</ref> &gt;</type>
+        <definition>List&lt;AssemblyInfo&gt; AssemblyLoader.availableAssemblies</definition>
+        <argsstring></argsstring>
+        <name>availableAssemblies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="560" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="560" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_assembly_loader_1a5c59cd394082423fd80de9ecc37a5e30" prot="private" static="yes" mutable="no">
+        <type>readonly Dictionary&lt; string, Assembly &gt;</type>
+        <definition>readonly Dictionary&lt;string, Assembly&gt; AssemblyLoader.bindingRedirect</definition>
+        <argsstring></argsstring>
+        <name>bindingRedirect</name>
+        <initializer>= new Dictionary&lt;string, Assembly&gt;()</initializer>
+        <briefdescription>
+<para>Local cache of redirects done so far. Used to speedup assembly resolutions since what has failed once will likely keep failing thru the game.</para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="940" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="940" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_assembly_loader_1a524770d2f669030c2bbd851f1a1597e7" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; string, byte[]&gt;</type>
+        <definition>Dictionary&lt;string, byte[]&gt; AssemblyLoader.forbiddenRefs</definition>
+        <argsstring></argsstring>
+        <name>forbiddenRefs</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="908" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="908" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_assembly_loader_1a75ad519df2d4ab76a0a8cf2a480ab770" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; System.Type, string &gt;</type>
+        <definition>Dictionary&lt;System.Type, string&gt; AssemblyLoader.forbiddenTypes</definition>
+        <argsstring></argsstring>
+        <name>forbiddenTypes</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="910" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="910" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_assembly_loader_1a4de1d602537957c5a8a36f2ccd2ea86b" prot="private" static="yes" mutable="no">
+        <type>bool</type>
+        <definition>bool AssemblyLoader.initialized</definition>
+        <argsstring></argsstring>
+        <name>initialized</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="562" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="562" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_assembly_loader_1a8ba5d259099593546e4b241ead0c133f" prot="private" static="yes" mutable="no">
+        <type>Dictionary&lt; Type, List&lt; Type &gt; &gt;</type>
+        <definition>Dictionary&lt;Type, List&lt;Type&gt; &gt; AssemblyLoader.subclassesOfParentClass</definition>
+        <argsstring></argsstring>
+        <name>subclassesOfParentClass</name>
+        <initializer>= new Dictionary&lt;Type, List&lt;Type&gt;&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="836" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="836" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_assembly_loader_1a495ebe5dd659a707700d293efc0b84d4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.ClearPlugins</definition>
+        <argsstring>()</argsstring>
+        <name>ClearPlugins</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="744" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="744" bodyend="747"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a65ac47c5708d66cd0b27043b7ee054b2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.FlagDuplicatedPlugins</definition>
+        <argsstring>()</argsstring>
+        <name>FlagDuplicatedPlugins</name>
+        <briefdescription>
+<para>Goes through the cached assembly information and flags duplicate plugins. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="631" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="631" bodyend="661"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a02ecc8783a48798b09295fd1956cc69a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>System.Type</type>
+        <definition>static System.Type AssemblyLoader.GetClassByName</definition>
+        <argsstring>(System.Type baseType, string name)</argsstring>
+        <name>GetClassByName</name>
+        <param>
+          <type>System.Type</type>
+          <declname>baseType</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a class of base type T from the loaded types </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="templateparam"><parameteritem>
+<parameternamelist>
+<parametername>T</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>BaseType</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>name</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Name of type to retrieve</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Type cast to BaseType on success or null on failure</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="728" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="728" bodyend="731"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a382594f0600fd349ed98d45d55fa64e3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; ConstructorInfo &gt;</type>
+        <definition>static List&lt;ConstructorInfo&gt; AssemblyLoader.GetModulesImplementingInterface&lt; T &gt;</definition>
+        <argsstring>(System.Type[] param_types)</argsstring>
+        <name>GetModulesImplementingInterface&lt; T &gt;</name>
+        <param>
+          <type>System.Type[]</type>
+          <declname>param_types</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="749" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="749" bodyend="791"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1af2f73f67713aacdc94b39a32f3654937" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string AssemblyLoader.GetPathByType</definition>
+        <argsstring>(System.Type type)</argsstring>
+        <name>GetPathByType</name>
+        <param>
+          <type>System.Type</type>
+          <declname>type</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves the relative assembly path from a type contained therein </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>type</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="738" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="738" bodyend="741"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a26dbc2c8abace4366366ef6600be7de3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Type &gt;</type>
+        <definition>static List&lt;Type&gt; AssemblyLoader.GetSubclassesOfParentClass</definition>
+        <argsstring>(Type parentType)</argsstring>
+        <name>GetSubclassesOfParentClass</name>
+        <param>
+          <type>Type</type>
+          <declname>parentType</declname>
+        </param>
+        <briefdescription>
+<para>Get a list of subclasses of the parent class. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>parentType</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Type representing the parent class.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>Returns a list of the subclasses of the parent class. The parent will not be included in the list.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="843" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="843" bodyend="880"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a1336c0116abaf4507d5e01523052f039" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>List&lt; Type &gt;</type>
+        <definition>static List&lt;Type&gt; AssemblyLoader.GetTypesOfClassesImplementingInterface&lt; T &gt;</definition>
+        <argsstring>()</argsstring>
+        <name>GetTypesOfClassesImplementingInterface&lt; T &gt;</name>
+        <briefdescription>
+<para>Get a list of classes which implement a specified interface. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>Returns a list of the classes which implement the specified interface T.</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="797" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="797" bodyend="834"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1ada83b6ee2f09219e5aef89c0045fab52" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.Initialize</definition>
+        <argsstring>(string[] baseTypes)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type>string[]</type>
+          <declname>baseTypes</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the <ref refid="class_assembly_loader" kindref="compound">AssemblyLoader</ref> from array of string type names </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseTypes</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="571" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="571" bodyend="583"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a8959cf0e479fd1299cafc45fd37afde3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.Initialize</definition>
+        <argsstring>(System.Type[] baseTypes)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type>System.Type[]</type>
+          <declname>baseTypes</declname>
+        </param>
+        <briefdescription>
+<para>Initialize the <ref refid="class_assembly_loader" kindref="compound">AssemblyLoader</ref> from array of types </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>baseTypes</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Define forbiddens.</para><para>&lt; Load the base assembly </para>        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="589" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="589" bodyend="615"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1afaf2880269e460c440d8adfdf849f8de" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.LoadAssemblies</definition>
+        <argsstring>()</argsstring>
+        <name>LoadAssemblies</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; via IgorZ, see above</para><para>&lt; just in case</para><para>&lt; Iterate through types in the assembly</para><para>&lt; Report additional info if it&apos;s a ReflectionTypeLoadException.</para><para>&lt; make the assembly null so we can remove it from the list later </para>        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="1019" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="1019" bodyend="1098"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a5a674de928441f60a76566673610382c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool AssemblyLoader.LoadPlugin</definition>
+        <argsstring>(FileInfo file, string url, ConfigNode assemblyNode)</argsstring>
+        <name>LoadPlugin</name>
+        <param>
+          <type>FileInfo</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type><ref refid="class_config_node" kindref="compound">ConfigNode</ref></type>
+          <declname>assemblyNode</declname>
+        </param>
+        <briefdescription>
+<para>Load a plugin from given FileInfo </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>true/false of success</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="697" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="697" bodyend="719"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1aa62d8199fc24c37e7b5e8c198e19facd" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.LoadPluginInfo</definition>
+        <argsstring>(FileInfo file, string url, ConfigNode assemblyNode)</argsstring>
+        <name>LoadPluginInfo</name>
+        <param>
+          <type>FileInfo</type>
+          <declname>file</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type><ref refid="class_config_node" kindref="compound">ConfigNode</ref></type>
+          <declname>assemblyNode</declname>
+        </param>
+        <briefdescription>
+<para>Load and cache relevant plugin info, such as name, path and version </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="620" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="620" bodyend="626"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_assembly_loader_1a5e4e72f9587d63a71dee4368cb7af4f2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.AddForbiddenString</definition>
+        <argsstring>(string badString)</argsstring>
+        <name>AddForbiddenString</name>
+        <param>
+          <type>string</type>
+          <declname>badString</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Convert to hex for debugging</para><para>&lt; And log. </para>        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="918" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="918" bodyend="931"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1ac38598d67eaaa8ea207b529d5bf1a1c9" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.AddForbiddenType&lt; T &gt;</definition>
+        <argsstring>(string errorToThrow)</argsstring>
+        <name>AddForbiddenType&lt; T &gt;</name>
+        <param>
+          <type>string</type>
+          <declname>errorToThrow</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="912" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="912" bodyend="915"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a790a0fa93b5ef204bfa2d19d6d582194" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.InitializeForbidden</definition>
+        <argsstring>()</argsstring>
+        <name>InitializeForbidden</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Disabled for now. Not really doing anything useful. Maybe make this configurable? - Rob </para>        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="899" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="899" bodyend="906"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a33e6a93d91e4801f09aa0fce38f8222b" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.LoadAssembly</definition>
+        <argsstring>(Assembly assembly, string filePath, string url, ConfigNode assemblyNode)</argsstring>
+        <name>LoadAssembly</name>
+        <param>
+          <type>Assembly</type>
+          <declname>assembly</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>filePath</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>url</declname>
+        </param>
+        <param>
+          <type><ref refid="class_config_node" kindref="compound">ConfigNode</ref></type>
+          <declname>assemblyNode</declname>
+        </param>
+        <briefdescription>
+<para>Actually load an assembly&apos;s types via reflection. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>asm</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Report additional info if it&apos;s a ReflectionTypeLoadException. </para>        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="996" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="996" bodyend="1017"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1ad57563059a24ff59a3d54e24e3b558c2" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool AssemblyLoader.LoadExternalAssembly</definition>
+        <argsstring>(string file)</argsstring>
+        <name>LoadExternalAssembly</name>
+        <param>
+          <type>string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>Load an external assembly. </para>        </briefdescription>
+        <detaileddescription>
+<para>The security system just searches for instances of System.IO (which are referenced as ASCII strings) and any other banned byte sequence. Pretty simple, but it gets the job done. </para><para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The DLL file we want loaded.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+<para>&lt; Now try to match the rest.</para><para>&lt; Report additional info if it&apos;s a ReflectionTypeLoadException. </para>        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="1119" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="1119" bodyend="1179"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a738c1f61226c12b4be1d8e0d4ff338cc" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.LogBadAssemblyError</definition>
+        <argsstring>(System.Exception ex)</argsstring>
+        <name>LogBadAssemblyError</name>
+        <param>
+          <type>System.Exception</type>
+          <declname>ex</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="882" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="882" bodyend="895"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1ab28de0349f3c15d06b550b5624a16cb7" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Assembly</type>
+        <definition>static Assembly AssemblyLoader.MyResolveEventHandler</definition>
+        <argsstring>(object sender, ResolveEventArgs args)</argsstring>
+        <name>MyResolveEventHandler</name>
+        <param>
+          <type>object</type>
+          <declname>sender</declname>
+        </param>
+        <param>
+          <type>ResolveEventArgs</type>
+          <declname>args</declname>
+        </param>
+        <briefdescription>
+<para>Triggers when framework fails to resolve an assembly.</para>        </briefdescription>
+        <detaileddescription>
+<para>Since <ref refid="namespace_k_s_p" kindref="compound">KSP</ref> versioning engine verifies addons dependencies this failure may only happen if a dependency assembly has been upgarded to a higher version. This code tries to load the assembly without version specified, and just checks if the found assembly has greater version. <parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>sender</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>args</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="949" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="949" bodyend="990"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a055e3cf1d2e7971be0f003753d3b243c" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string AssemblyLoader.PluginHighestVersionPath</definition>
+        <argsstring>(string name)</argsstring>
+        <name>PluginHighestVersionPath</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="679" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="679" bodyend="691"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a10df94fa0432daab8355c4fd82b97331" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool AssemblyLoader.PluginNameNotDuplicate</definition>
+        <argsstring>(string name)</argsstring>
+        <name>PluginNameNotDuplicate</name>
+        <param>
+          <type>string</type>
+          <declname>name</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="664" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="664" bodyend="676"/>
+      </memberdef>
+      <memberdef kind="function" id="class_assembly_loader_1a73a36180a6561c92af9acf6b0605b783" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void AssemblyLoader.ScanForBadTypeRefs</definition>
+        <argsstring>(string file)</argsstring>
+        <name>ScanForBadTypeRefs</name>
+        <param>
+          <type>string</type>
+          <declname>file</declname>
+        </param>
+        <briefdescription>
+<para>Scan for bad type references. ECMA standard is a nightmare, so use Mono.Cecil instead. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>file</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="1185" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="1185" bodyend="1199"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="23816">
+        <label>AssemblyLoader</label>
+        <link refid="class_assembly_loader"/>
+        <childnode refid="23817" relation="usage">
+          <edgelabel>loadedAssemblies</edgelabel>
+          <edgelabel>loadedTypes</edgelabel>
+        </childnode>
+      </node>
+      <node id="23817">
+        <label>static</label>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" line="26" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Plugins/AssemblyLoader.cs" bodystart="25" bodyend="1202"/>
+    <listofallmembers>
+      <member refid="class_assembly_loader_1a5e4e72f9587d63a71dee4368cb7af4f2" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>AddForbiddenString</name></member>
+      <member refid="class_assembly_loader_1ac38598d67eaaa8ea207b529d5bf1a1c9" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>AddForbiddenType&lt; T &gt;</name></member>
+      <member refid="class_assembly_loader_1ad429405a98766af50ebafc4394a41e83" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>availableAssemblies</name></member>
+      <member refid="class_assembly_loader_1a5c59cd394082423fd80de9ecc37a5e30" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>bindingRedirect</name></member>
+      <member refid="class_assembly_loader_1a495ebe5dd659a707700d293efc0b84d4" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>ClearPlugins</name></member>
+      <member refid="class_assembly_loader_1a65ac47c5708d66cd0b27043b7ee054b2" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>FlagDuplicatedPlugins</name></member>
+      <member refid="class_assembly_loader_1a524770d2f669030c2bbd851f1a1597e7" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>forbiddenRefs</name></member>
+      <member refid="class_assembly_loader_1a75ad519df2d4ab76a0a8cf2a480ab770" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>forbiddenTypes</name></member>
+      <member refid="class_assembly_loader_1a02ecc8783a48798b09295fd1956cc69a" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>GetClassByName</name></member>
+      <member refid="class_assembly_loader_1a382594f0600fd349ed98d45d55fa64e3" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>GetModulesImplementingInterface&lt; T &gt;</name></member>
+      <member refid="class_assembly_loader_1af2f73f67713aacdc94b39a32f3654937" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>GetPathByType</name></member>
+      <member refid="class_assembly_loader_1a26dbc2c8abace4366366ef6600be7de3" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>GetSubclassesOfParentClass</name></member>
+      <member refid="class_assembly_loader_1a1336c0116abaf4507d5e01523052f039" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>GetTypesOfClassesImplementingInterface&lt; T &gt;</name></member>
+      <member refid="class_assembly_loader_1ada83b6ee2f09219e5aef89c0045fab52" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>Initialize</name></member>
+      <member refid="class_assembly_loader_1a8959cf0e479fd1299cafc45fd37afde3" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>Initialize</name></member>
+      <member refid="class_assembly_loader_1a4de1d602537957c5a8a36f2ccd2ea86b" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>initialized</name></member>
+      <member refid="class_assembly_loader_1a790a0fa93b5ef204bfa2d19d6d582194" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>InitializeForbidden</name></member>
+      <member refid="class_assembly_loader_1afaf2880269e460c440d8adfdf849f8de" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>LoadAssemblies</name></member>
+      <member refid="class_assembly_loader_1a33e6a93d91e4801f09aa0fce38f8222b" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>LoadAssembly</name></member>
+      <member refid="class_assembly_loader_1a4ddb45deb905ea6a8b358a2f54b32f7c" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>loadedAssemblies</name></member>
+      <member refid="class_assembly_loader_1a7252edfe49df9c9cca52fd1532863de7" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>loadedTypes</name></member>
+      <member refid="class_assembly_loader_1ad57563059a24ff59a3d54e24e3b558c2" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>LoadExternalAssembly</name></member>
+      <member refid="class_assembly_loader_1a5a674de928441f60a76566673610382c" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>LoadPlugin</name></member>
+      <member refid="class_assembly_loader_1aa62d8199fc24c37e7b5e8c198e19facd" prot="public" virt="non-virtual"><scope>AssemblyLoader</scope><name>LoadPluginInfo</name></member>
+      <member refid="class_assembly_loader_1a738c1f61226c12b4be1d8e0d4ff338cc" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>LogBadAssemblyError</name></member>
+      <member refid="class_assembly_loader_1ab28de0349f3c15d06b550b5624a16cb7" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>MyResolveEventHandler</name></member>
+      <member refid="class_assembly_loader_1a055e3cf1d2e7971be0f003753d3b243c" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>PluginHighestVersionPath</name></member>
+      <member refid="class_assembly_loader_1a10df94fa0432daab8355c4fd82b97331" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>PluginNameNotDuplicate</name></member>
+      <member refid="class_assembly_loader_1a73a36180a6561c92af9acf6b0605b783" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>ScanForBadTypeRefs</name></member>
+      <member refid="class_assembly_loader_1a8ba5d259099593546e4b241ead0c133f" prot="private" virt="non-virtual"><scope>AssemblyLoader</scope><name>subclassesOfParentClass</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

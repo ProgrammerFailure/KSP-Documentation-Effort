@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_camera_off_center_8cs" kind="file">
+    <compoundname>CameraOffCenter.cs</compoundname>
+    <innerclass refid="class_camera_off_center" prot="public">CameraOffCenter</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal">[ExecuteInEditMode]</highlight></codeline>
+<codeline lineno="4" refid="class_camera_off_center" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_camera_off_center" kindref="compound">CameraOffCenter</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_camera_off_center_1a3176fce52bc0631103b64f6c07fd189c" kindref="member">x</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_camera_off_center_1a18494986fa12fc40bf088773709b20b3" kindref="member">y</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Cached<sp/>Component<sp/>Variables</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="_viewport_controller_8cs_1a8bc166d5dce2d4d9a440c02e1d2df8aea967d35e40f3f95b1f538bd248640bf3b" kindref="member">Camera</ref><sp/>_camera;</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>LateUpdate()</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>aspect<sp/>=<sp/>(float)Screen.width<sp/>/<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)Screen.height;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Matrix4x4<sp/>m<sp/>=<sp/>PerspectiveOffCenter(</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_camera_off_center_1a3176fce52bc0631103b64f6c07fd189c" kindref="member">x</ref>,<sp/><ref refid="class_camera_off_center_1a18494986fa12fc40bf088773709b20b3" kindref="member">y</ref>,<sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;Camera&gt;(ref<sp/>_camera).nearClipPlane,<sp/>this.GetComponentCached&lt;Camera&gt;(ref<sp/>_camera).farClipPlane,</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;Camera&gt;(ref<sp/>_camera).fieldOfView,<sp/>aspect);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.GetComponentCached&lt;<ref refid="_viewport_controller_8cs_1a8bc166d5dce2d4d9a440c02e1d2df8aea967d35e40f3f95b1f538bd248640bf3b" kindref="member">Camera</ref>&gt;(ref<sp/>_camera).projectionMatrix<sp/>=<sp/>m;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Matrix4x4<sp/>PerspectiveOffCenter(</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_camera_off_center_1a3176fce52bc0631103b64f6c07fd189c" kindref="member">x</ref>,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_camera_off_center_1a18494986fa12fc40bf088773709b20b3" kindref="member">y</ref>,</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>near,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>far,</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>fov,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>aspect)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>xymax<sp/>=<sp/>near<sp/>*<sp/>Mathf.Tan((fov<sp/>*<sp/>0.5f)<sp/>*<sp/>Mathf.Deg2Rad);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>ymin<sp/>=<sp/>-xymax;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>xmin<sp/>=<sp/>-xymax;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>width<sp/>=<sp/>xymax<sp/>-<sp/>xmin;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>height<sp/>=<sp/>xymax<sp/>-<sp/>ymin;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//float<sp/>depth<sp/>=<sp/>far<sp/>-<sp/>near;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//float<sp/>q<sp/>=<sp/>-(far<sp/>+<sp/>near)<sp/>/<sp/>depth;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//float<sp/>qn<sp/>=<sp/>-2<sp/>*<sp/>(far<sp/>*<sp/>near)<sp/>/<sp/>depth;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>w<sp/>=<sp/>2<sp/>*<sp/>near<sp/>/<sp/>width;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w<sp/>=<sp/>w<sp/>/<sp/>aspect;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>h<sp/>=<sp/>2<sp/>*<sp/>near<sp/>/<sp/>height;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>c<sp/>=<sp/>-(far<sp/>+<sp/>near)<sp/>/<sp/>(far<sp/>-<sp/>near);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>d<sp/>=<sp/>-(2.0f<sp/>*<sp/>far<sp/>*<sp/>near)<sp/>/<sp/>(far<sp/>-<sp/>near);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>e<sp/>=<sp/>-1.0f;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Matrix4x4<sp/>m<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Matrix4x4();</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m[0,<sp/>0]<sp/>=<sp/>w;<sp/>m[0,<sp/>1]<sp/>=<sp/>0;<sp/>m[0,<sp/>2]<sp/>=<sp/>-<ref refid="class_camera_off_center_1a3176fce52bc0631103b64f6c07fd189c" kindref="member">x</ref>;<sp/>m[0,<sp/>3]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m[1,<sp/>0]<sp/>=<sp/>0;<sp/>m[1,<sp/>1]<sp/>=<sp/>h;<sp/>m[1,<sp/>2]<sp/>=<sp/>-<ref refid="class_camera_off_center_1a18494986fa12fc40bf088773709b20b3" kindref="member">y</ref>;<sp/>m[1,<sp/>3]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m[2,<sp/>0]<sp/>=<sp/>0;<sp/>m[2,<sp/>1]<sp/>=<sp/>0;<sp/>m[2,<sp/>2]<sp/>=<sp/>c;<sp/>m[2,<sp/>3]<sp/>=<sp/>d;</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m[3,<sp/>0]<sp/>=<sp/>0;<sp/>m[3,<sp/>1]<sp/>=<sp/>0;<sp/>m[3,<sp/>2]<sp/>=<sp/>e;<sp/>m[3,<sp/>3]<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameLogic Scripts/CameraOffCenter.cs"/>
+  </compounddef>
+</doxygen>

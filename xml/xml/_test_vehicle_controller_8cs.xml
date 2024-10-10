@@ -1,0 +1,253 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_test_vehicle_controller_8cs" kind="file">
+    <compoundname>TestVehicleController.cs</compoundname>
+    <innerclass refid="class_test_vehicle_controller" prot="public">TestVehicleController</innerclass>
+    <innerclass refid="class_test_vehicle_controller_1_1_wheel" prot="public">TestVehicleController::Wheel</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>VehiclePhysics;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5" refid="class_test_vehicle_controller" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_test_vehicle_controller" kindref="compound">TestVehicleController</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref>[]<sp/>wheels<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>ConfigurableJoint[]<sp/>joints<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Rigidbody<sp/>payload<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Transform<sp/>Tref;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>[Range(0.001f,<sp/>0.999999f)]</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>massDistribution<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>totalMass<sp/>=<sp/>5f;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>distributedMassSum<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>TWLSum<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>suspensionSpringRatio<sp/>=<sp/>20f;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>suspensionDampingRatio<sp/>=<sp/>0.5f;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>[Range(0.001f,<sp/>2f)]</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>suspensionBoostRatio<sp/>=<sp/>1f;</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>WxSum,<sp/>WySum,<sp/>dMassError;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>CoM;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>WheelMass<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>PayloadMass<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>ApplyForcesOnParent<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Vector3<sp/>GravityDirection<sp/>=<sp/>Vector3.down;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>[SerializeField]</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>GravityMagnitude<sp/>=<sp/>9.80665f;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="class_k_s_p_wheel_gravity" kindref="compound">KSPWheelGravity</ref><sp/>gravity;<sp/></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Start()</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Tref<sp/>=<sp/>transform;</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>gravity.Value<sp/>=<sp/>GravityDirection<sp/>*<sp/>GravityMagnitude;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>updateMassDistribution(massDistribution);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Update<sp/>is<sp/>called<sp/>once<sp/>per<sp/>frame</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FixedUpdate()</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>updateMassDistribution(massDistribution);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//SuspensionLoadUpdate(wheels,<sp/>totalMass,<sp/>CoM,<sp/>0.00001f);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref><sp/>w<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>wheels)</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SuspensionSpringUpdate(w);</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(ConfigurableJoint<sp/>j<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>joints)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ConfigurableJointUpdate(j);</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>updateMassDistribution(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dist)</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WheelMass<sp/>=<sp/>Mathf.Lerp(totalMass<sp/>/<sp/>(float)wheels.Length,<sp/>0f,<sp/>dist);</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>PayloadMass<sp/>=<sp/>Mathf.Min(totalMass<sp/>-<sp/>(WheelMass<sp/>*<sp/>(float)wheels.Length),<sp/>totalMass<sp/>-<sp/>0.01f<sp/>*<sp/>wheels.Length);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref><sp/>w<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>wheels)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.kwc.rb.mass<sp/>=<sp/>Mathf.Max(WheelMass,<sp/>0.01f);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(ApplyForcesOnParent<sp/>&amp;&amp;<sp/>w.<ref refid="class_test_vehicle_controller_1_1_wheel_1a228c6d2d1048f4b2d02c4b145979ee56" kindref="member">kwc</ref>.<ref refid="class_k_s_p_wheel_controller_1a41789924d5571260e7f2f9d214f265da" kindref="member">RbTgt</ref><sp/>==<sp/>null)</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.kwc.SetRigidbodyTarget(payload);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!ApplyForcesOnParent<sp/>&amp;&amp;<sp/>w.<ref refid="class_test_vehicle_controller_1_1_wheel_1a228c6d2d1048f4b2d02c4b145979ee56" kindref="member">kwc</ref>.<ref refid="class_k_s_p_wheel_controller_1a41789924d5571260e7f2f9d214f265da" kindref="member">RbTgt</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.kwc.SetRigidbodyTarget(null);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>payload.mass<sp/>=<sp/>PayloadMass;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CoM<sp/>=<sp/>Mathfx.GetWeightedAvgVector3(wheels.Length,<sp/>i<sp/>=&gt;<sp/>wheels[i].kwc.rb.worldCenterOfMass,<sp/>i<sp/>=&gt;<sp/>wheels[i].kwc.rb.mass);</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DebugDrawUtil.DrawCrosshairs(CoM,<sp/>0.2f,<sp/>Color.yellow,<sp/>0f);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.DrawRay(CoM,<sp/><ref refid="_color_values_8cs_1ae7dd471f9ad36b81822ddf3635effce2a689202409e48743b914713f96d93947c" kindref="member">gravity.Value</ref>,<sp/>Color.blue,<sp/>0f);</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SuspensionLoadUpdate(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref>[]<sp/>wheels,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>totalMass,<sp/>Vector3<sp/>CoM,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>Rmin)</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>bilinear<sp/>weighted<sp/>distribution<sp/>of<sp/>load<sp/>based<sp/>on<sp/>distance<sp/>from<sp/>CoM<sp/>along<sp/>XZ<sp/>axes</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>totalMass<sp/>=<sp/>Mathf.Max(totalMass,<sp/>Rmin);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WxSum<sp/>=<sp/>0f;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WySum<sp/>=<sp/>0f;</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>fwd<sp/>=<sp/>Vector3.Cross(Tref.right,<sp/><ref refid="_color_values_8cs_1ae7dd471f9ad36b81822ddf3635effce2a689202409e48743b914713f96d93947c" kindref="member">gravity.Value</ref>).normalized;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>rgt<sp/>=<sp/>Vector3.Cross(Tref.forward,<sp/><ref refid="_color_values_8cs_1ae7dd471f9ad36b81822ddf3635effce2a689202409e48743b914713f96d93947c" kindref="member">gravity.Value</ref>).normalized;</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref><sp/>w<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>wheels)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.Wy<sp/>=<sp/>DistanceFromCoM(w,<sp/>CoM,<sp/>fwd);</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WySum<sp/>+=<sp/>w.Wy;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.Wx<sp/>=<sp/>DistanceFromCoM(w,<sp/>CoM,<sp/>rgt);</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>WxSum<sp/>+=<sp/>w.Wx;</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"></highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distributedMassSum<sp/>=<sp/>0f;</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref><sp/>w<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>wheels)</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.loadScalarX<sp/>=<sp/>1f<sp/>-<sp/>(w.Wx<sp/>/<sp/>WxSum);</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.loadScalarY<sp/>=<sp/>1f<sp/>-<sp/>(w.Wy<sp/>/<sp/>WySum);</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.sprungMass<sp/>=<sp/>totalMass<sp/>*<sp/>w.loadScalarY<sp/>*<sp/>w.loadScalarX;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"></highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>distributedMassSum<sp/>+=<sp/>w.sprungMass;</highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"></highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dMassError<sp/>=<sp/>totalMass<sp/>/<sp/>distributedMassSum;</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TWLSum<sp/>=<sp/>0f;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref><sp/>w<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>wheels)</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>w.sprungMass<sp/>*=<sp/>dMassError;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>rmarcoux<sp/>-<sp/>Since<sp/>this<sp/>component<sp/>isn&apos;t<sp/>used<sp/>as<sp/>part<sp/>of<sp/>the<sp/>final<sp/>game,<sp/>I&apos;ll<sp/>remove<sp/>problematic<sp/>part<sp/>that<sp/>result<sp/>from<sp/>updatin<sp/>VPP<sp/>plugin</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//TWLSum<sp/>+=<sp/>w.kwc.TrueWheelLoad<sp/>*<sp/>9.81f;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>DistanceFromCoM(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref><sp/>wheel,<sp/>Vector3<sp/>CoM,<sp/>Vector3<sp/>alongAxis)</highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>DebugDrawUtil.DrawCrosshairs(wheel.kwc.wheelCollider.cachedTransform.position,<sp/>0.3f,<sp/>Color.cyan,<sp/>0f);</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Mathf.Abs(Vector3.Dot(wheel.kwc.wheelCollider.cachedTransform.position<sp/>-<sp/>CoM,<sp/>alongAxis));</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"></highlight></codeline>
+<codeline lineno="161"><highlight class="normal"></highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>SuspensionSpringUpdate(<ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref><sp/>wheel)</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//wheel.spring<sp/>=<sp/>Mathf.Clamp(suspensionNatFrequency<sp/>*<sp/>Mathf.Pow(wheel.sprungMass,<sp/>2f)<sp/>*<sp/>Vector3.Dot(wheel.rb.transform.up,<sp/>VPGravity.gVector),<sp/>1f,<sp/>float.MaxValue);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>rmarcoux<sp/>-<sp/>Since<sp/>this<sp/>component<sp/>isn&apos;t<sp/>used<sp/>as<sp/>part<sp/>of<sp/>the<sp/>final<sp/>game,<sp/>I&apos;ll<sp/>remove<sp/>problematic<sp/>part<sp/>that<sp/>result<sp/>from<sp/>updatin<sp/>VPP<sp/>plugin</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//wheel.boost<sp/>=<sp/>1f<sp/>+<sp/>Mathf.Clamp(wheel.kwc.wheelState[0].suspensionDisplacement<sp/>*<sp/>2f,<sp/>-1f,<sp/>1f);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="168"><highlight class="normal"></highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheel.spring<sp/>=<sp/>Mathf.Clamp(suspensionSpringRatio<sp/>*<sp/>totalMass<sp/>*<sp/>BoostCurve(wheel.<ref refid="class_test_vehicle_controller_1_1_wheel_1aa078c6c5ed2b30f3387941b7fd1d5a74" kindref="member">boost</ref>,<sp/>suspensionBoostRatio),<sp/>1f,<sp/>1e10f);</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//wheel.damper<sp/>=<sp/>Mathf.Clamp(suspensionDampingRatio<sp/>*<sp/>2f<sp/>*<sp/>Mathf.Sqrt(wheel.spring<sp/>*<sp/>totalMass),<sp/>0.01f,<sp/>1000f);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheel.damper<sp/>=<sp/>Mathf.Clamp(wheel.spring<sp/>*<sp/>suspensionDampingRatio,<sp/>0.01f,<sp/>1000f);</highlight></codeline>
+<codeline lineno="172"><highlight class="normal"></highlight></codeline>
+<codeline lineno="173"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheel.kwc.wheelCollider.springRate<sp/>=<sp/>wheel.spring;</highlight></codeline>
+<codeline lineno="174"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>wheel.kwc.wheelCollider.damperRate<sp/>=<sp/>wheel.damper;</highlight></codeline>
+<codeline lineno="175"><highlight class="normal"></highlight></codeline>
+<codeline lineno="176"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="177"><highlight class="normal"></highlight></codeline>
+<codeline lineno="178"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>BoostCurve(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>b,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>f)</highlight></codeline>
+<codeline lineno="179"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="180"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>see<sp/>curve<sp/>here<sp/>(with<sp/>f=0.8):<sp/>&quot;https://graphsketch.com/?&amp;eqn1_eqn=1/abs(1-(2/x^0.8))&amp;x_min=-0.1&amp;x_max=2.2&amp;y_min=-0.5&amp;y_max=10.3&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Mathf.Clamp(1f<sp/>/<sp/>Mathf.Abs(1f<sp/>-<sp/>(2f<sp/>/<sp/>Mathf.Pow(Mathf.Clamp(b,<sp/>0f,<sp/>2f),<sp/>Mathf.Clamp(f,<sp/>0.01f,<sp/>1f)))),<sp/>0.01f,<sp/>1e10f);</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/>[Serializable]</highlight></codeline>
+<codeline lineno="185" refid="class_test_vehicle_controller_1_1_wheel" refkind="compound"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_test_vehicle_controller_1_1_wheel" kindref="compound">Wheel</ref></highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_k_s_p_wheel_controller" kindref="compound">KSPWheelController</ref><sp/><ref refid="class_test_vehicle_controller_1_1_wheel_1a228c6d2d1048f4b2d02c4b145979ee56" kindref="member">kwc</ref>;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"></highlight></codeline>
+<codeline lineno="189"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1_1_wheel_1a5469aedc9ee3bbdf949c97d8afbb520b" kindref="member">sprungMass</ref>;</highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1_1_wheel_1adbe63b15818b936e7386d6cac8ba80e2" kindref="member">spring</ref>;</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1_1_wheel_1ae67843198f1f0c8ecdc71a9993084b60" kindref="member">damper</ref>;</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1_1_wheel_1aa078c6c5ed2b30f3387941b7fd1d5a74" kindref="member">boost</ref>;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"></highlight></codeline>
+<codeline lineno="195"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1_1_wheel_1a001d61a7ee4c0c56e6f94198abe6da18" kindref="member">loadScalarX</ref>,<sp/>loadScalarY;</highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1_1_wheel_1a9b1803c34bfc1b82a16f47c6704b6c09" kindref="member">Wx</ref>,<sp/>Wy;</highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"></highlight></codeline>
+<codeline lineno="199"><highlight class="normal"></highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1a0a7e0fbc498738a070d7f85d146a9d95" kindref="member">XYZspring</ref><sp/>=<sp/>1e7f;</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1a5b406f3530d73c503b7ae442c84c723e" kindref="member">XYZmaxForce</ref><sp/>=<sp/>float.MaxValue;</highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1addf95ff5d2d5040179e459a26d971938" kindref="member">angularSpring</ref><sp/>=<sp/>1e7f;</highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_test_vehicle_controller_1a5021deb5b662415d23f0c648988ad00f" kindref="member">angularMaxForce</ref><sp/>=<sp/>float.MaxValue;</highlight></codeline>
+<codeline lineno="204"><highlight class="normal"></highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ConfigurableJointUpdate(ConfigurableJoint<sp/>j)</highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>JointDrive<sp/>jDrive;</highlight></codeline>
+<codeline lineno="208"><highlight class="normal"></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive<sp/>=<sp/>j.xDrive;</highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.positionSpring<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a0a7e0fbc498738a070d7f85d146a9d95" kindref="member">XYZspring</ref>;</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.maximumForce<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a5b406f3530d73c503b7ae442c84c723e" kindref="member">XYZmaxForce</ref>;</highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j.xDrive<sp/>=<sp/>jDrive;</highlight></codeline>
+<codeline lineno="213"><highlight class="normal"></highlight></codeline>
+<codeline lineno="214"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive<sp/>=<sp/>j.yDrive;</highlight></codeline>
+<codeline lineno="215"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.positionSpring<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a0a7e0fbc498738a070d7f85d146a9d95" kindref="member">XYZspring</ref>;</highlight></codeline>
+<codeline lineno="216"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.maximumForce<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a5b406f3530d73c503b7ae442c84c723e" kindref="member">XYZmaxForce</ref>;</highlight></codeline>
+<codeline lineno="217"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j.yDrive<sp/>=<sp/>jDrive;</highlight></codeline>
+<codeline lineno="218"><highlight class="normal"></highlight></codeline>
+<codeline lineno="219"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive<sp/>=<sp/>j.zDrive;</highlight></codeline>
+<codeline lineno="220"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.positionSpring<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a0a7e0fbc498738a070d7f85d146a9d95" kindref="member">XYZspring</ref>;</highlight></codeline>
+<codeline lineno="221"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.maximumForce<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a5b406f3530d73c503b7ae442c84c723e" kindref="member">XYZmaxForce</ref>;</highlight></codeline>
+<codeline lineno="222"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j.zDrive<sp/>=<sp/>jDrive;</highlight></codeline>
+<codeline lineno="223"><highlight class="normal"></highlight></codeline>
+<codeline lineno="224"><highlight class="normal"></highlight></codeline>
+<codeline lineno="225"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive<sp/>=<sp/>j.angularXDrive;</highlight></codeline>
+<codeline lineno="226"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.positionSpring<sp/>=<sp/><ref refid="class_test_vehicle_controller_1addf95ff5d2d5040179e459a26d971938" kindref="member">angularSpring</ref>;</highlight></codeline>
+<codeline lineno="227"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.maximumForce<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a5021deb5b662415d23f0c648988ad00f" kindref="member">angularMaxForce</ref>;</highlight></codeline>
+<codeline lineno="228"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j.angularXDrive<sp/>=<sp/>jDrive;</highlight></codeline>
+<codeline lineno="229"><highlight class="normal"></highlight></codeline>
+<codeline lineno="230"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive<sp/>=<sp/>j.angularYZDrive;</highlight></codeline>
+<codeline lineno="231"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.positionSpring<sp/>=<sp/><ref refid="class_test_vehicle_controller_1addf95ff5d2d5040179e459a26d971938" kindref="member">angularSpring</ref>;</highlight></codeline>
+<codeline lineno="232"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>jDrive.maximumForce<sp/>=<sp/><ref refid="class_test_vehicle_controller_1a5021deb5b662415d23f0c648988ad00f" kindref="member">angularMaxForce</ref>;</highlight></codeline>
+<codeline lineno="233"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>j.angularYZDrive<sp/>=<sp/>jDrive;</highlight></codeline>
+<codeline lineno="234"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="235"><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"></highlight></codeline>
+<codeline lineno="237"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/KSP Package Bindings/VPP/TestVehicleController.cs"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_quaternion_extensions_8cs" kind="file">
+    <compoundname>QuaternionExtensions.cs</compoundname>
+    <innerclass refid="class_quaternion_extensions" prot="public">QuaternionExtensions</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="class_quaternion_extensions" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_quaternion_extensions" kindref="compound">QuaternionExtensions</ref><sp/>{</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Quaternion<sp/><ref refid="class_quaternion_extensions_1a243e6467bb873133879c2c8c98a3b8c9" kindref="member">Inverse</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>Quaternion<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Quaternion.Inverse(q);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Quaternion<sp/><ref refid="class_quaternion_extensions_1afc506ea6f3bc2f9a2a5819bc6c61f2a8" kindref="member">QuaternionFromMatrix</ref>(Matrix4x4<sp/>m)<sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Quaternion.LookRotation(m.GetColumn(2),<sp/>m.GetColumn(1));</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Quaternion<sp/><ref refid="class_quaternion_extensions_1a1e7cf372c67dabab63198b48eb777583" kindref="member">RotateInSpecifiedCoordinateSystem</ref>(Quaternion<sp/>rotation,<sp/>Transform<sp/>referenceCoordSys)<sp/>{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>referenceCoordSys.rotation<sp/>*<sp/>rotation<sp/>*<sp/>referenceCoordSys.rotation.Inverse();</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Math<sp/>by<sp/>Minahito:<sp/>http://sunday-lab.blogspot.nl/2008/04/get-pitch-yaw-roll-from-quaternion.html</highlight></codeline>
+<codeline lineno="20"><highlight class="comment"></highlight><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_quaternion_extensions_1a81e80168fbbc6190502ba2f289e951dd" kindref="member">Pitch</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>Quaternion<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Mathf.Atan2(2<sp/>*<sp/>(q.y<sp/>*<sp/>q.z<sp/>+<sp/>q.w<sp/>*<sp/>q.x),<sp/>q.w<sp/>*<sp/>q.w<sp/>-<sp/>q.x<sp/>*<sp/>q.x<sp/>-<sp/>q.y<sp/>*<sp/>q.y<sp/>+<sp/>q.z<sp/>*<sp/>q.z);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_quaternion_extensions_1ae9ce939ffeadfaec659bb568fdaabe25" kindref="member">Yaw</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>Quaternion<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Mathf.Asin(-2<sp/>*<sp/>(q.x<sp/>*<sp/>q.z<sp/>-<sp/>q.w<sp/>*<sp/>q.y));</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_quaternion_extensions_1aae81be8193ed677220ef1ae9ca48b938" kindref="member">Roll</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>Quaternion<sp/>q)<sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Mathf.Atan2(2<sp/>*<sp/>(q.x<sp/>*<sp/>q.y<sp/>+<sp/>q.w<sp/>*<sp/>q.z),<sp/>q.w<sp/>*<sp/>q.w<sp/>+<sp/>q.x<sp/>*<sp/>q.x<sp/>-<sp/>q.y<sp/>*<sp/>q.y<sp/>-<sp/>q.z<sp/>*<sp/>q.z);</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="39"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/SpaceNavigator/Plugins/QuaternionExtensions.cs"/>
+  </compounddef>
+</doxygen>

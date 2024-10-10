@@ -1,0 +1,155 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_v_p_ground_particle_emitter_8cs" kind="file">
+    <compoundname>VPGroundParticleEmitter.cs</compoundname>
+    <innerclass refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter" prot="public">VehiclePhysics::VPGroundParticleEmitter</innerclass>
+    <innernamespace refid="namespace_vehicle_physics">VehiclePhysics</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>Vehicle<sp/>Physics<sp/>Pro:<sp/>advanced<sp/>vehicle<sp/>physics<sp/>kit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>©<sp/>2011-2019<sp/>Angel<sp/>Garcia<sp/>&quot;Edy&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>http://vehiclephysics.com<sp/>|<sp/>@VehiclePhysics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>VPGroundParticleEmitter:<sp/>implements<sp/>particle<sp/>effects<sp/>as<sp/>result<sp/>of</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>tire-ground<sp/>interaction,<sp/>such<sp/>as<sp/>smoke<sp/>and<sp/>dust.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">VehiclePhysics</highlight></codeline>
+<codeline lineno="15"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!VPP_LIMITED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal">[AddComponentMenu(</highlight><highlight class="stringliteral">&quot;Vehicle<sp/>Physics/Ground<sp/>Materials/Ground<sp/>Particle<sp/>Emitter&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="19"><highlight class="normal">[RequireComponent(typeof(ParticleSystem))]</highlight></codeline>
+<codeline lineno="20" refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter" kindref="compound">VPGroundParticleEmitter</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a0f82f124f8113d994ccf22b903f1163b" kindref="member">Mode</ref><sp/>{<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a0f82f124f8113d994ccf22b903f1163ba1b6c74f4a54351b37cf9b6966a533da5" kindref="member">PressureAndSkid</ref>,<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a0f82f124f8113d994ccf22b903f1163bae2a6f33649f2875f9a328bb2b64da20f" kindref="member">PressureAndVelocity</ref><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a0f82f124f8113d994ccf22b903f1163b" kindref="member">Mode</ref><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a93989dbf990be42e1b268c40a5ff4f75" kindref="member">mode</ref><sp/>=<sp/>Mode.PressureAndSkid;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1aa216b59977c9821e8612d81ae624cae2" kindref="member">emissionRate</ref><sp/>=<sp/>10.0f;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/>[Range(0,1)]</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ab8b7672d78776f292958ee874bb29862" kindref="member">emissionShuffle</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ab0286c99f225aac564df767ffcfc9287" kindref="member">maxLifetime</ref><sp/>=<sp/>7.0f;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a7b6639fb117eaf77accf31fa444547bd" kindref="member">minVelocity</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1acdf92ccf7c63e9a196d2017ed425aa3b" kindref="member">maxVelocity</ref><sp/>=<sp/>15.0f;</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>[Range(0,1)]</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a3018bceddfe41350a1a3a0d89d1c4972" kindref="member">wheelVelocityRatio</ref><sp/>=<sp/>0.1f;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>[Range(0,1)]</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a751dd96c0600d3cb614488084d2d1ea4" kindref="member">tireVelocityRatio</ref><sp/>=<sp/>0.5f;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Color<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ad3d3c0df2a81511ef2a1b0e27f425c32" kindref="member">Color1</ref><sp/>=<sp/>Color.white;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Color<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ac3e897902fdaf838de6c6c1ef062b0f8" kindref="member">Color2</ref><sp/>=<sp/>Color.gray;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a196709c91901d589e5c6e9660117c250" kindref="member">randomColor</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/>ParticleSystem<sp/>m_particles;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#if<sp/>UNITY_5_3_OR_NEWER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/>ParticleSystem.EmitParams<sp/>m_emitParams<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>ParticleSystem.EmitParams();</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>ParticleSystem.Particle<sp/>m_particle;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>OnEnable<sp/>()</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particles<sp/>=<sp/>GetComponent&lt;ParticleSystem&gt;();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particles.Stop();</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a38685c692ebd1f7363a535c8d3a18f8d" kindref="member">EmitParticle</ref><sp/>(Vector3<sp/>position,<sp/>Vector3<sp/>wheelVelocity,<sp/>Vector3<sp/>tireVelocity,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>pressureRatio,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>intensityRatio,<sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>lastParticleTime)</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isActiveAndEnabled)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0f;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ensure<sp/>first<sp/>particle<sp/>is<sp/>emitted<sp/>on<sp/>new<sp/>sequence<sp/>started</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(lastParticleTime<sp/>&lt;<sp/>0.0f)<sp/>lastParticleTime<sp/>=<sp/>Time.time<sp/>-<sp/>1.0f/<ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1aa216b59977c9821e8612d81ae624cae2" kindref="member">emissionRate</ref>;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>particleCount<sp/>=<sp/>(int)((Time.time<sp/>-<sp/>lastParticleTime)<sp/>*<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1aa216b59977c9821e8612d81ae624cae2" kindref="member">emissionRate</ref>);</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(particleCount<sp/>&lt;=<sp/>0)</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>lastParticleTime;</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Base<sp/>lifetime<sp/>of<sp/>the<sp/>particles<sp/>depend<sp/>on<sp/>the<sp/>mode</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>baseLifetime<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">switch</highlight><highlight class="normal"><sp/>(<ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a93989dbf990be42e1b268c40a5ff4f75" kindref="member">mode</ref>)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Mode.PressureAndSkid:</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>baseLifetime<sp/>=<sp/>pressureRatio<sp/>*<sp/>intensityRatio<sp/>*<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ab0286c99f225aac564df767ffcfc9287" kindref="member">maxLifetime</ref>;</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">case</highlight><highlight class="normal"><sp/>Mode.PressureAndVelocity:</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>velocity<sp/>=<sp/>tireVelocity.magnitude<sp/>+<sp/>wheelVelocity.magnitude;</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>baseLifetime<sp/>=<sp/>pressureRatio<sp/>*<sp/>maxLifetime<sp/>*<sp/>Mathf.InverseLerp(<ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a7b6639fb117eaf77accf31fa444547bd" kindref="member">minVelocity</ref>,<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1acdf92ccf7c63e9a196d2017ed425aa3b" kindref="member">maxVelocity</ref>,<sp/>velocity);</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(baseLifetime<sp/>&lt;=<sp/>0.0f)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>-1.0f;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>particleCount;<sp/>i++)</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>actual<sp/>tire<sp/>velocity<sp/>(aka<sp/>forward<sp/>skip<sp/>in<sp/>3D<sp/>world)<sp/>affects<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>initial<sp/>velocity<sp/>of<sp/>the<sp/>particles</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>velocity<sp/>=<sp/>wheelVelocity<sp/>*<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a3018bceddfe41350a1a3a0d89d1c4972" kindref="member">wheelVelocityRatio</ref><sp/>+<sp/>tireVelocity<sp/>*<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a751dd96c0600d3cb614488084d2d1ea4" kindref="member">tireVelocityRatio</ref>;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>lifetime<sp/>=<sp/>baseLifetime<sp/>*<sp/>Random.Range(0.6f,<sp/>1.4f);</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>size<sp/>=<sp/>lifetime<sp/>/<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ab0286c99f225aac564df767ffcfc9287" kindref="member">maxLifetime</ref><sp/>*<sp/>Random.Range(0.8f,<sp/>1.4f);</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>rotation<sp/>=<sp/>Random.Range(0.0f,<sp/>360.0f);</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Color<sp/>color<sp/>=<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1a196709c91901d589e5c6e9660117c250" kindref="member">randomColor</ref>?<sp/>Color.Lerp(<ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ad3d3c0df2a81511ef2a1b0e27f425c32" kindref="member">Color1</ref>,<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ac3e897902fdaf838de6c6c1ef062b0f8" kindref="member">Color2</ref>,<sp/>Random.value)<sp/>:<sp/>Color1;</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint<sp/>randomSeed<sp/>=<sp/>(uint)<ref refid="_kerbal_e_v_a_8cs_1a832e8f52fca5a678819ec96269dcb532" kindref="member">Random</ref>.Range(0,<sp/>20000);</highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#if<sp/>UNITY_5_3_OR_NEWER</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.position<sp/>=<sp/>position;</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.rotation<sp/>=<sp/>rotation;</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.velocity<sp/>=<sp/>velocity;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.angularVelocity<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.startLifetime<sp/>=<sp/>lifetime;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.startSize<sp/>=<sp/>size;</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.startColor<sp/>=<sp/>color;</highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_emitParams.randomSeed<sp/>=<sp/>randomSeed;</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particles.Emit(m_emitParams,<sp/>1);</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.position<sp/>=<sp/>position;</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.velocity<sp/>=<sp/>velocity;</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.lifetime<sp/>=<sp/>lifetime;</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.startLifetime<sp/>=<sp/>lifetime;</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"></highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.size<sp/>=<sp/>size;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.rotation<sp/>=<sp/>rotation;</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.angularVelocity<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.color<sp/>=<sp/>color;</highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particle.randomSeed<sp/>=<sp/>randomSeed;</highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_particles.Emit(m_particle);</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"></highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>Time.time<sp/>+<sp/>Random.Range(-<ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ab8b7672d78776f292958ee874bb29862" kindref="member">emissionShuffle</ref>,<sp/>+<ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1ab8b7672d78776f292958ee874bb29862" kindref="member">emissionShuffle</ref>)<sp/>/<sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter_1aa216b59977c9821e8612d81ae624cae2" kindref="member">emissionRate</ref>;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+<codeline lineno="140"><highlight class="preprocessor">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Components/Ground Materials/VPGroundParticleEmitter.cs"/>
+  </compounddef>
+</doxygen>

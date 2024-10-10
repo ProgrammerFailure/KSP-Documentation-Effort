@@ -1,0 +1,401 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_advanced_ragdoll_8cs" kind="file">
+    <compoundname>AdvancedRagdoll.cs</compoundname>
+    <innerclass refid="class_advanced_ragdoll" prot="public">AdvancedRagdoll</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="5"><highlight class="comment"><sp/>*<sp/>ExampleRagdoll</highlight></codeline>
+<codeline lineno="6"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
+<codeline lineno="7"><highlight class="comment"><sp/>*<sp/>By<sp/>Bren<sp/>Lynne</highlight></codeline>
+<codeline lineno="8"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
+<codeline lineno="9"><highlight class="comment"><sp/>*<sp/>This<sp/>script<sp/>synchs<sp/>a<sp/>ragdoll<sp/>to<sp/>a<sp/>specific<sp/>object&apos;s<sp/>current<sp/>animation<sp/>pose<sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="comment"><sp/>*<sp/>(for<sp/>seamless<sp/>transition<sp/>to<sp/>ragdoll<sp/>state),</highlight></codeline>
+<codeline lineno="11"><highlight class="comment"><sp/>*<sp/>and<sp/>synchs<sp/>a<sp/>specified<sp/>object<sp/>to<sp/>the<sp/>ragdoll&apos;s<sp/>current<sp/>pose,<sp/></highlight></codeline>
+<codeline lineno="12"><highlight class="comment"><sp/>*<sp/>(for<sp/>seamless<sp/>transition<sp/>out<sp/>of<sp/>ragdoll<sp/>state)</highlight></codeline>
+<codeline lineno="13"><highlight class="comment"><sp/>*<sp/></highlight></codeline>
+<codeline lineno="14"><highlight class="comment"><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16" refid="class_advanced_ragdoll" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_advanced_ragdoll" kindref="compound">AdvancedRagdoll</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>debug<sp/>flag,<sp/>logs<sp/>information<sp/>the<sp/>console</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_advanced_ragdoll_1a9f97178516daa495343839cc0059fd1d" kindref="member">debug</ref>;<sp/></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Transform<sp/><ref refid="class_advanced_ragdoll_1a76fca988fd17c4af61ba5c4cb4123ed8" kindref="member">ragdollRoot</ref>;<sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_advanced_ragdoll_1ac6b6135e3b00f2db205069ef7fc3025d" kindref="member">copyMaterials</ref>;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>LayerMask<sp/><ref refid="class_advanced_ragdoll_1a309c352ec2cc42f9121ebe96aa1049e7" kindref="member">groundLayer</ref><sp/>=<sp/>-1;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//int<sp/>groundMask<sp/>=<sp/>-1;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Start()</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_advanced_ragdoll_1a9f97178516daa495343839cc0059fd1d" kindref="member">debug</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.Start()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//if<sp/>(groundLayer<sp/>!=<sp/>-1)</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>groundMask<sp/>=<sp/>1<sp/>&lt;&lt;<sp/>groundLayer;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="38"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>SynchRagdollIn</highlight></codeline>
+<codeline lineno="39"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="40"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>src</highlight></codeline>
+<codeline lineno="41"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>synch<sp/>the<sp/>ragdoll<sp/>to.</highlight></codeline>
+<codeline lineno="42"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@return<sp/></highlight></codeline>
+<codeline lineno="44"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>Nothing.</highlight></codeline>
+<codeline lineno="45"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="46"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Synchs<sp/>the<sp/>ragdoll<sp/>to<sp/>a<sp/>transform&apos;s<sp/>current<sp/>animation<sp/>pose,<sp/>for<sp/>transition<sp/>to<sp/>ragdoll<sp/>state.</highlight></codeline>
+<codeline lineno="47"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_advanced_ragdoll_1af775c20805227cd9507c8359ce919e97" kindref="member">SynchRagdollIn</ref>(Transform<sp/>src)</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!src)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.SynchRagdollIn()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>src!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>materials?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_advanced_ragdoll_1ac6b6135e3b00f2db205069ef7fc3025d" kindref="member">copyMaterials</ref>)</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CopyMaterials(src,<sp/>transform);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>transforms</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CopyTransforms(src,<sp/>transform);</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="69"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>SynchRagdollOut</highlight></codeline>
+<codeline lineno="70"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="71"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>src</highlight></codeline>
+<codeline lineno="72"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>apply<sp/>the<sp/>ragdoll&apos;s<sp/>current<sp/>pose<sp/>to.</highlight></codeline>
+<codeline lineno="73"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@return<sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>Nothing.</highlight></codeline>
+<codeline lineno="76"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="77"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Synchs<sp/>the<sp/>specified<sp/>transform<sp/>to<sp/>the<sp/>ragdoll&apos;s<sp/>current<sp/>pose,<sp/>for<sp/>transition<sp/>out<sp/>of<sp/>ragdoll<sp/>state.</highlight></codeline>
+<codeline lineno="78"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_advanced_ragdoll_1a2813ed0b4c8df50bb765daf8957a6091" kindref="member">SynchRagdollOut</ref>(Transform<sp/>dest)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dest)</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.SynchRagdollOut()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>dest!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>materials?</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_advanced_ragdoll_1ac6b6135e3b00f2db205069ef7fc3025d" kindref="member">copyMaterials</ref>)</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CopyMaterials(transform,<sp/>dest);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>find<sp/>the<sp/>ground<sp/>under<sp/>the<sp/>ragdoll&apos;s<sp/>root</highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>RaycastHit<sp/>hit;</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Ray<sp/>ray<sp/>=<sp/>new<sp/>Ray(ragdollRoot.position,<sp/>-Vector3.up);</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"></highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>snapOffset<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"></highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(Physics.Raycast(ray,<sp/>out<sp/>hit,<sp/>Mathf.Infinity,<sp/>(groundMask<sp/>!=<sp/>-1<sp/>?<sp/>groundMask<sp/>:<sp/>(1<sp/>&lt;&lt;<sp/>LayerMask.NameToLayer(&quot;Default&quot;)))))<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>if<sp/>(debug)</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(&quot;AdvancedRagdoll.SynchRagdollOut()<sp/>&quot;<sp/>+<sp/>name<sp/>+<sp/>&quot;<sp/>looking<sp/>for<sp/>ground<sp/>found<sp/>&quot;<sp/>+<sp/>hit.collider.name);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="comment"></highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>snapOffset<sp/>=<sp/>(ragdollRoot.position<sp/>-<sp/>hit.point);<sp/>///&lt;<sp/>snap<sp/>the<sp/>ragdoll<sp/>to<sp/>the<sp/>ground</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transform.position<sp/>=<sp/>hit.point;</highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>else</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="112"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogWarning(&quot;AdvancedRagdoll.SynchRagdollOut()<sp/>&quot;<sp/>+<sp/>name<sp/>+<sp/>&quot;<sp/>could<sp/>not<sp/>find<sp/>ground<sp/>beneath<sp/>the<sp/>ragdoll&apos;s<sp/>root!&quot;);<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="114"><highlight class="comment"></highlight></codeline>
+<codeline lineno="115"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//<sp/>move<sp/>the<sp/>ragdoll&apos;s<sp/>root</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ragdollRoot.position<sp/>=<sp/>transform.position<sp/>+<sp/>snapOffset;</highlight></codeline>
+<codeline lineno="117"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>apply<sp/>ragdoll<sp/>pose<sp/>to<sp/>transform</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_advanced_ragdoll_1a0e761b62a500ffb77c7b4176f884092f" kindref="member">PoseToAnimation</ref>(transform,<sp/>dest);</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="123"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>CopyTransforms</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="125"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>src</highlight></codeline>
+<codeline lineno="126"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>copy<sp/>from.</highlight></codeline>
+<codeline lineno="127"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="128"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>dest</highlight></codeline>
+<codeline lineno="129"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>copy<sp/>to.</highlight></codeline>
+<codeline lineno="130"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="131"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@return<sp/></highlight></codeline>
+<codeline lineno="132"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>Nothing.</highlight></codeline>
+<codeline lineno="133"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="134"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>Recursively<sp/>copies<sp/>a<sp/>source<sp/>transform&apos;s<sp/>pos/rot/scale<sp/>to<sp/>a<sp/>destination<sp/>transform.</highlight></codeline>
+<codeline lineno="135"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="136"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CopyTransforms(Transform<sp/>src,<sp/>Transform<sp/>dest)</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!src)</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.CopyTransforms()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>src!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"></highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dest)</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.CopyTransforms()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>dest!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"></highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>position</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.localPosition<sp/>=<sp/>src.localPosition;<sp/></highlight></codeline>
+<codeline lineno="154"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.localRotation<sp/>=<sp/>src.localRotation;<sp/></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.localScale<sp/>=<sp/>src.localScale;<sp/></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(Transform<sp/>sc<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>src)</highlight></codeline>
+<codeline lineno="157"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="158"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Transform<sp/>dc<sp/>=<sp/>dest.Find(sc.name);</highlight></codeline>
+<codeline lineno="159"><highlight class="normal"></highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dc)</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CopyTransforms(sc,<sp/>dc);</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="166"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>PoseToAnimation</highlight></codeline>
+<codeline lineno="167"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="168"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>src</highlight></codeline>
+<codeline lineno="169"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>generate<sp/>the<sp/>animation<sp/>pose<sp/>from.</highlight></codeline>
+<codeline lineno="170"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="171"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>dest</highlight></codeline>
+<codeline lineno="172"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>apply<sp/>the<sp/>ragdoll<sp/>pose<sp/>to<sp/>as<sp/>a<sp/>looping/blending<sp/>animation.</highlight></codeline>
+<codeline lineno="173"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="174"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@return<sp/></highlight></codeline>
+<codeline lineno="175"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>Nothing.</highlight></codeline>
+<codeline lineno="176"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="177"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>This<sp/>functions<sp/>examines<sp/>the<sp/>source<sp/>transform<sp/>an<sp/>create<sp/>a<sp/>short<sp/>looping<sp/>animation<sp/>matching<sp/>the<sp/></highlight></codeline>
+<codeline lineno="178"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>ragdoll<sp/>pose,<sp/>allowing<sp/>it<sp/>to<sp/>be<sp/>cross<sp/>faded/blended<sp/>with<sp/>another<sp/>animation.</highlight></codeline>
+<codeline lineno="179"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="180"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="181"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_advanced_ragdoll_1a0e761b62a500ffb77c7b4176f884092f" kindref="member">PoseToAnimation</ref>(Transform<sp/>src,<sp/>Transform<sp/>dest)</highlight></codeline>
+<codeline lineno="182"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="183"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="184"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!src)</highlight></codeline>
+<codeline lineno="185"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="186"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.PoseToAnimation()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>src!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="187"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="188"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="189"><highlight class="normal"></highlight></codeline>
+<codeline lineno="190"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dest)</highlight></codeline>
+<codeline lineno="191"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="192"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.PoseToAnimation()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>dest!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="193"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="194"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="195"><highlight class="normal"></highlight></codeline>
+<codeline lineno="196"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>if<sp/>the<sp/>target<sp/>transform<sp/>doesn&apos;t<sp/>have<sp/>an<sp/>animation<sp/>component,<sp/>add<sp/>one</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="197"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dest.GetComponent&lt;Animation&gt;())</highlight></codeline>
+<codeline lineno="198"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="199"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.gameObject.AddComponent&lt;Animation&gt;();</highlight></codeline>
+<codeline lineno="200"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="201"><highlight class="normal"></highlight></codeline>
+<codeline lineno="202"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>transforms,<sp/>initializing<sp/>the<sp/>dest<sp/>transform<sp/>pose</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="203"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>CopyTransforms(src,<sp/>dest);<sp/></highlight></codeline>
+<codeline lineno="204"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationClip<sp/>newClip<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>AnimationClip();</highlight></codeline>
+<codeline lineno="205"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>newClip.legacy<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;<sp/></highlight></codeline>
+<codeline lineno="206"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TransformToAnimationCurve(src,<sp/>src,<sp/>dest,<sp/>dest,<sp/>newClip);<sp/></highlight></codeline>
+<codeline lineno="207"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.gameObject.GetComponent&lt;Animation&gt;().AddClip(newClip,<sp/></highlight><highlight class="stringliteral">&quot;RagdollPose&quot;</highlight><highlight class="normal">);<sp/></highlight></codeline>
+<codeline lineno="208"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.gameObject.GetComponent&lt;Animation&gt;()[</highlight><highlight class="stringliteral">&quot;RagdollPose&quot;</highlight><highlight class="normal">].wrapMode<sp/>=<sp/>WrapMode.Loop;<sp/></highlight></codeline>
+<codeline lineno="209"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest.gameObject.GetComponent&lt;Animation&gt;().Play(</highlight><highlight class="stringliteral">&quot;RagdollPose&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="210"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="211"><highlight class="normal"></highlight></codeline>
+<codeline lineno="212"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="213"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>TransformToAnimationCurve</highlight></codeline>
+<codeline lineno="214"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="215"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>src</highlight></codeline>
+<codeline lineno="216"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>create<sp/>a<sp/>curve<sp/>from.</highlight></codeline>
+<codeline lineno="217"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="218"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>srcRoot</highlight></codeline>
+<codeline lineno="219"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>source<sp/>transform&apos;s<sp/>root.</highlight></codeline>
+<codeline lineno="220"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="221"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>dest</highlight></codeline>
+<codeline lineno="222"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>create<sp/>an<sp/>AnimationCurve<sp/>for.</highlight></codeline>
+<codeline lineno="223"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="224"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>destRoot</highlight></codeline>
+<codeline lineno="225"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>destination<sp/>transform&apos;s<sp/>root.</highlight></codeline>
+<codeline lineno="226"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="227"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>AnimationClip<sp/>clip</highlight></codeline>
+<codeline lineno="228"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>The<sp/>AnimationClip<sp/>to<sp/>add<sp/>this<sp/>AnimationCurve<sp/>to.</highlight></codeline>
+<codeline lineno="229"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="230"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@return<sp/></highlight></codeline>
+<codeline lineno="231"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>Nothing.</highlight></codeline>
+<codeline lineno="232"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*</highlight></codeline>
+<codeline lineno="233"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>This<sp/>function<sp/>recursively<sp/>create<sp/>AnimationCurves<sp/>for<sp/>a<sp/>transform,<sp/>and<sp/>adds<sp/>in<sp/>to<sp/>the<sp/>specified<sp/>AnimationClip.</highlight></codeline>
+<codeline lineno="234"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="235"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="236"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>TransformToAnimationCurve(Transform<sp/>src,<sp/>Transform<sp/>srcRoot,<sp/>Transform<sp/>dest,<sp/>Transform<sp/>destRoot,<sp/>AnimationClip<sp/>clip)</highlight></codeline>
+<codeline lineno="237"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="238"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="239"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!src)</highlight></codeline>
+<codeline lineno="240"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="241"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.TransformToAnimationClip()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>src!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="242"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="243"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="244"><highlight class="normal"></highlight></codeline>
+<codeline lineno="245"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dest)</highlight></codeline>
+<codeline lineno="246"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="247"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.TransformToAnimationClip()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>dest!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="248"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="249"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="250"><highlight class="normal"></highlight></codeline>
+<codeline lineno="251"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!clip)</highlight></codeline>
+<codeline lineno="252"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="253"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.TransformToAnimationClip()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>clip!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="254"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="255"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="256"><highlight class="normal"></highlight></codeline>
+<codeline lineno="257"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>path<sp/>from<sp/>root<sp/>to<sp/>src<sp/>transform</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="258"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>srcPath<sp/>=<sp/>GetTransformPathToRoot(src,<sp/>srcRoot);<sp/></highlight></codeline>
+<codeline lineno="259"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>destPath<sp/>=<sp/>GetTransformPathToRoot(dest,<sp/>destRoot);</highlight></codeline>
+<codeline lineno="260"><highlight class="normal"></highlight></codeline>
+<codeline lineno="261"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_advanced_ragdoll_1a9f97178516daa495343839cc0059fd1d" kindref="member">debug</ref>)</highlight></codeline>
+<codeline lineno="262"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.TransformToAnimationClip()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;\n<sp/>srcPath<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>srcPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;\n<sp/>destPath<sp/>=<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>destPath);<sp/></highlight></codeline>
+<codeline lineno="263"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>x_pos<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localPosition.x,<sp/>1,<sp/>src.localPosition.x);</highlight></codeline>
+<codeline lineno="264"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>y_pos<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localPosition.y,<sp/>1,<sp/>src.localPosition.y);</highlight></codeline>
+<codeline lineno="265"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>z_pos<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localPosition.z,<sp/>1,<sp/>src.localPosition.z);<sp/></highlight></codeline>
+<codeline lineno="266"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>w_rot<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localRotation.w,<sp/>1,<sp/>src.localRotation.w);</highlight></codeline>
+<codeline lineno="267"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>x_rot<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localRotation.x,<sp/>1,<sp/>src.localRotation.x);</highlight></codeline>
+<codeline lineno="268"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>y_rot<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localRotation.y,<sp/>1,<sp/>src.localRotation.y);</highlight></codeline>
+<codeline lineno="269"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>z_rot<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localRotation.z,<sp/>1,<sp/>src.localRotation.z);<sp/></highlight></codeline>
+<codeline lineno="270"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>x_scale<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localScale.x,<sp/>1,<sp/>src.localScale.x);</highlight></codeline>
+<codeline lineno="271"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>y_scale<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localScale.y,<sp/>1,<sp/>src.localScale.y);</highlight></codeline>
+<codeline lineno="272"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>AnimationCurve<sp/>z_scale<sp/>=<sp/>AnimationCurve.Linear(0,<sp/>src.localScale.z,<sp/>1,<sp/>src.localScale.z);<sp/></highlight></codeline>
+<codeline lineno="273"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localPosition.x&quot;</highlight><highlight class="normal">,<sp/>x_pos);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="274"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localPosition.y&quot;</highlight><highlight class="normal">,<sp/>y_pos);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="275"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localPosition.z&quot;</highlight><highlight class="normal">,<sp/>z_pos);<sp/></highlight></codeline>
+<codeline lineno="276"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localRotation.w&quot;</highlight><highlight class="normal">,<sp/>w_rot);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="277"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localRotation.x&quot;</highlight><highlight class="normal">,<sp/>x_rot);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="278"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localRotation.y&quot;</highlight><highlight class="normal">,<sp/>y_rot);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="279"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localRotation.z&quot;</highlight><highlight class="normal">,<sp/>z_rot);<sp/></highlight></codeline>
+<codeline lineno="280"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localScale.x&quot;</highlight><highlight class="normal">,<sp/>x_scale);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="281"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localScale.y&quot;</highlight><highlight class="normal">,<sp/>y_scale);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="282"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>clip.SetCurve(destPath,<sp/>typeof(Transform),<sp/></highlight><highlight class="stringliteral">&quot;localScale.z&quot;</highlight><highlight class="normal">,<sp/>z_scale);<sp/></highlight></codeline>
+<codeline lineno="283"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(Transform<sp/>sc<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>src)</highlight></codeline>
+<codeline lineno="284"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="285"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Transform<sp/>dc<sp/>=<sp/>dest.Find(sc.name);</highlight></codeline>
+<codeline lineno="286"><highlight class="normal"></highlight></codeline>
+<codeline lineno="287"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(dc)</highlight></codeline>
+<codeline lineno="288"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TransformToAnimationCurve(sc,<sp/>srcRoot,<sp/>dc,<sp/>destRoot,<sp/>clip);</highlight></codeline>
+<codeline lineno="289"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="290"><highlight class="normal"></highlight></codeline>
+<codeline lineno="291"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="292"><highlight class="normal"></highlight></codeline>
+<codeline lineno="293"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="294"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>GetTransformPathToRoot</highlight></codeline>
+<codeline lineno="295"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="296"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>t</highlight></codeline>
+<codeline lineno="297"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>get<sp/>the<sp/>path<sp/>for.</highlight></codeline>
+<codeline lineno="298"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="299"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>root</highlight></codeline>
+<codeline lineno="300"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>root<sp/>transform,<sp/>where<sp/>the<sp/>path<sp/>begins.</highlight></codeline>
+<codeline lineno="301"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="302"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@return<sp/>string</highlight></codeline>
+<codeline lineno="303"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>path<sp/>from<sp/>root<sp/>to<sp/>t.</highlight></codeline>
+<codeline lineno="304"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="305"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>This<sp/>function<sp/>returns<sp/>the<sp/>path<sp/>from<sp/>the<sp/>root<sp/>Transform<sp/>to<sp/>the<sp/>specified<sp/>Transform.</highlight></codeline>
+<codeline lineno="306"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="307"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="308"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>GetTransformPathToRoot(Transform<sp/>t,<sp/>Transform<sp/>root)</highlight></codeline>
+<codeline lineno="309"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="310"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="311"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!t)</highlight></codeline>
+<codeline lineno="312"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="313"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.GetTransformPathToRoot()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>t!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="314"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="315"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="316"><highlight class="normal"></highlight></codeline>
+<codeline lineno="317"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!root)</highlight></codeline>
+<codeline lineno="318"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="319"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.GetTransformPathToRoot()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>root!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="320"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="stringliteral">&quot;&quot;</highlight><highlight class="normal">;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="321"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="322"><highlight class="normal"></highlight></codeline>
+<codeline lineno="323"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>the<sp/>path<sp/>to<sp/>return,<sp/>beginning<sp/>with<sp/>t<sp/>Transform</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="324"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>path<sp/>=<sp/>t.name;<sp/></highlight></codeline>
+<codeline lineno="325"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Transform<sp/>c_parent<sp/>=<sp/>t.parent;<sp/></highlight></codeline>
+<codeline lineno="326"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">while</highlight><highlight class="normal"><sp/>(c_parent<sp/>!=<sp/>null<sp/>&amp;&amp;<sp/>c_parent<sp/>!=<sp/>root)</highlight></codeline>
+<codeline lineno="327"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="328"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>path<sp/>=<sp/>path.Insert(0,<sp/>c_parent.name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="329"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>c_parent<sp/>=<sp/>c_parent.parent;</highlight></codeline>
+<codeline lineno="330"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="331"><highlight class="normal"></highlight></codeline>
+<codeline lineno="332"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>return<sp/>the<sp/>path</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="333"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>path;</highlight></codeline>
+<codeline lineno="334"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="335"><highlight class="normal"></highlight></codeline>
+<codeline lineno="336"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*</highlight></codeline>
+<codeline lineno="337"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>CopyMaterials</highlight></codeline>
+<codeline lineno="338"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="339"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>src</highlight></codeline>
+<codeline lineno="340"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>copy<sp/>materials<sp/>from.</highlight></codeline>
+<codeline lineno="341"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="342"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@param<sp/>Transform<sp/>dest</highlight></codeline>
+<codeline lineno="343"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>The<sp/>transform<sp/>to<sp/>copy<sp/>materials<sp/>to.</highlight></codeline>
+<codeline lineno="344"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="345"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>@return<sp/></highlight></codeline>
+<codeline lineno="346"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/><sp/>Nothing.</highlight></codeline>
+<codeline lineno="347"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="348"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/>This<sp/>function<sp/>copies<sp/>materials<sp/>from<sp/>the<sp/>src<sp/>Transform<sp/>to<sp/>the<sp/>dest<sp/>Transform.</highlight></codeline>
+<codeline lineno="349"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*<sp/></highlight></codeline>
+<codeline lineno="350"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/>*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="351"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>CopyMaterials(Transform<sp/>src,<sp/>Transform<sp/>dest)</highlight></codeline>
+<codeline lineno="352"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="353"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>error<sp/>checking</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="354"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!src)</highlight></codeline>
+<codeline lineno="355"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="356"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.CopyMaterials()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>src!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="357"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="358"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="359"><highlight class="normal"></highlight></codeline>
+<codeline lineno="360"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!dest)</highlight></codeline>
+<codeline lineno="361"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="362"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.CopyMaterials()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>passed<sp/>null<sp/>dest!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="363"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="364"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="365"><highlight class="normal"></highlight></codeline>
+<codeline lineno="366"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>get<sp/>the<sp/>src<sp/>renderers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="367"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Renderer[]<sp/>src_renderers<sp/>=<sp/>src.GetComponentsInChildren&lt;Renderer&gt;();<sp/></highlight></codeline>
+<codeline lineno="368"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Renderer[]<sp/>dest_renderers<sp/>=<sp/>dest.GetComponentsInChildren&lt;Renderer&gt;();<sp/></highlight></codeline>
+<codeline lineno="369"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src_renderers.Length<sp/>!=<sp/>dest_renderers.Length)</highlight></codeline>
+<codeline lineno="370"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="371"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.CopyMaterials()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>number<sp/>of<sp/>src<sp/>renderers<sp/>(&quot;</highlight><highlight class="normal"><sp/>+<sp/>src_renderers.Length<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;)<sp/>does<sp/>not<sp/>match<sp/>dest<sp/>(&quot;</highlight><highlight class="normal"><sp/>+<sp/>dest_renderers.Length<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;)&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="372"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="373"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(src_renderers.Length<sp/>==<sp/>0)</highlight></codeline>
+<codeline lineno="374"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="375"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;AdvancedRagdoll.CopyMaterials()<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>has<sp/>no<sp/>renderers!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="376"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="377"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="378"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="379"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>copy<sp/>materials<sp/>from<sp/>src<sp/>renderers<sp/>to<sp/>dest<sp/>renderers</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="380"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>r<sp/>=<sp/>0,<sp/>rC<sp/>=<sp/>src_renderers.Length;<sp/>r<sp/>&lt;<sp/>rC;<sp/>++r)</highlight></codeline>
+<codeline lineno="381"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="382"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dest_renderers[r].materials<sp/>=<sp/>src_renderers[r].materials;</highlight></codeline>
+<codeline lineno="383"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="384"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="385"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="386"><highlight class="normal"></highlight></codeline>
+<codeline lineno="387"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Util Scripts/AdvancedRagdoll.cs"/>
+  </compounddef>
+</doxygen>

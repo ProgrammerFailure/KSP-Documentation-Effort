@@ -1,0 +1,141 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_script_offloading_m_b_inspector_8cs" kind="file">
+    <compoundname>ScriptOffloadingMBInspector.cs</compoundname>
+    <innerclass refid="class_script_offloading_m_b_inspector" prot="public">ScriptOffloadingMBInspector</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Linq;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEditor;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">[CanEditMultipleObjects]</highlight></codeline>
+<codeline lineno="6"><highlight class="normal">[ExecuteInEditMode]</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">[CustomEditor(typeof(MonoBehaviour))]</highlight></codeline>
+<codeline lineno="8" refid="class_script_offloading_m_b_inspector" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_script_offloading_m_b_inspector" kindref="compound">ScriptOffloadingMBInspector</ref><sp/>:<sp/><ref refid="_u_i___control_8cs_1a3bd9e1afc69c3993c299f5b96dfaf234a344a7f427fb765610ef96eb7bce95257" kindref="member">Editor</ref></highlight></codeline>
+<codeline lineno="9"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>MonoBehaviour<sp/><ref refid="class_script_offloading_m_b_inspector_1adce8220a7fe71dad900ea9c24e51991c" kindref="member">Target</ref><sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(MonoBehaviour)target;<sp/>}<sp/>}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>MonoBehaviour[]<sp/><ref refid="class_script_offloading_m_b_inspector_1ae6d598cf506210bb02d8cc705ceda334" kindref="member">Targets</ref><sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>targets.Cast&lt;MonoBehaviour&gt;().ToArray();<sp/>}<sp/>}</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="class_script_offloading_assistant_1_1_script_component" kindref="compound">ScriptOffloadingAssistant.ScriptComponent</ref><sp/>sc;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="class_script_offloading_assistant_1_1_script_component" kindref="compound">ScriptOffloadingAssistant.ScriptComponent</ref><sp/>scRef;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/><ref refid="_callback_8cs_1a7aad06b84eedaea282efda0972c4197b" kindref="member">Callback</ref>&lt;<ref refid="class_script_offloading_assistant_1_1_script_component" kindref="compound">ScriptOffloadingAssistant.ScriptComponent</ref>&gt;<sp/>OnFixComplete;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_script_offloading_m_b_inspector" kindref="compound">ScriptOffloadingMBInspector</ref><sp/><ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_script_offloading_m_b_inspector_1a0955a81284fe51b2570aabd2502fe1c3" kindref="member">FixRef</ref>(<ref refid="class_script_offloading_assistant" kindref="compound">ScriptOffloadingAssistant</ref>.ScriptComponent<sp/>sc,<sp/><ref refid="class_script_offloading_assistant" kindref="compound">ScriptOffloadingAssistant</ref>.ScriptComponent<sp/>scRef,<sp/>Callback&lt;ScriptOffloadingAssistant.ScriptComponent&gt;<sp/>onComplete)</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OnFixComplete<sp/>=<sp/>onComplete;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref><sp/>=<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.sc<sp/>=<sp/>sc;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.scRef<sp/>=<sp/>scRef;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_script_offloading_m_b_inspector_1af0fc2c227c18a02c97b904de162ad8eb" kindref="member">OnInspectorGUI</ref>()</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>If<sp/>the<sp/>inspected<sp/>component<sp/>does<sp/>not<sp/>have<sp/>a<sp/>missing<sp/>script,<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>revert<sp/>to<sp/>base<sp/>Inspector<sp/>functionality</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>scriptProperty<sp/>=<sp/>GetScriptProperty();</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(scriptProperty<sp/>==<sp/>null<sp/>||<sp/>scriptProperty.objectReferenceValue<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base.OnInspectorGUI();</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Make<sp/>sure<sp/>that<sp/>the<sp/>inspector<sp/>is<sp/>not<sp/>viewing<sp/>a<sp/>prefab<sp/>directly.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Not<sp/>sure<sp/>what&apos;s<sp/>up,<sp/>but<sp/>doing<sp/>so<sp/>with<sp/>this<sp/>custom<sp/>inspector<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>crashes<sp/>Unity<sp/>with<sp/>100%<sp/>reproducability.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MonoBehaviour<sp/>behavior<sp/>=<sp/>target<sp/>as<sp/>MonoBehaviour;<sp/></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_script_offloading_assistant" kindref="compound">ScriptOffloadingAssistant</ref>.<ref refid="class_script_offloading_assistant_1abb2c5335af908eec29d4c4ff000ee774" kindref="member">ActiveTarget</ref><sp/>!=<sp/>null<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_script_offloading_assistant" kindref="compound">ScriptOffloadingAssistant</ref>.<ref refid="class_script_offloading_assistant_1abb2c5335af908eec29d4c4ff000ee774" kindref="member">ActiveTarget</ref>.<ref refid="class_script_offloading_assistant_1_1_script_target_1a6ca64bb20434a4cbcaaf2971f92452e8" kindref="member">host</ref><sp/>==<sp/>behavior.gameObject<sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref><sp/>==<sp/>null)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;Waiting<sp/>for<sp/>host...&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref><sp/>=<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref><sp/>==<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>&amp;&amp;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sc<sp/>!=<sp/>null<sp/>&amp;&amp;<sp/>scRef.codeAsset<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FixScript(sc,<sp/>scRef);</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;Missing<sp/>Script&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;HeaderLabel&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sc<sp/>!=<sp/>null<sp/>&amp;&amp;<sp/>scRef.codeAsset<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Display<sp/>a<sp/>button<sp/>to<sp/>select<sp/>the<sp/>candidate<sp/>script</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(GUILayout.Button(</highlight><highlight class="stringliteral">&quot;Restore<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.codeAsset.name,<sp/></highlight><highlight class="stringliteral">&quot;minibutton&quot;</highlight><highlight class="normal">))<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FixScript(sc,<sp/>scRef);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EditorGUILayout.HelpBox(</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight><highlight class="stringliteral">@&quot;This<sp/>happens<sp/>when<sp/>script<sp/>files<sp/>are<sp/>moved<sp/>outside<sp/>of<sp/>Unity.<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="stringliteral">Use<sp/>the<sp/>Script<sp/>Offloading<sp/>Assistant<sp/>if<sp/>you<sp/>need<sp/>to<sp/>move<sp/>files<sp/>outside<sp/>the<sp/>editor.</highlight></codeline>
+<codeline lineno="77"><highlight class="stringliteral">(Tools/Asset<sp/>Tools/Script<sp/>Offloading<sp/>Assistant)&quot;</highlight><highlight class="normal">,<sp/>MessageType.Info);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GUILayout.Label(</highlight><highlight class="stringliteral">&quot;Component<sp/>Properties&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;HeaderLabel&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EditorGUI.indentLevel<sp/>+=<sp/>1;</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base.OnInspectorGUI();</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EditorGUI.indentLevel<sp/>-=<sp/>1;</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"></highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"></highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>SerializedProperty<sp/>GetScriptProperty()</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>this.serializedObject.FindProperty(</highlight><highlight class="stringliteral">&quot;m_Script&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="95"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>FixScript(<ref refid="class_script_offloading_assistant" kindref="compound">ScriptOffloadingAssistant</ref>.ScriptComponent<sp/>sc,<sp/><ref refid="class_script_offloading_assistant" kindref="compound">ScriptOffloadingAssistant</ref>.ScriptComponent<sp/>scRef)</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(scRef.isRefToPrefab)</highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;Restoring<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.typeName<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>in<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.prefabPath<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.hostUrl<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;...&quot;</highlight><highlight class="normal">,<sp/>scRef.host);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;Restoring<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.typeName<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>in<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.scene<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;:&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.host.transform.root.name<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;/&quot;</highlight><highlight class="normal"><sp/>+<sp/>scRef.hostUrl<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;...&quot;</highlight><highlight class="normal">,<sp/>scRef.host);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>MonoScript<sp/>scriptAsset<sp/>=<sp/>ScriptOffloadingAssistant.LocateScriptAsset(scRef.typeName);</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SerializedProperty<sp/>scriptProperty<sp/>=<sp/>GetScriptProperty();<sp/></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>scriptProperty.objectReferenceValue<sp/>=<sp/>scriptAsset;</highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.serializedObject.ApplyModifiedProperties();</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>this.serializedObject.UpdateIfRequiredOrScript();<sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EditorUtility.SetDirty(this.target);</highlight></codeline>
+<codeline lineno="114"><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>EndFix();</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>EndFix()</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref><sp/>==<sp/></highlight><highlight class="keyword">this</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="122"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>OnFixComplete(sc);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_script_offloading_m_b_inspector_1aef6eb1cfe2f3ecd14925ee82903e03ad" kindref="member">ActiveInstance</ref><sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="127"><highlight class="normal">}<sp/><sp/><sp/><sp/></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Editor/ScriptOffloadingAssistant/ScriptOffloadingMBInspector.cs"/>
+  </compounddef>
+</doxygen>

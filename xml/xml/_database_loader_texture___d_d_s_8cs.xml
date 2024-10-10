@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_database_loader_texture___d_d_s_8cs" kind="file">
+    <compoundname>DatabaseLoaderTexture_DDS.cs</compoundname>
+    <innerclass refid="class_database_loader_texture___d_d_s" prot="public">DatabaseLoaderTexture_DDS</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.IO;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal">[<ref refid="class_database_loader_attrib" kindref="compound">DatabaseLoaderAttrib</ref>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal">[]<sp/>{<sp/></highlight><highlight class="stringliteral">&quot;dds&quot;</highlight><highlight class="normal"><sp/>})]<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="6" refid="class_database_loader_texture___d_d_s" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class</highlight><highlight class="normal"><sp/><ref refid="class_database_loader_texture___d_d_s" kindref="compound">DatabaseLoaderTexture_DDS</ref><sp/>:<sp/>DatabaseLoader&lt;GameDatabase.TextureInfo&gt;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/>IEnumerator<sp/>Load(<ref refid="class_url_dir" kindref="compound">UrlDir</ref>.UrlFile<sp/>urlFile,<sp/>FileInfo<sp/>file)</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Texture2D<sp/>newTex<sp/>=<sp/>Read(file.FullName);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(newTex<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_game_database_1_1_texture_info" kindref="compound">GameDatabase.TextureInfo</ref><sp/>texInfo<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_game_database_1_1_texture_info" kindref="compound">GameDatabase.TextureInfo</ref>(urlFile,<sp/>newTex,<sp/>isNormalMap,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>obj<sp/>=<sp/>texInfo;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>successful<sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogWarning(</highlight><highlight class="stringliteral">&quot;Texture<sp/>load<sp/>error<sp/>in<sp/>&apos;&quot;</highlight><highlight class="normal"><sp/>+<sp/>file.FullName<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;&apos;&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>obj<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>successful<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>yield<sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>isNormalMap<sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>Texture2D<sp/>Read(</highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>filename)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>byte[]<sp/>data<sp/>=<sp/>System.IO.File.ReadAllBytes(filename);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>BinaryReader<sp/>br<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>BinaryReader(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>MemoryStream(data));</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>uint<sp/>magic<sp/>=<sp/>br.ReadUInt32();</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(magic<sp/>!=<sp/>DDSHeaders.DDSValues.uintMagic)</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;DDS:<sp/>File<sp/>is<sp/>not<sp/>a<sp/>DDS<sp/>format<sp/>file!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>null;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_d_d_s_headers_1_1_d_d_s_header" kindref="compound">DDSHeaders.DDSHeader</ref><sp/>header<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_d_d_s_headers_1_1_d_d_s_header" kindref="compound">DDSHeaders.DDSHeader</ref>(br);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(header.ddspf.dwFourCC<sp/>==<sp/>DDSHeaders.DDSValues.uintDX10)</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/><ref refid="class_d_d_s_headers_1_1_d_d_s_header_d_x10" kindref="compound">DDSHeaders.DDSHeaderDX10</ref>(br);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>mipMap<sp/>=<sp/>(header.dwCaps<sp/>&amp;<sp/>DDSHeaders.DDSPixelFormatCaps.MIPMAP)<sp/>!=<sp/>0;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>isNormalMap<sp/>=<sp/>((header.ddspf.dwFlags<sp/>&amp;<sp/>(uint)DDSHeaders.DDSPixelFormatFlags.DDPF_NORMALA)<sp/>!=<sp/>0)<sp/>||<sp/>((header.ddspf.dwFlags<sp/>&amp;<sp/>(uint)DDSHeaders.DDSPixelFormatFlags.DDPF_NORMALB)<sp/>!=<sp/>0);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Texture2D<sp/>tex<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(header.ddspf.dwFourCC<sp/>==<sp/>DDSHeaders.DDSValues.uintDXT1)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Debug.Log(&quot;DDS:<sp/>DXT1(&quot;<sp/>+<sp/>header.dwWidth<sp/>+<sp/>&quot;x&quot;<sp/>+<sp/>header.dwHeight<sp/>+<sp/>&quot;,<sp/>MipMap=&quot;<sp/>+<sp/>mipMap<sp/>+<sp/>&quot;)&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tex<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Texture2D((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)header.dwWidth,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)header.dwHeight,<sp/>TextureFormat.DXT1,<sp/>mipMap);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tex.LoadRawTextureData(br.ReadBytes((int)(br.BaseStream.Length<sp/>-<sp/>br.BaseStream.Position)));</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tex.Apply(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(header.ddspf.dwFourCC<sp/>==<sp/>DDSHeaders.DDSValues.uintDXT3)</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.LogError(</highlight><highlight class="stringliteral">&quot;DDS:<sp/>DXT3(&quot;</highlight><highlight class="normal"><sp/>+<sp/>header.dwWidth<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;x&quot;</highlight><highlight class="normal"><sp/>+<sp/>header.dwHeight<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;,<sp/>MipMap=&quot;</highlight><highlight class="normal"><sp/>+<sp/>mipMap<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;)<sp/>-<sp/>DXT3<sp/>format<sp/>is<sp/>NOT<sp/>supported.<sp/>Use<sp/>DXT5&quot;</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//tex<sp/>=<sp/>new<sp/>Texture2D((int)header.dwWidth,<sp/>(int)header.dwHeight,<sp/>(TextureFormat)11,<sp/>mipMap);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//tex.LoadRawTextureData(br.ReadBytes((int)(br.BaseStream.Length<sp/>-<sp/>br.BaseStream.Position)));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//tex.Apply(false,<sp/>true);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(header.ddspf.dwFourCC<sp/>==<sp/>DDSHeaders.DDSValues.uintDXT5)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Debug.Log(&quot;DDS:<sp/>DXT5(&quot;<sp/>+<sp/>header.dwWidth<sp/>+<sp/>&quot;x&quot;<sp/>+<sp/>header.dwHeight<sp/>+<sp/>&quot;,<sp/>MipMap=&quot;<sp/>+<sp/>mipMap<sp/>+<sp/>&quot;)&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tex<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Texture2D((</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)header.dwWidth,<sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal">)header.dwHeight,<sp/>TextureFormat.DXT5,<sp/>mipMap);</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tex.LoadRawTextureData(br.ReadBytes((int)(br.BaseStream.Length<sp/>-<sp/>br.BaseStream.Position)));</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>tex.Apply(</highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(header.ddspf.dwFourCC<sp/>==<sp/>DDSHeaders.DDSValues.uintDXT2)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Debug.Log(&quot;DDS:<sp/>DXT2(&quot;<sp/>+<sp/>header.dwWidth<sp/>+<sp/>&quot;x&quot;<sp/>+<sp/>header.dwHeight<sp/>+<sp/>&quot;,<sp/>MipMap=&quot;<sp/>+<sp/>mipMap<sp/>+<sp/>&quot;)&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;DDS:<sp/>DXT2<sp/>is<sp/>not<sp/>supported!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(header.ddspf.dwFourCC<sp/>==<sp/>DDSHeaders.DDSValues.uintDXT4)</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Debug.Log(&quot;DDS:<sp/>DXT4(&quot;<sp/>+<sp/>header.dwWidth<sp/>+<sp/>&quot;x&quot;<sp/>+<sp/>header.dwHeight<sp/>+<sp/>&quot;,<sp/>MipMap=&quot;<sp/>+<sp/>mipMap<sp/>+<sp/>&quot;)&quot;);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;DDS:<sp/>DXT4<sp/>is<sp/>not<sp/>supported!&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">else</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(header.ddspf.dwFourCC<sp/>==<sp/>DDSHeaders.DDSValues.uintDX10)</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Debug.Log(</highlight><highlight class="stringliteral">&quot;DDS:<sp/>DX10<sp/>formats<sp/>not<sp/>supported&quot;</highlight><highlight class="normal">);<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>tex;</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="91"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/GameDatabase/Loaders/DatabaseLoaderTexture_DDS.cs"/>
+  </compounddef>
+</doxygen>

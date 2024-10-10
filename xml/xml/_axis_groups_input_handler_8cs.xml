@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_axis_groups_input_handler_8cs" kind="file">
+    <compoundname>AxisGroupsInputHandler.cs</compoundname>
+    <innerclass refid="class_axis_groups_input_handler" prot="public">AxisGroupsInputHandler</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4" refid="class_axis_groups_input_handler" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_axis_groups_input_handler" kindref="compound">AxisGroupsInputHandler</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="5"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_axis_groups_module" kindref="compound">AxisGroupsModule</ref><sp/><ref refid="class_axis_groups_input_handler_1a861c95ec0735fd7d12d25f9faa75b28c" kindref="member">VesselAxisGroups</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>set;</highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Awake()</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FlightInputHandler.OnRawAxisInput<sp/>+=<sp/>AxisInputHandler;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onVesselChange.Add(onVesselChange);</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>OnDestroy()</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>FlightInputHandler.OnRawAxisInput<sp/>-=<sp/>AxisInputHandler;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onVesselChange.Remove(onVesselChange);</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>onVesselChange(<ref refid="class_vessel" kindref="compound">Vessel</ref><sp/>vessel)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_axis_groups_input_handler_1a861c95ec0735fd7d12d25f9faa75b28c" kindref="member">VesselAxisGroups</ref><sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>vessel.<ref refid="class_vessel_1a3d10f95175d7a30586abcf22622d94bc" kindref="member">vesselModules</ref>.Count;<sp/>i--<sp/>&gt;<sp/>0;<sp/>)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_vessel_module" kindref="compound">VesselModule</ref><sp/>vm<sp/>=<sp/>vessel.vesselModules[i];</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(vm<sp/>is<sp/><ref refid="class_axis_groups_module" kindref="compound">AxisGroupsModule</ref>)</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_axis_groups_input_handler_1a861c95ec0735fd7d12d25f9faa75b28c" kindref="member">VesselAxisGroups</ref><sp/>=<sp/>vm<sp/>as<sp/>AxisGroupsModule;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">break</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>AxisInputHandler(<ref refid="class_flight_ctrl_state" kindref="compound">FlightCtrlState</ref><sp/>ctrlState)</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_axis_groups_input_handler_1a861c95ec0735fd7d12d25f9faa75b28c" kindref="member">VesselAxisGroups</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dda87f800274a7f46c50e17114f89171e2e" kindref="member">KSPAxisGroup.Pitch</ref>,<sp/>ctrlState.pitch);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115ddac5d6d1002e8ca364762309fe642a2327" kindref="member">KSPAxisGroup.Yaw</ref>,<sp/>ctrlState.yaw);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dda25b5eb3bbef15385b5f5ff3abe46f342" kindref="member">KSPAxisGroup.Roll</ref>,<sp/>ctrlState.roll);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115ddaf1c312fa3e1407bff609f554bc408ec3" kindref="member">KSPAxisGroup.TranslateX</ref>,<sp/>ctrlState.X);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dda9475f89e7308efe2ba23292df6620e94" kindref="member">KSPAxisGroup.TranslateY</ref>,<sp/>ctrlState.Y);</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115ddaeab60a29d4634e9544e320ca796258b0" kindref="member">KSPAxisGroup.TranslateZ</ref>,<sp/>ctrlState.Z);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dda4b9f30879bafb09807999e4d8c2ad6a0" kindref="member">KSPAxisGroup.MainThrottle</ref>,<sp/>ctrlState.mainThrottle);</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dda51a33829c4fa7c4d153475b8ae2581d4" kindref="member">KSPAxisGroup.WheelSteer</ref>,<sp/>ctrlState.wheelSteer);</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>VesselAxisGroups.UpdateAxisGroup(<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dda5932b944afc950914b32c067287504c5" kindref="member">KSPAxisGroup.WheelThrottle</ref>,<sp/>ctrlState.wheelThrottle);</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">for</highlight><highlight class="normal"><sp/>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>i<sp/>=<sp/>0;<sp/>i<sp/>&lt;<sp/>ctrlState.custom_axes.Length;<sp/>i++)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>group<sp/>=<sp/>(int)<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dd" kindref="member">KSPAxisGroup</ref>.Custom01<sp/>&lt;&lt;<sp/>i;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_axis_groups_input_handler_1a861c95ec0735fd7d12d25f9faa75b28c" kindref="member">VesselAxisGroups</ref>.<ref refid="class_axis_groups_module_1ad58a1c7d3e1b2a1b6bd65b8723e958ad" kindref="member">UpdateAxisGroup</ref>((<ref refid="_axis_field_8cs_1ada6e3d1faf694c923defbd81207115dd" kindref="member">KSPAxisGroup</ref>)group,<sp/>ctrlState.<ref refid="class_flight_ctrl_state_1a51943931170c2b9632b06f20a45c1706" kindref="member">custom_axes</ref>[i]);</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="58"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/AxisGroups/AxisGroupsInputHandler.cs"/>
+  </compounddef>
+</doxygen>

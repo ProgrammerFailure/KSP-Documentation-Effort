@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_v_p_vehicle_inertia_8cs" kind="file">
+    <compoundname>VPVehicleInertia.cs</compoundname>
+    <innerclass refid="class_vehicle_physics_1_1_v_p_vehicle_inertia" prot="public">VehiclePhysics::VPVehicleInertia</innerclass>
+    <innernamespace refid="namespace_vehicle_physics">VehiclePhysics</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>Vehicle<sp/>Physics<sp/>Pro:<sp/>advanced<sp/>vehicle<sp/>physics<sp/>kit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>©<sp/>2011-2019<sp/>Angel<sp/>Garcia<sp/>&quot;Edy&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>http://vehiclephysics.com<sp/>|<sp/>@VehiclePhysics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>VPVehicleInertia:<sp/>computes<sp/>the<sp/>inertia<sp/>of<sp/>the<sp/>vehicle<sp/>based<sp/>on<sp/>a<sp/>set<sp/>of<sp/>colliders<sp/>resembling</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>the<sp/>most<sp/>massive<sp/>parts<sp/>(chassis<sp/>and<sp/>engine).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>NOTE:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>This<sp/>component<sp/>has<sp/>been<sp/>superseded<sp/>by<sp/>the<sp/>Inertia<sp/>settings<sp/>in<sp/>VPVehicleController.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>VPVehicleInertia<sp/>is<sp/>useful<sp/>in<sp/>custom<sp/>vehicle<sp/>controllers<sp/>where<sp/>Inertia<sp/>class<sp/>is<sp/>not<sp/>used.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>If<sp/>the<sp/>VPVehicleInertia<sp/>component<sp/>is<sp/>present<sp/>in<sp/>VPVehicleController:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>When<sp/>VPVehicleInertia<sp/>component<sp/>gets<sp/>enabled<sp/>(also<sp/>on<sp/>enabling<sp/>the<sp/>vehicle)<sp/>it<sp/>overrides<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>controller&apos;s<sp/>inertia.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/>-<sp/>If<sp/>the<sp/>inertia<sp/>mode<sp/>changes<sp/>in<sp/>VPVehicleController,<sp/>or<sp/>is<sp/>configured<sp/>as<sp/>Parametric<sp/>and<sp/>the</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/>settings<sp/>change,<sp/>then<sp/>the<sp/>inertia<sp/>is<sp/>recomputed<sp/>from<sp/>the<sp/>VPVehicleController<sp/>settings.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>EdyCommonTools;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">VehiclePhysics</highlight></codeline>
+<codeline lineno="27"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>!VPP_ESSENTIAL</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30" refid="class_vehicle_physics_1_1_v_p_vehicle_inertia" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia" kindref="compound">VPVehicleInertia</ref><sp/>:<sp/><ref refid="class_vehicle_physics_1_1_vehicle_behaviour" kindref="compound">VehicleBehaviour</ref></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1af811d47838ad6ab02f64793d7ce5a710" kindref="member">visualize</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1abad33a70aae3cc08a121e6124dd46fe5" kindref="member">showLabel</ref><sp/>=<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>[UnityEngine.Serialization.FormerlySerializedAs(</highlight><highlight class="stringliteral">&quot;chassisColliders&quot;</highlight><highlight class="normal">)]</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Collider[]<sp/><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1af54959bb0d124f2f6bf17331a598b50a" kindref="member">inertiaColliders</ref><sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Collider[0];</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>Vector3<sp/>m_labelPosition<sp/>=<sp/>Vector3.zero;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1af97e826c97d83ab11260a7374777666c" kindref="member">OnEnableVehicle</ref><sp/>()</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Inertia.ApplyInertiaFromColliders(vehicle.cachedRigidbody,<sp/><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1af54959bb0d124f2f6bf17331a598b50a" kindref="member">inertiaColliders</ref>);</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Inertia.VerifyInertiaAndShowWarning(vehicle.cachedRigidbody);</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1aae2d1606a8d7c29866d573dbe353a61f" kindref="member">OnDisableVehicle</ref><sp/>()</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vehicle.cachedRigidbody.ResetInertiaTensor();</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1a59c88096848f5ac213d853f9cc227928" kindref="member">UpdateVehicle</ref><sp/>()</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_labelPosition<sp/>=<sp/>vehicle.cachedTransform.TransformPoint(vehicle.cachedRigidbody.centerOfMass);</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>OnDrawGizmos<sp/>()</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(!isActiveAndEnabled<sp/>||<sp/>!<ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1af811d47838ad6ab02f64793d7ce5a710" kindref="member">visualize</ref>)<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ColliderUtility.DrawColliderGizmos(<ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1af54959bb0d124f2f6bf17331a598b50a" kindref="member">inertiaColliders</ref>,<sp/><ref refid="class_vehicle_physics_1_1_inertia_1adfec80f5ce825fcb700a7e776900c919" kindref="member">Inertia.inertiaGizmosColor</ref>,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">,<sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">);</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#if<sp/>UNITY_EDITOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_vehicle_physics_1_1_v_p_vehicle_inertia_1abad33a70aae3cc08a121e6124dd46fe5" kindref="member">showLabel</ref><sp/>&amp;&amp;<sp/><ref refid="class_vehicle_physics_1_1_vehicle_behaviour_1a0c9a9fd406ebd35c02d2901cdca1e134" kindref="member">vehicle</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>UnityEditor.Handles.Label(m_labelPosition,</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="stringliteral">&quot;\nI:<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>vehicle.cachedRigidbody.inertiaTensor<sp/>+<sp/></highlight><highlight class="stringliteral">&quot;<sp/>-<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/>vehicle.cachedRigidbody.inertiaTensor.magnitude.ToString(</highlight><highlight class="stringliteral">&quot;0.0&quot;</highlight><highlight class="normal">)</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>+<sp/></highlight><highlight class="stringliteral">&quot;\nR:<sp/>&quot;</highlight><highlight class="normal"><sp/>+<sp/><ref refid="class_vehicle_physics_1_1_vehicle_behaviour_1a0c9a9fd406ebd35c02d2901cdca1e134" kindref="member">vehicle</ref>.<ref refid="class_vehicle_physics_1_1_vehicle_base_1a58e1bd7f62cd67db13b971cdd2ff176c" kindref="member">cachedRigidbody</ref>.inertiaTensorRotation.eulerAngles</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="78"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Components/Experimental/VPVehicleInertia.cs"/>
+  </compounddef>
+</doxygen>

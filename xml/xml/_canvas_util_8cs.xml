@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_canvas_util_8cs" kind="file">
+    <compoundname>CanvasUtil.cs</compoundname>
+    <innerclass refid="class_canvas_util" prot="public">CanvasUtil</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight></codeline>
+<codeline lineno="3" refid="class_canvas_util" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_canvas_util" kindref="compound">CanvasUtil</ref></highlight></codeline>
+<codeline lineno="4"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Vector2<sp/><ref refid="class_canvas_util_1a7cf60054d977ad0b64b52d5b708bad3a" kindref="member">ScreenToUISpacePos</ref>(Vector3<sp/>screenPos,<sp/>RectTransform<sp/>canvasRect,<sp/>out<sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/>zPositive)</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>zPositive<sp/>=<sp/>screenPos.z<sp/>&gt;<sp/>0f;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector3<sp/>vPos<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(screenPos.x<sp/>/<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)Screen.width,<sp/>(screenPos.y<sp/>/<sp/>(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal">)Screen.height),<sp/>0f);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vPos.x<sp/>=<sp/>(vPos.x<sp/>*<sp/>canvasRect.sizeDelta.x)<sp/>-<sp/>(canvasRect.sizeDelta.x<sp/>*<sp/>0.5f);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>vPos.y<sp/>=<sp/>(vPos.y<sp/>*<sp/>canvasRect.sizeDelta.y)<sp/>-<sp/>(canvasRect.sizeDelta.y<sp/>*<sp/>0.5f);</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>vPos;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>Vector2<sp/><ref refid="class_canvas_util_1a317dd20f43027f1fa600e4152dc33b01" kindref="member">AnchorOffset</ref>(Vector2<sp/>uiPos,<sp/>RectTransform<sp/>rt,<sp/>Vector2<sp/>anchor)</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Vector2<sp/>offset<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector2(rt.rect.width<sp/>*<sp/>anchor.x,<sp/>rt.rect.height<sp/>*<sp/>anchor.y);</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>uiPos<sp/>+<sp/>offset;</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_canvas_util_1a7a4e76a2a33af07e8deb09ec57853eb8" kindref="member">RectContains</ref>(RectTransform<sp/>rt,<sp/>Vector3<sp/>screenPos)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>screenPos.y<sp/>=<sp/>Screen.height<sp/>-<sp/>screenPos.y;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>screenPos<sp/>=<sp/>(Vector2)screenPos<sp/>-<sp/>rt.anchoredPosition;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>rt.rect.Contains(screenPos);</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_canvas_util_1a9c5506400a710163f78767bb5319efc2" kindref="member">Contains</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>RectTransform<sp/>rt,<sp/>Vector3<sp/>screenPos)</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/><ref refid="class_canvas_util_1a7a4e76a2a33af07e8deb09ec57853eb8" kindref="member">RectContains</ref>(rt,<sp/>screenPos);</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="36"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Util Scripts/KSPUtil/Utility Classes/CanvasUtil.cs"/>
+  </compounddef>
+</doxygen>

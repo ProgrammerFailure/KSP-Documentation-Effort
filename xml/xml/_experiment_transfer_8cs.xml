@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_experiment_transfer_8cs" kind="file">
+    <compoundname>ExperimentTransfer.cs</compoundname>
+    <innerclass refid="class_experiment_transfer" prot="public">ExperimentTransfer</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/>KSP.Localization;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="_celestial_body_8cs_1ac9eb0319ef2a2099d69ed9e5dcbfcb6aa8045a0a6c688b0635e3caccc408a1446" kindref="member">System.Collections.Generic</ref>;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight></codeline>
+<codeline lineno="6" refid="class_experiment_transfer" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_experiment_transfer" kindref="compound">ExperimentTransfer</ref><sp/>:<sp/><ref refid="class_part_item_transfer" kindref="compound">PartItemTransfer</ref></highlight></codeline>
+<codeline lineno="7"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="interface_i_science_data_container" kindref="compound">IScienceDataContainer</ref><sp/><ref refid="class_experiment_transfer_1afc94ac95ae714188c247b5aa15bec991" kindref="member">container</ref>;</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/><ref refid="class_experiment_transfer" kindref="compound">ExperimentTransfer</ref><sp/><ref refid="class_experiment_transfer_1ac0e80ee324d918fad47743bd5220e42e" kindref="member">Create</ref>(<ref refid="class_part" kindref="compound">Part</ref><sp/><ref refid="class_part_item_transfer_1abe892176251931f31a56e9ee0bc28e67" kindref="member">srcPart</ref>,<sp/><ref refid="interface_i_science_data_container" kindref="compound">IScienceDataContainer</ref><sp/>cont,<sp/>Callback&lt;DismissAction,<sp/>Part&gt;<sp/>onDialogDismiss)</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(KSP.UI.Screens.Flight.Dialogs.ExperimentsResultDialog.Instance<sp/>!=<sp/>null<sp/>&amp;&amp;<sp/>KSP.UI.Screens.Flight.Dialogs.ExperimentsResultDialog.Instance.pages.Count<sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ScreenMessages.PostScreenMessage(Localizer.Format(</highlight><highlight class="stringliteral">&quot;#autoLOC_133305&quot;</highlight><highlight class="normal">),<sp/>3f,<sp/><ref refid="_screen_messages_8cs_1ac19a4c3800d327889475848ccbbf9317" kindref="member">ScreenMessageStyle</ref>.UPPER_CENTER);<sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//#autoLOC_133305<sp/>=<sp/>&lt;b&gt;&lt;color=orange&gt;Data<sp/>transfer<sp/>blocked<sp/>by<sp/>other<sp/>dialogs.&lt;/color&gt;&lt;/b&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>null;</highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_experiment_transfer" kindref="compound">ExperimentTransfer</ref><sp/>eTrf<sp/>=<sp/>(</highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>GameObject(</highlight><highlight class="stringliteral">&quot;Experiment<sp/>Transfer<sp/>Host&quot;</highlight><highlight class="normal">)).AddComponent&lt;ExperimentTransfer&gt;();<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eTrf.container<sp/>=<sp/>cont;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>eTrf.Setup(<ref refid="class_part_item_transfer_1abe892176251931f31a56e9ee0bc28e67" kindref="member">srcPart</ref>,<sp/></highlight><highlight class="stringliteral">&quot;#autoLOC_6002371&quot;</highlight><highlight class="normal">,<sp/></highlight><highlight class="stringliteral">&quot;#autoLOC_6002370&quot;</highlight><highlight class="normal">,<sp/>string.Empty,<sp/>onDialogDismiss);<sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//#autoLOC_6002371<sp/>=<sp/>Data<sp/>//#autoLOC_6002370<sp/>=<sp/>the<sp/>data</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>eTrf;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#region<sp/>Setup<sp/>Overrides</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_experiment_transfer_1ab8cddc2ebb476e474d63375f80b40e35" kindref="member">IsSemiValidPart</ref>(<ref refid="class_part" kindref="compound">Part</ref><sp/>p)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_experiment_transfer_1ad829aaf1350da2be3330d787590999ec" kindref="member">IsValidPart</ref>(<ref refid="class_part" kindref="compound">Part</ref><sp/>p)</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_module_science_container" kindref="compound">ModuleScienceContainer</ref><sp/>s<sp/>=<sp/>p.FindModuleImplementing&lt;<ref refid="class_module_science_container" kindref="compound">ModuleScienceContainer</ref>&gt;();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(s<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>s.canBeTransferredToInVessel;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">false</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endregion</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#region<sp/>Event<sp/>Overrides</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_experiment_transfer_1a82e0d5796d90a67edfc36056ec4c83e1" kindref="member">OnPartSelect</ref>(<ref refid="class_part" kindref="compound">Part</ref><sp/>p)</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_part_item_transfer_1ad4d68d0d075b36eb0018e95e089b07ca" kindref="member">Dismiss</ref>(<ref refid="class_part_item_transfer_1a9102561595ef6f46ad2aa752148549a2" kindref="member">DismissAction</ref>.ItemMoved,<sp/>p);</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_experiment_transfer_1a1f7f738841d68f4d69ad2bb0682f07d7" kindref="member">OnSrcPartSelect</ref>(<ref refid="class_part" kindref="compound">Part</ref><sp/>p)<sp/></highlight><highlight class="comment">//<sp/>yes<sp/>we<sp/>can<sp/>transfer<sp/>to<sp/>ourself</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_experiment_transfer_1a82e0d5796d90a67edfc36056ec4c83e1" kindref="member">OnPartSelect</ref>(p);</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endregion</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Flight/ExperimentTransfer.cs"/>
+  </compounddef>
+</doxygen>

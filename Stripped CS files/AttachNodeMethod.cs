@@ -1,0 +1,9 @@
+public enum AttachNodeMethod
+{
+	FIXED_JOINT,
+	HINGE_JOINT,
+	LOCKED_JOINT,
+	MERGED_PHYSICS,
+	NO_PHYSICS,
+	NONE
+}

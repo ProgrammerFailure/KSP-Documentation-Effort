@@ -1,0 +1,8 @@
+public enum FlightUIMode
+{
+	STAGING,
+	DOCKING,
+	MAPMODE,
+	MANEUVER_EDIT,
+	MANEUVER_INFO
+}

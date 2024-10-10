@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_vehicle_physics_1_1_ground_material_manager_base" kind="class" prot="public" abstract="yes">
+    <compoundname>VehiclePhysics::GroundMaterialManagerBase</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">MonoBehaviour</basecompoundref>
+    <derivedcompoundref refid="class_vehicle_physics_1_1_v_p_ground_material_manager" prot="public" virt="non-virtual">VehiclePhysics.VPGroundMaterialManager</derivedcompoundref>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_vehicle_physics_1_1_ground_material_manager_base_1adf380b5534cb835194aa8802eb6ec057" prot="public" static="no" const="no" explicit="no" inline="no" virt="pure-virtual">
+        <type>abstract <ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref></type>
+        <definition>abstract GroundMaterial VehiclePhysics.GroundMaterialManagerBase.GetGroundMaterial</definition>
+        <argsstring>(VehicleBase vehicle, GroundMaterialHit groundHit)</argsstring>
+        <name>GetGroundMaterial</name>
+        <reimplementedby refid="class_vehicle_physics_1_1_v_p_ground_material_manager_1ac2ad5838dfd7459214fcfb8e5f9ad51d">GetGroundMaterial</reimplementedby>
+        <param>
+          <type><ref refid="class_vehicle_physics_1_1_vehicle_base" kindref="compound">VehicleBase</ref></type>
+          <declname>vehicle</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref></type>
+          <declname>groundHit</declname>
+        </param>
+        <briefdescription>
+<para>Must return a <ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref> object for the given <ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref> and vehicle. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_vehicle_physics_1_1_vehicle_base" kindref="compound">VehicleBase</ref> object which is querying the material.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>groundHit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contact information</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A non-null <ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref> reference</para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/GroundMaterial.cs" line="93" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_ground_material_manager_base_1adcbe0e74c0eab51a514ff6b26fb8f8c3" prot="public" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void VehiclePhysics.GroundMaterialManagerBase.GetGroundMaterialCached</definition>
+        <argsstring>(VehicleBase vehicle, GroundMaterialHit groundHit, ref GroundMaterialHit cachedGroundHit, ref GroundMaterial groundMaterial)</argsstring>
+        <name>GetGroundMaterialCached</name>
+        <param>
+          <type><ref refid="class_vehicle_physics_1_1_vehicle_base" kindref="compound">VehicleBase</ref></type>
+          <declname>vehicle</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref></type>
+          <declname>groundHit</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref></type>
+          <declname>cachedGroundHit</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref></type>
+          <declname>groundMaterial</declname>
+        </param>
+        <briefdescription>
+<para>Update a <ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref> reference by invoking GetGroundMaterial only if the cached physic material has changed. Vehicles call this method for retrieving the ground material per wheel on each physics frame. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>vehicle</parametername>
+</parameternamelist>
+<parameterdescription>
+<para><ref refid="class_vehicle_physics_1_1_vehicle_base" kindref="compound">VehicleBase</ref> object which is querying the material.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>groundHit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Contact information.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>cachedGroundHit</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the cached contact information. Will be updated when necessary.</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>groundMaterial</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Reference to the ground material. Will be updated only when the physic material changes.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/GroundMaterial.cs" line="105" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/GroundMaterial.cs" bodystart="105" bodyend="119"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>Base class for the components that host and manage the materials for the scene. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="63148">
+        <label>VehiclePhysics.VPGroundMaterialManager</label>
+        <link refid="class_vehicle_physics_1_1_v_p_ground_material_manager"/>
+        <childnode refid="63146" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="63146">
+        <label>VehiclePhysics.GroundMaterialManagerBase</label>
+        <link refid="class_vehicle_physics_1_1_ground_material_manager_base"/>
+        <childnode refid="63147" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="63147">
+        <label>MonoBehaviour</label>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="63149">
+        <label>VehiclePhysics.GroundMaterialManagerBase</label>
+        <link refid="class_vehicle_physics_1_1_ground_material_manager_base"/>
+        <childnode refid="63150" relation="public-inheritance">
+        </childnode>
+      </node>
+      <node id="63150">
+        <label>MonoBehaviour</label>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/GroundMaterial.cs" line="85" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/GroundMaterial.cs" bodystart="84" bodyend="120"/>
+    <listofallmembers>
+      <member refid="class_vehicle_physics_1_1_ground_material_manager_base_1adf380b5534cb835194aa8802eb6ec057" prot="public" virt="pure-virtual"><scope>VehiclePhysics::GroundMaterialManagerBase</scope><name>GetGroundMaterial</name></member>
+      <member refid="class_vehicle_physics_1_1_ground_material_manager_base_1adcbe0e74c0eab51a514ff6b26fb8f8c3" prot="public" virt="virtual"><scope>VehiclePhysics::GroundMaterialManagerBase</scope><name>GetGroundMaterialCached</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_string_builder_cache_8cs" kind="file">
+    <compoundname>StringBuilderCache.cs</compoundname>
+    <innerclass refid="class_string_builder_cache" prot="public">StringBuilderCache</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Copyright<sp/>(c)<sp/>Microsoft.<sp/>All<sp/>rights<sp/>reserved.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Licensed<sp/>under<sp/>the<sp/>MIT<sp/>license.<sp/>See<sp/>https://github.com/dotnet/coreclr/blob/master/LICENSE.TXT<sp/>for<sp/>full<sp/>license<sp/>information.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Old<sp/>mono<sp/>compatible<sp/>version<sp/>of<sp/>MS<sp/>coreclr<sp/>code</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="comment">//<sp/>https://github.com/Microsoft/msbuild/blob/master/src/Shared/StringBuilderCache.cs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">/*============================================================</highlight></codeline>
+<codeline lineno="9"><highlight class="comment">**</highlight></codeline>
+<codeline lineno="10"><highlight class="comment">**</highlight></codeline>
+<codeline lineno="11"><highlight class="comment">**<sp/>Purpose:<sp/>provide<sp/>a<sp/>cached<sp/>reusable<sp/>instance<sp/>of<sp/>StringBuilder</highlight></codeline>
+<codeline lineno="12"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>per<sp/>thread<sp/><sp/>it&apos;s<sp/>an<sp/>optimisation<sp/>that<sp/>reduces<sp/>the<sp/></highlight></codeline>
+<codeline lineno="13"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>number<sp/>of<sp/>instances<sp/>constructed<sp/>and<sp/>collected.</highlight></codeline>
+<codeline lineno="14"><highlight class="comment">**</highlight></codeline>
+<codeline lineno="15"><highlight class="comment">**<sp/><sp/>Acquire<sp/>-<sp/>is<sp/>used<sp/>to<sp/>get<sp/>a<sp/>string<sp/>builder<sp/>to<sp/>use<sp/>of<sp/>a<sp/></highlight></codeline>
+<codeline lineno="16"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>particular<sp/>size.<sp/><sp/>It<sp/>can<sp/>be<sp/>called<sp/>any<sp/>number<sp/>of<sp/></highlight></codeline>
+<codeline lineno="17"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>times,<sp/>if<sp/>a<sp/>StringBuilder<sp/>is<sp/>in<sp/>the<sp/>cache<sp/>then</highlight></codeline>
+<codeline lineno="18"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>it<sp/>will<sp/>be<sp/>returned<sp/>and<sp/>the<sp/>cache<sp/>emptied.</highlight></codeline>
+<codeline lineno="19"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>subsequent<sp/>calls<sp/>will<sp/>return<sp/>a<sp/>new<sp/>StringBuilder.</highlight></codeline>
+<codeline lineno="20"><highlight class="comment">**</highlight></codeline>
+<codeline lineno="21"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>A<sp/>StringBuilder<sp/>instance<sp/>is<sp/>cached<sp/>in<sp/></highlight></codeline>
+<codeline lineno="22"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Thread<sp/>Local<sp/>Storage<sp/>and<sp/>so<sp/>there<sp/>is<sp/>one<sp/>per<sp/>thread</highlight></codeline>
+<codeline lineno="23"><highlight class="comment">**</highlight></codeline>
+<codeline lineno="24"><highlight class="comment">**<sp/><sp/>Release<sp/>-<sp/>Place<sp/>the<sp/>specified<sp/>builder<sp/>in<sp/>the<sp/>cache<sp/>if<sp/>it<sp/>is<sp/></highlight></codeline>
+<codeline lineno="25"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>not<sp/>too<sp/>big.</highlight></codeline>
+<codeline lineno="26"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>The<sp/>StringBuilder<sp/>should<sp/>not<sp/>be<sp/>used<sp/>after<sp/>it<sp/>has<sp/></highlight></codeline>
+<codeline lineno="27"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>been<sp/>released.</highlight></codeline>
+<codeline lineno="28"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Unbalanced<sp/>Releases<sp/>are<sp/>perfectly<sp/>acceptable.<sp/><sp/>It</highlight></codeline>
+<codeline lineno="29"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>will<sp/>merely<sp/>cause<sp/>the<sp/>runtime<sp/>to<sp/>create<sp/>a<sp/>new<sp/></highlight></codeline>
+<codeline lineno="30"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StringBuilder<sp/>next<sp/>time<sp/>Acquire<sp/>is<sp/>called.</highlight></codeline>
+<codeline lineno="31"><highlight class="comment">**</highlight></codeline>
+<codeline lineno="32"><highlight class="comment">**<sp/><sp/>GetStringAndRelease</highlight></codeline>
+<codeline lineno="33"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/>ToString()<sp/>the<sp/>StringBuilder,<sp/>Release<sp/>it<sp/>to<sp/>the<sp/></highlight></codeline>
+<codeline lineno="34"><highlight class="comment">**<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cache<sp/>and<sp/>return<sp/>the<sp/>resulting<sp/>string</highlight></codeline>
+<codeline lineno="35"><highlight class="comment">**</highlight></codeline>
+<codeline lineno="36"><highlight class="comment">===========================================================*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Text;</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41" refid="class_string_builder_cache" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_string_builder_cache" kindref="compound">StringBuilderCache</ref></highlight></codeline>
+<codeline lineno="42"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>value<sp/>360<sp/>was<sp/>chosen<sp/>in<sp/>discussion<sp/>with<sp/>performance<sp/>experts<sp/>as<sp/>a<sp/>compromise<sp/>between<sp/>using</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>as<sp/>litle<sp/>memory<sp/>(per<sp/>thread)<sp/>as<sp/>possible<sp/>and<sp/>still<sp/>covering<sp/>a<sp/>large<sp/>part<sp/>of<sp/>short-lived</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>StringBuilder<sp/>creations<sp/>on<sp/>the<sp/>startup<sp/>path<sp/>of<sp/>VS<sp/>designers.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">const</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>MAX_BUILDER_SIZE<sp/>=<sp/>360;</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>[ThreadStatic]</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>StringBuilder<sp/>CachedInstance;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/>StringBuilder<sp/><ref refid="class_string_builder_cache_1a57abcb3e6841b94f349514d29963f1bb" kindref="member">Acquire</ref>(</highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>capacity<sp/>=<sp/>256)</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(capacity<sp/>&lt;=<sp/>MAX_BUILDER_SIZE)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StringBuilder<sp/>sb<sp/>=<sp/>StringBuilderCache.CachedInstance;</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sb<sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Avoid<sp/>stringbuilder<sp/>block<sp/>fragmentation<sp/>by<sp/>getting<sp/>a<sp/>new<sp/>StringBuilder</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>when<sp/>the<sp/>requested<sp/>size<sp/>is<sp/>larger<sp/>than<sp/>the<sp/>current<sp/>capacity</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(capacity<sp/>&lt;=<sp/>sb.Capacity)</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StringBuilderCache.CachedInstance<sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//sb.Clear();<sp/>///&lt;<sp/>stupid<sp/>old<sp/>mono<sp/>:(</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>sb.Length<sp/>=<sp/>0;</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>sb;</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>StringBuilder(capacity);</highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_string_builder_cache_1adcb9174faa799e000ef41eff444042ca" kindref="member">Release</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>StringBuilder<sp/>sb)</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(sb.Capacity<sp/>&lt;=<sp/>MAX_BUILDER_SIZE)</highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StringBuilderCache.CachedInstance<sp/>=<sp/>sb;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="class_string_builder_cache_1a605929a0781783d4ba064fd0d453e76f" kindref="member">ToStringAndRelease</ref>(</highlight><highlight class="keyword">this</highlight><highlight class="normal"><sp/>StringBuilder<sp/>sb)</highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/>result<sp/>=<sp/>sb.ToString();</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_string_builder_cache_1adcb9174faa799e000ef41eff444042ca" kindref="member">Release</ref>(sb);</highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">string</highlight><highlight class="normal"><sp/><ref refid="class_string_builder_cache_1a17d06a84dff0c4daa54daefbec253316" kindref="member">Format</ref>(String<sp/>format,<sp/>params<sp/><ref refid="_message_node_dialog_8cs_1aef19bab18b9814edeef255c43e4f6bbc" kindref="member">Object</ref>[]<sp/>args)</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>buffer<sp/>=<sp/><ref refid="class_string_builder_cache_1a57abcb3e6841b94f349514d29963f1bb" kindref="member">Acquire</ref>(format.Length<sp/>+<sp/>8);</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>buffer.AppendFormat(format,<sp/>args);</highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>var<sp/>result<sp/>=<sp/>buffer.ToString();</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_string_builder_cache_1adcb9174faa799e000ef41eff444042ca" kindref="member">Release</ref>(buffer);</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>result;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal">}</highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Util Scripts/KSPUtil/Utility Classes/StringBuilderCache.cs"/>
+  </compounddef>
+</doxygen>

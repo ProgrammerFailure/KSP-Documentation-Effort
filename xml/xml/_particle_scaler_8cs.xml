@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_particle_scaler_8cs" kind="file">
+    <compoundname>ParticleScaler.cs</compoundname>
+    <innerclass refid="class_particle_scaler" prot="public">ParticleScaler</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//This<sp/>script<sp/>will<sp/>only<sp/>work<sp/>in<sp/>editor<sp/>mode.<sp/>You<sp/>cannot<sp/>adjust<sp/>the<sp/>scale<sp/>dynamically<sp/>in-game!</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>UNITY_EDITOR<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEditor;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal">[ExecuteAlways]</highlight></codeline>
+<codeline lineno="9" refid="class_particle_scaler" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_particle_scaler" kindref="compound">ParticleScaler</ref><sp/>:<sp/>MonoBehaviour<sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_particle_scaler_1ac189874714b41ebbd9cb9a864aa1ec0b" kindref="member">alsoScaleGameobject</ref><sp/>=<sp/></highlight><highlight class="keyword">true</highlight><highlight class="normal">;</highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>prevScale;</highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Start()</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>UNITY_EDITOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prevScale<sp/>=<sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref>;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>Update<sp/>()<sp/></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>UNITY_EDITOR<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//check<sp/>if<sp/>we<sp/>need<sp/>to<sp/>update</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(prevScale<sp/>!=<sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref><sp/>&amp;&amp;<sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref><sp/>&gt;<sp/>0)</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_particle_scaler_1ac189874714b41ebbd9cb9a864aa1ec0b" kindref="member">alsoScaleGameobject</ref>)</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>transform.localScale<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>Vector3(<ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref>,<sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref>,<sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>scaleFactor<sp/>=<sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref><sp/>/<sp/>prevScale;</highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//scale<sp/>legacy<sp/>particle<sp/>systems</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//ScaleLegacySystems(scaleFactor);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//scale<sp/>shuriken<sp/>particle<sp/>systems</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ScaleShurikenSystems(scaleFactor);</highlight></codeline>
+<codeline lineno="39"><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//scale<sp/>trail<sp/>renders</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ScaleTrailRenderers(scaleFactor);</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>prevScale<sp/>=<sp/><ref refid="class_particle_scaler_1afae0cedae12e1a03fc06a5d31fd73270" kindref="member">particleScale</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="47"><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ScaleShurikenSystems(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>scaleFactor)</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>UNITY_EDITOR<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>all<sp/>shuriken<sp/>systems<sp/>we<sp/>need<sp/>to<sp/>do<sp/>scaling<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticleSystem[]<sp/>systems<sp/>=<sp/>GetComponentsInChildren&lt;ParticleSystem&gt;();</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(ParticleSystem<sp/>system<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>systems)</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticleSystem.MainModule<sp/>main<sp/>=<sp/>system.main;</highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>main.startSpeedMultiplier<sp/>=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>main.startSizeMultiplier<sp/>=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>main.gravityModifierMultiplier<sp/>=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//some<sp/>variables<sp/>cannot<sp/>be<sp/>accessed<sp/>through<sp/>regular<sp/>script,<sp/>we<sp/>will<sp/>acces<sp/>them<sp/>through<sp/>a<sp/>serialized<sp/>object</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SerializedObject<sp/>so<sp/>=<sp/></highlight><highlight class="keyword">new</highlight><highlight class="normal"><sp/>SerializedObject(system);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//unity<sp/>4.0<sp/>and<sp/>onwards<sp/>will<sp/>already<sp/>do<sp/>this<sp/>one<sp/>for<sp/>us</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>UNITY_3_5<sp/></highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ShapeModule.radius&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ShapeModule.boxX&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ShapeModule.boxY&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="69"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ShapeModule.boxZ&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;VelocityModule.x.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;VelocityModule.y.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="74"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;VelocityModule.z.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ClampVelocityModule.magnitude.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ClampVelocityModule.x.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ClampVelocityModule.y.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ClampVelocityModule.z.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ForceModule.x.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="80"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ForceModule.y.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ForceModule.z.scalar&quot;</highlight><highlight class="normal">).floatValue<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;ColorBySpeedModule.range&quot;</highlight><highlight class="normal">).vector2Value<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;SizeBySpeedModule.range&quot;</highlight><highlight class="normal">).vector2Value<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(</highlight><highlight class="stringliteral">&quot;RotationBySpeedModule.range&quot;</highlight><highlight class="normal">).vector2Value<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"></highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.ApplyModifiedProperties();</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="89"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">/*void<sp/>ScaleLegacySystems(float<sp/>scaleFactor)</highlight></codeline>
+<codeline lineno="92"><highlight class="comment"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="comment">#if<sp/>UNITY_EDITOR<sp/></highlight></codeline>
+<codeline lineno="94"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//get<sp/>all<sp/>emitters<sp/>we<sp/>need<sp/>to<sp/>do<sp/>scaling<sp/>on</highlight></codeline>
+<codeline lineno="95"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticleEmitter[]<sp/>emitters<sp/>=<sp/>GetComponentsInChildren&lt;ParticleEmitter&gt;();</highlight></codeline>
+<codeline lineno="96"><highlight class="comment"></highlight></codeline>
+<codeline lineno="97"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//get<sp/>all<sp/>animators<sp/>we<sp/>need<sp/>to<sp/>do<sp/>scaling<sp/>on</highlight></codeline>
+<codeline lineno="98"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>ParticleAnimator[]<sp/>animators<sp/>=<sp/>GetComponentsInChildren&lt;ParticleAnimator&gt;();</highlight></codeline>
+<codeline lineno="99"><highlight class="comment"></highlight></codeline>
+<codeline lineno="100"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//apply<sp/>scaling<sp/>to<sp/>emitters</highlight></codeline>
+<codeline lineno="101"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>foreach<sp/>(ParticleEmitter<sp/>emitter<sp/>in<sp/>emitters)</highlight></codeline>
+<codeline lineno="102"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="103"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emitter.minSize<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="104"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emitter.maxSize<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="105"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emitter.worldVelocity<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="106"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emitter.localVelocity<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="107"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>emitter.rndVelocity<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="108"><highlight class="comment"></highlight></codeline>
+<codeline lineno="109"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//some<sp/>variables<sp/>cannot<sp/>be<sp/>accessed<sp/>through<sp/>regular<sp/>script,<sp/>we<sp/>will<sp/>acces<sp/>them<sp/>through<sp/>a<sp/>serialized<sp/>object</highlight></codeline>
+<codeline lineno="110"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>SerializedObject<sp/>so<sp/>=<sp/>new<sp/>SerializedObject(emitter);</highlight></codeline>
+<codeline lineno="111"><highlight class="comment"></highlight></codeline>
+<codeline lineno="112"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(&quot;m_Ellipsoid&quot;).vector3Value<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="113"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.FindProperty(&quot;tangentVelocity&quot;).vector3Value<sp/>*=<sp/>scaleFactor;<sp/><sp/><sp/><sp/><sp/></highlight></codeline>
+<codeline lineno="114"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>so.ApplyModifiedProperties();</highlight></codeline>
+<codeline lineno="115"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="116"><highlight class="comment"></highlight></codeline>
+<codeline lineno="117"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>//apply<sp/>scaling<sp/>to<sp/>animators</highlight></codeline>
+<codeline lineno="118"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>foreach<sp/>(ParticleAnimator<sp/>animator<sp/>in<sp/>animators)</highlight></codeline>
+<codeline lineno="119"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="120"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>animator.force<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="121"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>animator.rndForce<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="122"><highlight class="comment"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="123"><highlight class="comment">#endif</highlight></codeline>
+<codeline lineno="124"><highlight class="comment"><sp/><sp/><sp/><sp/>}*/</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>ScaleTrailRenderers(</highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>scaleFactor)</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="128"><highlight class="normal"></highlight><highlight class="preprocessor">#if<sp/>UNITY_EDITOR</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//get<sp/>all<sp/>animators<sp/>we<sp/>need<sp/>to<sp/>do<sp/>scaling<sp/>on</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>TrailRenderer[]<sp/>trails<sp/>=<sp/>GetComponentsInChildren&lt;TrailRenderer&gt;();</highlight></codeline>
+<codeline lineno="131"><highlight class="normal"></highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//apply<sp/>scaling<sp/>to<sp/>animators</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">foreach</highlight><highlight class="normal"><sp/>(TrailRenderer<sp/>trail<sp/></highlight><highlight class="keywordflow">in</highlight><highlight class="normal"><sp/>trails)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trail.startWidth<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>trail.endWidth<sp/>*=<sp/>scaleFactor;</highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="140"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/ParticleScaler/ParticleScaler.cs"/>
+  </compounddef>
+</doxygen>

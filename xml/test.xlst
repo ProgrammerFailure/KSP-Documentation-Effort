@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+  <xsl:output method="xml" indent="yes"/>
+
+  <!-- Match the root of the Doxygen XML -->
+  <xsl:template match="/doxygen">
+    <doc>
+      <members>
+        <xsl:apply-templates select="//memberdef[@kind='function']"/>
+      </members>
+    </doc>
+  </xsl:template>
+
+  <!-- Transform each method -->
+  <xsl:template match="memberdef[@kind='function']">
+    <member>
+      <xsl:attribute name="name">
+        M:<xsl:value-of select="../../compoundname"/>
+        .<xsl:value-of select="name"/>
+        (<xsl:apply-templates select="param/type"/>)
+      </xsl:attribute>
+      <summary>
+        <xsl:apply-templates select="briefdescription/para"/>
+      </summary>
+      <xsl:apply-templates select="param"/>
+    </member>
+  </xsl:template>
+
+  <!-- Transform method parameters -->
+  <xsl:template match="param">
+    <param name="{declname}">
+      <xsl:value-of select="The parameter description here."/>
+    </param>
+  </xsl:template>
+
+  <!-- Handle the type of the parameter -->
+  <xsl:template match="param/type">
+    System.<xsl:value-of select="."/>
+  </xsl:template>
+
+</xsl:stylesheet>

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_u_i_marquee___p_a_w_8cs" kind="file">
+    <compoundname>UIMarquee_PAW.cs</compoundname>
+    <innerclass refid="class_u_i_marquee___p_a_w" prot="public">UIMarquee_PAW</innerclass>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="_lingoona_grammar_formatter_8cs_1abf6076bcc51dbd2201f59950f9b541f4" kindref="member">KSP.UI</ref>;</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System.Collections;</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="_celestial_body_8cs_1ac9eb0319ef2a2099d69ed9e5dcbfcb6aa8045a0a6c688b0635e3caccc408a1446" kindref="member">System.Collections.Generic</ref>;</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine.EventSystems;</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/><ref refid="_lingoona_grammar_formatter_8cs_1abf6076bcc51dbd2201f59950f9b541f4" kindref="member">UnityEngine.UI</ref>;</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal">[RequireComponent(typeof(<ref refid="class_u_i_part_action_field_item" kindref="compound">UIPartActionFieldItem</ref>))]</highlight></codeline>
+<codeline lineno="12" refid="class_u_i_marquee___p_a_w" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_u_i_marquee___p_a_w" kindref="compound">UIMarquee_PAW</ref><sp/>:<sp/><ref refid="class_u_i_marquee" kindref="compound">UIMarquee</ref></highlight></codeline>
+<codeline lineno="13"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="17"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/><ref refid="class_u_i_part_action_field_item" kindref="compound">UIPartActionFieldItem</ref><sp/><ref refid="class_u_i_marquee___p_a_w_1afdc7a943967ee379440af738207e104a" kindref="member">fieldItem</ref>;</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Start<sp/>is<sp/>called<sp/>before<sp/>the<sp/>first<sp/>frame<sp/>update</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_u_i_marquee___p_a_w_1ae6b7c47db3fff03628138776fc14ade1" kindref="member">Start</ref>()</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Get<sp/>the<sp/>basefield</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_u_i_marquee___p_a_w_1afdc7a943967ee379440af738207e104a" kindref="member">fieldItem</ref><sp/>=<sp/>GetComponent&lt;UIPartActionFieldItem&gt;();</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_u_i_marquee___p_a_w_1afdc7a943967ee379440af738207e104a" kindref="member">fieldItem</ref><sp/>!=<sp/>null<sp/>&amp;&amp;<sp/><ref refid="class_u_i_marquee___p_a_w_1afdc7a943967ee379440af738207e104a" kindref="member">fieldItem</ref>.<ref refid="class_u_i_part_action_field_item_1a07130aa383e8f0dd443d0b48ad8c4490" kindref="member">Field</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fieldItem.Field.OnValueModified<sp/>+=<sp/><ref refid="class_u_i_marquee_1a59e1a75d1412f7cbfa52e05adae2ab8d" kindref="member">Field_OnValueModified</ref>;</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//make<sp/>it<sp/>reconfigure<sp/>on<sp/>window<sp/>show<sp/>from<sp/>the<sp/>cache</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onPartActionUIShown.Add(<ref refid="class_u_i_marquee___p_a_w_1aaff26268c7c350c736c2ac3cd76413f1" kindref="member">OnPartActionUIShown</ref>);</highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onPartActionUIDismiss.Add(<ref refid="class_u_i_marquee___p_a_w_1a43ee381a257acef72a5b41030733d86a" kindref="member">OnPartActionUIDismiss</ref>);</highlight></codeline>
+<codeline lineno="32"><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base.Start();</highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_u_i_marquee___p_a_w_1a10d9f6eeae8c6e367d2214107ea04d63" kindref="member">OnDestroy</ref>()</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//Tidy<sp/>up</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(<ref refid="class_u_i_marquee___p_a_w_1afdc7a943967ee379440af738207e104a" kindref="member">fieldItem</ref><sp/>!=<sp/>null)</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>fieldItem.Field.OnValueModified<sp/>-=<sp/><ref refid="class_u_i_marquee_1a59e1a75d1412f7cbfa52e05adae2ab8d" kindref="member">Field_OnValueModified</ref>;</highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onPartActionUIShown.Remove(<ref refid="class_u_i_marquee___p_a_w_1aaff26268c7c350c736c2ac3cd76413f1" kindref="member">OnPartActionUIShown</ref>);</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>GameEvents.onPartActionUIDismiss.Remove(<ref refid="class_u_i_marquee___p_a_w_1a43ee381a257acef72a5b41030733d86a" kindref="member">OnPartActionUIDismiss</ref>);</highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>base.OnDestroy();</highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="49"><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_u_i_marquee___p_a_w_1aaff26268c7c350c736c2ac3cd76413f1" kindref="member">OnPartActionUIShown</ref>(<ref refid="class_u_i_part_action_window" kindref="compound">UIPartActionWindow</ref><sp/>window,<sp/><ref refid="class_part" kindref="compound">Part</ref><sp/>inpPart)</highlight></codeline>
+<codeline lineno="51"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//If<sp/>its<sp/>this<sp/>part<sp/>then<sp/>do<sp/>stuff</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(inpPart.<ref refid="class_part_1aeb09503100374cd511e4eb664e5b7b2f" kindref="member">persistentId</ref><sp/>==<sp/><ref refid="class_u_i_marquee___p_a_w_1afdc7a943967ee379440af738207e104a" kindref="member">fieldItem</ref>.<ref refid="class_u_i_part_action_item_1a5c0b5b914dfc49911004f3f723659fcc" kindref="member">Part</ref>.<ref refid="class_part_1aeb09503100374cd511e4eb664e5b7b2f" kindref="member">persistentId</ref>)</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Configure();</highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_u_i_marquee_1abc69a0f626ab5059fdedbd4d821b07bc" kindref="member">AutoStartMarquee</ref>();</highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_u_i_marquee___p_a_w_1a43ee381a257acef72a5b41030733d86a" kindref="member">OnPartActionUIDismiss</ref>(<ref refid="class_part" kindref="compound">Part</ref><sp/>inpPart)</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//If<sp/>its<sp/>this<sp/>part<sp/>then<sp/>do<sp/>stuff</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="64"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(inpPart.<ref refid="class_part_1aeb09503100374cd511e4eb664e5b7b2f" kindref="member">persistentId</ref><sp/>==<sp/><ref refid="class_u_i_marquee___p_a_w_1afdc7a943967ee379440af738207e104a" kindref="member">fieldItem</ref>.<ref refid="class_u_i_part_action_item_1a5c0b5b914dfc49911004f3f723659fcc" kindref="member">Part</ref>.<ref refid="class_part_1aeb09503100374cd511e4eb664e5b7b2f" kindref="member">persistentId</ref>)</highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>StopMarquee();</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="69"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/_UI5/Generic/Scripts/UIMarquee_PAW.cs"/>
+  </compounddef>
+</doxygen>

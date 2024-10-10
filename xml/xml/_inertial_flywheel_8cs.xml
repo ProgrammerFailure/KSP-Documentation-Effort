@@ -1,0 +1,186 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_inertial_flywheel_8cs" kind="file">
+    <compoundname>InertialFlywheel.cs</compoundname>
+    <innerclass refid="class_vehicle_physics_1_1_inertial_flywheel" prot="public">VehiclePhysics::InertialFlywheel</innerclass>
+    <innernamespace refid="namespace_vehicle_physics">VehiclePhysics</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>Vehicle<sp/>Physics<sp/>Pro:<sp/>advanced<sp/>vehicle<sp/>physics<sp/>kit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>©<sp/>2011-2019<sp/>Angel<sp/>Garcia<sp/>&quot;Edy&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>http://vehiclephysics.com<sp/>|<sp/>@VehiclePhysics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>EXPERIMENTAL<sp/>CODE</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//<sp/>Intended<sp/>to<sp/>test<sp/>the<sp/>simulation<sp/>against<sp/>different<sp/>scenarios<sp/>with<sp/>inertial<sp/>parts.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>This<sp/>block<sp/>will<sp/>be<sp/>merged<sp/>with<sp/>InertialDrive.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">VehiclePhysics</highlight></codeline>
+<codeline lineno="17"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight></codeline>
+<codeline lineno="19" refid="class_vehicle_physics_1_1_inertial_flywheel" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_vehicle_physics_1_1_inertial_flywheel" kindref="compound">InertialFlywheel</ref><sp/>:<sp/><ref refid="class_vehicle_physics_1_1_block" kindref="compound">Block</ref></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="21"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a5d91464b8d107e32eced3aef1db06c33" kindref="member">torque</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="22"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad53dfaf3000f39d44142f9f2552cce84" kindref="member">lockRatio</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af43c05e82a0c8b5e5dc88d33dfd0c3c2" kindref="member">inertia</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="24"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a634f41b7cff7c1f7e6dec4fef799ee54" kindref="member">maxRpm</ref><sp/>=<sp/>10.0f;</highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Numerical<sp/>damping<sp/>heps<sp/>preventing<sp/>resonances,<sp/>but<sp/>also<sp/>reduces<sp/>the<sp/>precision<sp/>of<sp/>the<sp/>values.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af7a385635e1ccdfa64b34dfc6bfc0303" kindref="member">damping</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="30"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Rate<sp/>for<sp/>integrating<sp/>the<sp/>viscous<sp/>couplings<sp/>in<sp/>Hz<sp/>(clutch,<sp/>LockRatio<sp/>and<sp/>TorqueConverter<sp/>modes).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>viscousLockedRatio<sp/>is<sp/>the<sp/>base<sp/>for<sp/>a<sp/>transition<sp/>from<sp/>viscous<sp/>rate<sp/>to<sp/>fully<sp/>locked<sp/>rate<sp/>(1.0f).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>actual<sp/>torque<sp/>that<sp/>exits<sp/>the<sp/>clutch<sp/>within<sp/>this<sp/>lock<sp/>range<sp/>depends<sp/>on<sp/>the<sp/>solver<sp/>rate.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad49daecea4135b15f134d4d91658235b" kindref="member">viscousCouplingRate</ref><sp/>=<sp/>100.0f;</highlight></codeline>
+<codeline lineno="35"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a61116f8f8d96bf28abb12820030d3287" kindref="member">viscousLockedRatio</ref><sp/>=<sp/>0.95f;</highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Exposed<sp/>internals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ae5f1899e273709798370628048233148" kindref="member">Tlock</ref><sp/>{<sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal">;<sp/></highlight><highlight class="keyword">private</highlight><highlight class="normal"><sp/>set;<sp/>}</highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Inertial<sp/>flywheel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"></highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>L<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>T;</highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Internals</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>m_viscousDt;</highlight></codeline>
+<codeline lineno="50"><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Connections</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="54"><highlight class="normal"><sp/><sp/><sp/><sp/>Connection<sp/>m_output;</highlight></codeline>
+<codeline lineno="55"><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ancestor<sp/>overrides</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">protected</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a741e087f02946894047e2e5c46d69555" kindref="member">Initialize</ref><sp/>()</highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_vehicle_physics_1_1_block_1a75ed8fbb133549e25660d635d5c8fda5" kindref="member">SetInputs</ref>(0);</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_vehicle_physics_1_1_block_1a151be2758f18bd119f5ea3fa7d098230" kindref="member">SetOutputs</ref>(1);</highlight></codeline>
+<codeline lineno="63"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="64"><highlight class="normal"></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"></highlight></codeline>
+<codeline lineno="66"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">bool</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a77983785062333bcdd981902357ad0b9" kindref="member">CheckConnections</ref><sp/>()</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_output<sp/>=<sp/><ref refid="class_vehicle_physics_1_1_block_1af147566900452cd08b49286188466e73" kindref="member">outputs</ref>[0];</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="70"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Output<sp/>is<sp/>required</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>m_output<sp/>!=<sp/>null;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="74"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad4fe09e44d50dce0a252464531d25465" kindref="member">PreStep</ref><sp/>()</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad53dfaf3000f39d44142f9f2552cce84" kindref="member">lockRatio</ref><sp/>=<sp/>Mathf.Clamp01(<ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad53dfaf3000f39d44142f9f2552cce84" kindref="member">lockRatio</ref>);</highlight></codeline>
+<codeline lineno="79"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af43c05e82a0c8b5e5dc88d33dfd0c3c2" kindref="member">inertia</ref><sp/>=<sp/>Mathf.Max(<ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af43c05e82a0c8b5e5dc88d33dfd0c3c2" kindref="member">inertia</ref>,<sp/><ref refid="class_vehicle_physics_1_1_solver_1a7ba331fca264a62f05f6c3fc7835a3a7" kindref="member">Solver.minInertia</ref>);</highlight></codeline>
+<codeline lineno="80"><highlight class="normal"></highlight></codeline>
+<codeline lineno="81"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_viscousDt<sp/>=<sp/>1.0f<sp/>/<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad49daecea4135b15f134d4d91658235b" kindref="member">viscousCouplingRate</ref>;</highlight></codeline>
+<codeline lineno="82"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84"><highlight class="normal"></highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ac32b03916bc62bd93a8a7c4b58a4b50e" kindref="member">GetState</ref><sp/>(ref<sp/><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">State</ref><sp/>S)</highlight></codeline>
+<codeline lineno="86"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="87"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>S.L<sp/>=<sp/>L;</highlight></codeline>
+<codeline lineno="88"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="89"><highlight class="normal"></highlight></codeline>
+<codeline lineno="90"><highlight class="normal"></highlight></codeline>
+<codeline lineno="91"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a3e6067560ab2a7f3a55fea0eb9c234f9" kindref="member">SetSubstepState</ref><sp/>(<ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">State</ref><sp/>S)</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>L<sp/>=<sp/>S.L;</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="95"><highlight class="normal"></highlight></codeline>
+<codeline lineno="96"><highlight class="normal"></highlight></codeline>
+<codeline lineno="97"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a3f95a1f1c71f0a413048f4cd70df07ec" kindref="member">ComputeStateUpstream</ref><sp/>()</highlight></codeline>
+<codeline lineno="98"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="99"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>There<sp/>are<sp/>no<sp/>inputs</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="100"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="101"><highlight class="normal"></highlight></codeline>
+<codeline lineno="102"><highlight class="normal"></highlight></codeline>
+<codeline lineno="103"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1aceff1d0149c2feb40d6561b09c00674a" kindref="member">EvaluateTorqueDownstream</ref><sp/>()</highlight></codeline>
+<codeline lineno="104"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>TO-DO:<sp/>Friction<sp/>torque</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="106"><highlight class="normal"></highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>Ltarget<sp/>=<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af43c05e82a0c8b5e5dc88d33dfd0c3c2" kindref="member">inertia</ref><sp/>*<sp/>Mathf.Abs(<ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a634f41b7cff7c1f7e6dec4fef799ee54" kindref="member">maxRpm</ref>)<sp/>*<sp/><ref refid="class_vehicle_physics_1_1_block_1af441691a4b2d4c34511abea1e94931f4" kindref="member">RpmToW</ref>;</highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>Tmax<sp/>=<sp/>(Ltarget<sp/>-<sp/>L)<sp/>/<sp/><ref refid="class_vehicle_physics_1_1_solver" kindref="compound">Solver</ref>.<ref refid="class_vehicle_physics_1_1_solver_1a93adbbe9578e77793d8f9d971e9cd06a" kindref="member">deltaTime</ref><sp/>-<sp/>m_output.<ref refid="class_vehicle_physics_1_1_block_1_1_connection_1a8af210934dd0f17388e4f906483a5c04" kindref="member">Tr</ref><sp/>*<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af7a385635e1ccdfa64b34dfc6bfc0303" kindref="member">damping</ref>;</highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>Tmin<sp/>=<sp/>(-Ltarget<sp/>-<sp/>L)<sp/>/<sp/>Solver.deltaTime<sp/>-<sp/>m_output.Tr<sp/>*<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af7a385635e1ccdfa64b34dfc6bfc0303" kindref="member">damping</ref>;</highlight></codeline>
+<codeline lineno="110"><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>Tflywheel<sp/>=<sp/>Mathf.Clamp(<ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a5d91464b8d107e32eced3aef1db06c33" kindref="member">torque</ref>,<sp/>Tmin,<sp/>Tmax);</highlight></codeline>
+<codeline lineno="112"><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Calculate<sp/>lock<sp/>torque.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Must<sp/>use<sp/>the<sp/>specific<sp/>viscous<sp/>coupling<sp/>rate.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Ideally,<sp/>lockRatio<sp/>=<sp/>1<sp/>should<sp/>use<sp/>Solver.deltaTime,<sp/>but<sp/>this<sp/>causes<sp/>either<sp/>a</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>discontinuity<sp/>(if<sp/>lockRatio<sp/>==<sp/>1.0f),<sp/>or<sp/>torques<sp/>that<sp/>are<sp/>sensitive<sp/>to<sp/>deltaTime</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>(Lerp<sp/>based<sp/>on<sp/>lockRatio).</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>The<sp/>solution<sp/>Lerp<sp/>+<sp/>InverseLerp<sp/>for<sp/>a<sp/>smooth<sp/>transition<sp/>in<sp/>the<sp/>latest<sp/>2-5%<sp/>range<sp/>seems</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="121"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>to<sp/>work<sp/>fine.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="122"><highlight class="normal"></highlight></codeline>
+<codeline lineno="123"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/>dt<sp/>=<sp/>Mathf.Max(<ref refid="class_vehicle_physics_1_1_solver_1a93adbbe9578e77793d8f9d971e9cd06a" kindref="member">Solver.deltaTime</ref>,<sp/>m_viscousDt);</highlight></codeline>
+<codeline lineno="124"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dt<sp/>=<sp/>lockRatio<sp/>&gt;=<sp/>1.0f?<sp/>dt<sp/>:<sp/>Mathf.Max(dt,<sp/>0.1f);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="125"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dt<sp/>=<sp/>Mathf.Lerp(dt,<sp/>Solver.deltaTime,<sp/>lockRatio);</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="126"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>dt<sp/>=<sp/>Mathf.Lerp(dt,<sp/><ref refid="class_vehicle_physics_1_1_solver_1a93adbbe9578e77793d8f9d971e9cd06a" kindref="member">Solver.deltaTime</ref>,<sp/>Mathf.InverseLerp(<ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a61116f8f8d96bf28abb12820030d3287" kindref="member">viscousLockedRatio</ref>,<sp/>1.0f,<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad53dfaf3000f39d44142f9f2552cce84" kindref="member">lockRatio</ref>));</highlight></codeline>
+<codeline lineno="127"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dt<sp/>=<sp/>Mathf.Lerp(dt,<sp/>Solver.deltaTime,<sp/>CommonTools.BiasedLerp(lockRatio,<sp/>0.000001f));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="128"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dt<sp/>=<sp/>Mathf.Lerp(dt,<sp/>Solver.deltaTime,<sp/>1.0f<sp/>-<sp/>CommonTools.BiasRaw(1.0f<sp/>-<sp/>lockRatio,<sp/>0.9f));</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="129"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>dt<sp/>=<sp/>Solver.deltaTime;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="130"><highlight class="normal"></highlight></codeline>
+<codeline lineno="131"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ae5f1899e273709798370628048233148" kindref="member">Tlock</ref><sp/>=<sp/>(1.0f<sp/>/<sp/>((<ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af43c05e82a0c8b5e5dc88d33dfd0c3c2" kindref="member">inertia</ref><sp/>+<sp/><ref refid="_discovery_info_8cs_1aa4534f4ef35a5b44e916abb50aa15070add7536794b63bf90eccfd37f9b147d7f" kindref="member">m_output.I</ref>)<sp/>*<sp/>dt))</highlight></codeline>
+<codeline lineno="132"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>*<sp/>(</highlight></codeline>
+<codeline lineno="133"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_output.<ref refid="class_vehicle_physics_1_1_block_1_1_connection_1a69296bca4d5f03f1bb350c8e5cda64b4" kindref="member">I</ref><sp/>*<sp/>(L<sp/>+<sp/>Tflywheel<sp/>*<sp/>dt)</highlight></codeline>
+<codeline lineno="134"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>-<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af43c05e82a0c8b5e5dc88d33dfd0c3c2" kindref="member">inertia</ref><sp/>*<sp/>(m_output.L<sp/>+<sp/>m_output.Tr<sp/>*<sp/>damping<sp/>*<sp/>dt)</highlight></codeline>
+<codeline lineno="135"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>);</highlight></codeline>
+<codeline lineno="136"><highlight class="normal"></highlight></codeline>
+<codeline lineno="137"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Apply<sp/>lock<sp/>torque<sp/>to<sp/>both<sp/>ends</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="138"><highlight class="normal"></highlight></codeline>
+<codeline lineno="139"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>T<sp/>=<sp/>Tflywheel<sp/>-<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ae5f1899e273709798370628048233148" kindref="member">Tlock</ref><sp/>*<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad53dfaf3000f39d44142f9f2552cce84" kindref="member">lockRatio</ref>;</highlight></codeline>
+<codeline lineno="140"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>m_output.outTd<sp/>=<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ae5f1899e273709798370628048233148" kindref="member">Tlock</ref><sp/>*<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ad53dfaf3000f39d44142f9f2552cce84" kindref="member">lockRatio</ref>;</highlight></codeline>
+<codeline lineno="141"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="142"><highlight class="normal"></highlight></codeline>
+<codeline lineno="143"><highlight class="normal"></highlight></codeline>
+<codeline lineno="144"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af433f8aaecd89cc7517e5062dc552f18" kindref="member">GetSubstepDerivative</ref><sp/>(ref<sp/><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Derivative</ref><sp/><ref refid="_discovery_info_8cs_1aa4534f4ef35a5b44e916abb50aa15070af623e75af30e62bbd73d6df5b50bb7b5" kindref="member">D</ref>)</highlight></codeline>
+<codeline lineno="145"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="146"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>D.T<sp/>=<sp/>T;</highlight></codeline>
+<codeline lineno="147"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="148"><highlight class="normal"></highlight></codeline>
+<codeline lineno="149"><highlight class="normal"></highlight></codeline>
+<codeline lineno="150"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">override</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1ac752e3cab60639c58dc03eae89132d06" kindref="member">SetState</ref><sp/>(<ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">State</ref><sp/>S)</highlight></codeline>
+<codeline lineno="151"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="152"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>L<sp/>=<sp/>S.L;</highlight></codeline>
+<codeline lineno="153"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="154"><highlight class="normal"></highlight></codeline>
+<codeline lineno="155"><highlight class="normal"></highlight></codeline>
+<codeline lineno="156"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Public<sp/>interface</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="157"><highlight class="normal"></highlight></codeline>
+<codeline lineno="158"><highlight class="normal"></highlight></codeline>
+<codeline lineno="159"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a034f8b383db71e7e4c6c9d19510fd927" kindref="member">Reset</ref><sp/>()</highlight></codeline>
+<codeline lineno="160"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="161"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>L<sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="162"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="163"><highlight class="normal"></highlight></codeline>
+<codeline lineno="164"><highlight class="normal"></highlight></codeline>
+<codeline lineno="165"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1a9410d86bf7071c4a151a586d335b702e" kindref="member">rpm</ref></highlight></codeline>
+<codeline lineno="166"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="167"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">get</highlight><highlight class="normal"><sp/>{<sp/></highlight><highlight class="keywordflow">return</highlight><highlight class="normal"><sp/>(L<sp/>/<sp/><ref refid="class_vehicle_physics_1_1_inertial_flywheel_1af43c05e82a0c8b5e5dc88d33dfd0c3c2" kindref="member">inertia</ref>)<sp/>*<sp/><ref refid="class_vehicle_physics_1_1_block_1ace86b8d7ce1544de2039213eee19ed13" kindref="member">WToRpm</ref><sp/>;<sp/>}</highlight></codeline>
+<codeline lineno="168"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="169"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="170"><highlight class="normal"></highlight></codeline>
+<codeline lineno="171"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Blocks/Experimental/InertialFlywheel.cs"/>
+  </compounddef>
+</doxygen>

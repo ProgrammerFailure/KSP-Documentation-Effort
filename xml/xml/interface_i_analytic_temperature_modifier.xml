@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="interface_i_analytic_temperature_modifier" kind="interface" prot="public">
+    <compoundname>IAnalyticTemperatureModifier</compoundname>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="interface_i_analytic_temperature_modifier_1ad2c94401a4b6430a5f57de846124409f" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double IAnalyticTemperatureModifier.GetInternalTemperature</definition>
+        <argsstring>(out bool lerp)</argsstring>
+        <name>GetInternalTemperature</name>
+        <param>
+          <type>out bool</type>
+          <declname>lerp</declname>
+        </param>
+        <briefdescription>
+<para>Analytic will set the part&apos;s internal temperature to this (guaranteed to be called after SetAnalyticTemperature). </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lerp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if false temp is set immediately, else normal lerp is used.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" line="34" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_i_analytic_temperature_modifier_1ae04d478e51aa582e4df091007e06b75e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double IAnalyticTemperatureModifier.GetSkinTemperature</definition>
+        <argsstring>(out bool lerp)</argsstring>
+        <name>GetSkinTemperature</name>
+        <param>
+          <type>out bool</type>
+          <declname>lerp</declname>
+        </param>
+        <briefdescription>
+<para>Analytic will set the part&apos;s skin temperature to this (guaranteed to be called after SetAnalyticTemperature). </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>lerp</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>if false temp is set immediately, else normal lerp is used.</para></parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" line="27" column="1"/>
+      </memberdef>
+      <memberdef kind="function" id="interface_i_analytic_temperature_modifier_1aa85ca29c4780ef543276b56c46765572" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void IAnalyticTemperatureModifier.SetAnalyticTemperature</definition>
+        <argsstring>(FlightIntegrator fi, double analyticTemp, double toBeInternal, double toBeSkin)</argsstring>
+        <name>SetAnalyticTemperature</name>
+        <param>
+          <type><ref refid="class_flight_integrator" kindref="compound">FlightIntegrator</ref></type>
+          <declname>fi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>analyticTemp</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>toBeInternal</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>toBeSkin</declname>
+        </param>
+        <briefdescription>
+<para>Analytic will run this once per part per tick, telling the part what the analytic temperature is and what it plans to set the internal and skin temperatures to. It is up to the implementor of this method to be prepared for the following Get calls and do whatever resource subtraction is involved in procuring for the part temperatures other than the toBe temperatures. </para>        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>fi</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>The <ref refid="class_flight_integrator" kindref="compound">FlightIntegrator</ref> for the vessel</para></parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>analyticTemp</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>toBeInternal</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>toBeSkin</parametername>
+</parameternamelist>
+<parameterdescription>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" line="20" column="1"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para>This interface is used to modify the final temps applied to a part&apos;s skin and internals. The idea is that there is at most one per part. Analytic will use the Set() to tell the module what temps it plans to set, and what the calculated analytic temp was. Analytic will then set the part&apos;s skin and internal temp based on the Gets. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" line="8" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Scripts/Simulation Scripts/AnalyticThermoInterfaces.cs" bodystart="7" bodyend="35"/>
+    <listofallmembers>
+      <member refid="interface_i_analytic_temperature_modifier_1ad2c94401a4b6430a5f57de846124409f" prot="public" virt="non-virtual"><scope>IAnalyticTemperatureModifier</scope><name>GetInternalTemperature</name></member>
+      <member refid="interface_i_analytic_temperature_modifier_1ae04d478e51aa582e4df091007e06b75e" prot="public" virt="non-virtual"><scope>IAnalyticTemperatureModifier</scope><name>GetSkinTemperature</name></member>
+      <member refid="interface_i_analytic_temperature_modifier_1aa85ca29c4780ef543276b56c46765572" prot="public" virt="non-virtual"><scope>IAnalyticTemperatureModifier</scope><name>SetAnalyticTemperature</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

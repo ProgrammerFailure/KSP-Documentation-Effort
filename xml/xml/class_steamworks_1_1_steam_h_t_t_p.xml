@@ -1,0 +1,593 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_steamworks_1_1_steam_h_t_t_p" kind="class" prot="public">
+    <compoundname>Steamworks::SteamHTTP</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a24f153907e7b4364a4950769466f6d1d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_h_t_t_p_cookie_container_handle" kindref="compound">HTTPCookieContainerHandle</ref></type>
+        <definition>static HTTPCookieContainerHandle Steamworks.SteamHTTP.CreateCookieContainer</definition>
+        <argsstring>(bool bAllowResponsesToModify)</argsstring>
+        <name>CreateCookieContainer</name>
+        <param>
+          <type>bool</type>
+          <declname>bAllowResponsesToModify</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Creates a cookie container handle which you must later free with <ref refid="class_steamworks_1_1_steam_h_t_t_p_1acb9bc135cef2043ba9ad94819f2b26f9" kindref="member">ReleaseCookieContainer()</ref>. If bAllowResponsesToModify=true</para><para>than any response to your requests using this cookie container may add new cookies which may be transmitted with</para><para>future requests. If bAllowResponsesToModify=false than only cookies you explicitly set will be sent. This API is just for</para><para>during process lifetime, after steam restarts no cookies are persisted and you have no way to access the cookie container across</para><para>repeat executions of your process.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="202" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="202" bodyend="205"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1ad47cabf841a9a11547e44cca77184b42" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+        <definition>static HTTPRequestHandle Steamworks.SteamHTTP.CreateHTTPRequest</definition>
+        <argsstring>(EHTTPMethod eHTTPRequestMethod, string pchAbsoluteURL)</argsstring>
+        <name>CreateHTTPRequest</name>
+        <param>
+          <type><ref refid="namespace_steamworks_1a62fb45c195a62e00a4512f0a83c552e1" kindref="member">EHTTPMethod</ref></type>
+          <declname>eHTTPRequestMethod</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchAbsoluteURL</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes a new HTTP request, returning a handle to use in further operations on it. Requires</para><para>the method (GET or POST) and the absolute URL for the request. Both http and https are supported,</para><para>so this string must start with <ulink url="http://">http://</ulink> or <ulink url="https://">https://</ulink> and should look like <ulink url="http://store.steampowered.com/app/250/">http://store.steampowered.com/app/250/</ulink></para><para>or such.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="21" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="21" bodyend="26"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1aedef705dc5ee855036aab797ca38687a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.DeferHTTPRequest</definition>
+        <argsstring>(HTTPRequestHandle hRequest)</argsstring>
+        <name>DeferHTTPRequest</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Defers a request you have sent, the actual HTTP client code may have many requests queued, and this will move</para><para>the specified request to the tail of the queue. Returns false on invalid handle, or if the request is not yet sent.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="97" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="97" bodyend="100"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1ae547a575f3e83dea687e1dc2c29334e2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.GetHTTPDownloadProgressPct</definition>
+        <argsstring>(HTTPRequestHandle hRequest, out float pflPercentOut)</argsstring>
+        <name>GetHTTPDownloadProgressPct</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>out float</type>
+          <declname>pflPercentOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets progress on downloading the body for the request. This will be zero unless a response header has already been</para><para>received which included a content-length field. For responses that contain no content-length it will report</para><para>zero for the duration of the request as the size is unknown until the connection closes.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="178" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="178" bodyend="181"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a922ad14fe1c052e100153b3a6a504303" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.GetHTTPRequestWasTimedOut</definition>
+        <argsstring>(HTTPRequestHandle hRequest, out bool pbWasTimedOut)</argsstring>
+        <name>GetHTTPRequestWasTimedOut</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbWasTimedOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Check if the reason the request failed was because we timed it out (rather than some harder failure)</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="265" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="265" bodyend="268"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1acc04a1d44b89263524f987574be7030e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.GetHTTPResponseBodyData</definition>
+        <argsstring>(HTTPRequestHandle hRequest, byte[] pBodyDataBuffer, uint unBufferSize)</argsstring>
+        <name>GetHTTPResponseBodyData</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>pBodyDataBuffer</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unBufferSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the body data from a HTTP response given a handle from <ref refid="struct_steamworks_1_1_h_t_t_p_request_completed__t" kindref="compound">HTTPRequestCompleted_t</ref>, will return false if the</para><para>handle is invalid or is to a streaming response, or if the provided buffer is not the correct size. Use BGetHTTPResponseBodySize first to find out</para><para>the correct buffer size to use.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="149" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="149" bodyend="152"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a29acd708e5887fd9a2d42226fea5c899" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.GetHTTPResponseBodySize</definition>
+        <argsstring>(HTTPRequestHandle hRequest, out uint unBodySize)</argsstring>
+        <name>GetHTTPResponseBodySize</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>out uint</type>
+          <declname>unBodySize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the size of the body data from a HTTP response given a handle from <ref refid="struct_steamworks_1_1_h_t_t_p_request_completed__t" kindref="compound">HTTPRequestCompleted_t</ref>, will return false if the</para><para>handle is invalid.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="139" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="139" bodyend="142"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a9af5a5970ae83df850322a95d303d82f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.GetHTTPResponseHeaderSize</definition>
+        <argsstring>(HTTPRequestHandle hRequest, string pchHeaderName, out uint unResponseHeaderSize)</argsstring>
+        <name>GetHTTPResponseHeaderSize</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchHeaderName</declname>
+        </param>
+        <param>
+          <type>out uint</type>
+          <declname>unResponseHeaderSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Checks if a response header is present in a HTTP response given a handle from <ref refid="struct_steamworks_1_1_h_t_t_p_request_completed__t" kindref="compound">HTTPRequestCompleted_t</ref>, also</para><para>returns the size of the header value if present so the caller and allocate a correctly sized buffer for</para><para>GetHTTPResponseHeaderValue.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="116" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="116" bodyend="121"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a34dff4c026c4dbeea62795575e287eca" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.GetHTTPResponseHeaderValue</definition>
+        <argsstring>(HTTPRequestHandle hRequest, string pchHeaderName, byte[] pHeaderValueBuffer, uint unBufferSize)</argsstring>
+        <name>GetHTTPResponseHeaderValue</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchHeaderName</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>pHeaderValueBuffer</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unBufferSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets header values from a HTTP response given a handle from <ref refid="struct_steamworks_1_1_h_t_t_p_request_completed__t" kindref="compound">HTTPRequestCompleted_t</ref>, will return false if the</para><para>header is not present or if your buffer is too small to contain it&apos;s value. You should first call</para><para>BGetHTTPResponseHeaderSize to check for the presence of the header and to find out the size buffer needed.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="128" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="128" bodyend="133"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a52289546d246437d7231e340e9aa5833" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.GetHTTPStreamingResponseBodyData</definition>
+        <argsstring>(HTTPRequestHandle hRequest, uint cOffset, byte[] pBodyDataBuffer, uint unBufferSize)</argsstring>
+        <name>GetHTTPStreamingResponseBodyData</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>cOffset</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>pBodyDataBuffer</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unBufferSize</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the body data from a streaming HTTP response given a handle from <ref refid="struct_steamworks_1_1_h_t_t_p_request_data_received__t" kindref="compound">HTTPRequestDataReceived_t</ref>. Will return false if the</para><para>handle is invalid or is to a non-streaming response (meaning it wasn&apos;t sent with SendHTTPRequestAndStreamResponse), or if the buffer size and offset</para><para>do not match the size and offset sent in <ref refid="struct_steamworks_1_1_h_t_t_p_request_data_received__t" kindref="compound">HTTPRequestDataReceived_t</ref>.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="159" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="159" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1aecae366926e4200320d25ed38dc6058e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.PrioritizeHTTPRequest</definition>
+        <argsstring>(HTTPRequestHandle hRequest)</argsstring>
+        <name>PrioritizeHTTPRequest</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Prioritizes a request you have sent, the actual HTTP client code may have many requests queued, and this will move</para><para>the specified request to the head of the queue. Returns false on invalid handle, or if the request is not yet sent.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="106" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="106" bodyend="109"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1acb9bc135cef2043ba9ad94819f2b26f9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.ReleaseCookieContainer</definition>
+        <argsstring>(HTTPCookieContainerHandle hCookieContainer)</argsstring>
+        <name>ReleaseCookieContainer</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_cookie_container_handle" kindref="compound">HTTPCookieContainerHandle</ref></type>
+          <declname>hCookieContainer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Release a cookie container you are finished using, freeing it&apos;s memory</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="210" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="210" bodyend="213"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1aa85c5a9be2e2cfa95aa1c0a4804db000" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.ReleaseHTTPRequest</definition>
+        <argsstring>(HTTPRequestHandle hRequest)</argsstring>
+        <name>ReleaseHTTPRequest</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Releases an HTTP response handle, should always be called to free resources after receiving a <ref refid="struct_steamworks_1_1_h_t_t_p_request_completed__t" kindref="compound">HTTPRequestCompleted_t</ref></para><para>callback and finishing using the response.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="168" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="168" bodyend="171"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1ada18059efcb453d71a31a1c9a1f0eb12" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SendHTTPRequest</definition>
+        <argsstring>(HTTPRequestHandle hRequest, out SteamAPICall_t pCallHandle)</argsstring>
+        <name>SendHTTPRequest</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+          <declname>pCallHandle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sends the HTTP request, will return false on a bad handle, otherwise use SteamCallHandle to wait on</para><para>asynchronous response via callback.</para><para>Note: If the user is in offline mode in Steam, then this will add a only-if-cached cache-control</para><para>header and only do a local cache lookup rather than sending any actual remote request.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="78" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="78" bodyend="81"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1ad88458b82a2a7067c752ccd8960e1eb2" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SendHTTPRequestAndStreamResponse</definition>
+        <argsstring>(HTTPRequestHandle hRequest, out SteamAPICall_t pCallHandle)</argsstring>
+        <name>SendHTTPRequestAndStreamResponse</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+          <declname>pCallHandle</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sends the HTTP request, will return false on a bad handle, otherwise use SteamCallHandle to wait on</para><para>asynchronous response via callback for completion, and listen for <ref refid="struct_steamworks_1_1_h_t_t_p_request_headers_received__t" kindref="compound">HTTPRequestHeadersReceived_t</ref> and</para><para><ref refid="struct_steamworks_1_1_h_t_t_p_request_data_received__t" kindref="compound">HTTPRequestDataReceived_t</ref> callbacks while streaming.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="88" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="88" bodyend="91"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1ae19bab8f8725949a2b8258b05aa34c95" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetCookie</definition>
+        <argsstring>(HTTPCookieContainerHandle hCookieContainer, string pchHost, string pchUrl, string pchCookie)</argsstring>
+        <name>SetCookie</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_cookie_container_handle" kindref="compound">HTTPCookieContainerHandle</ref></type>
+          <declname>hCookieContainer</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchHost</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchUrl</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchCookie</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Adds a cookie to the specified cookie container that will be used with future requests.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="218" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="218" bodyend="225"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a7fd31ae2239c6498ee27869202e1e105" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestAbsoluteTimeoutMS</definition>
+        <argsstring>(HTTPRequestHandle hRequest, uint unMilliseconds)</argsstring>
+        <name>SetHTTPRequestAbsoluteTimeoutMS</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unMilliseconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set an absolute timeout on the HTTP request, this is just a total time timeout different than the network activity timeout</para><para>which can bump everytime we get more data</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="257" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="257" bodyend="260"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a7b817801384c82994f0b08fbcff654fb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestContextValue</definition>
+        <argsstring>(HTTPRequestHandle hRequest, ulong ulContextValue)</argsstring>
+        <name>SetHTTPRequestContextValue</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>ulong</type>
+          <declname>ulContextValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set a context value for the request, which will be returned in the <ref refid="struct_steamworks_1_1_h_t_t_p_request_completed__t" kindref="compound">HTTPRequestCompleted_t</ref> callback after</para><para>sending the request. This is just so the caller can easily keep track of which callbacks go with which request data.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="32" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="32" bodyend="35"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a1fa05372d558633bbe2a20a6f5e431ac" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestCookieContainer</definition>
+        <argsstring>(HTTPRequestHandle hRequest, HTTPCookieContainerHandle hCookieContainer)</argsstring>
+        <name>SetHTTPRequestCookieContainer</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_cookie_container_handle" kindref="compound">HTTPCookieContainerHandle</ref></type>
+          <declname>hCookieContainer</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the cookie container to use for a HTTP request</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="230" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="230" bodyend="233"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a7688b870ebd2dcf4c833a7e8ac31b22b" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestGetOrPostParameter</definition>
+        <argsstring>(HTTPRequestHandle hRequest, string pchParamName, string pchParamValue)</argsstring>
+        <name>SetHTTPRequestGetOrPostParameter</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchParamName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchParamValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set a GET or POST parameter value on the request, which is set will depend on the EHTTPMethod specified</para><para>when creating the request. Must be called prior to sending the request. Will return false if the</para><para>handle is invalid or the request is already sent.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="64" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="64" bodyend="70"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a914d9a69b5cbc73c579bf4bdab7a57a9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestHeaderValue</definition>
+        <argsstring>(HTTPRequestHandle hRequest, string pchHeaderName, string pchHeaderValue)</argsstring>
+        <name>SetHTTPRequestHeaderValue</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchHeaderName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchHeaderValue</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set a request header value for the request, must be called prior to sending the request. Will</para><para>return false if the handle is invalid or the request is already sent.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="51" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="51" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1a7f08290725d26b894a9667c8f15a11ba" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestNetworkActivityTimeout</definition>
+        <argsstring>(HTTPRequestHandle hRequest, uint unTimeoutSeconds)</argsstring>
+        <name>SetHTTPRequestNetworkActivityTimeout</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unTimeoutSeconds</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set a timeout in seconds for the HTTP request, must be called prior to sending the request. Default</para><para>timeout is 60 seconds if you don&apos;t call this. Returns false if the handle is invalid, or the request</para><para>has already been sent.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="42" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="42" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1ab6e092a846bb3c22c76107f671caa546" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestRawPostBody</definition>
+        <argsstring>(HTTPRequestHandle hRequest, string pchContentType, byte[] pubBody, uint unBodyLen)</argsstring>
+        <name>SetHTTPRequestRawPostBody</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchContentType</declname>
+        </param>
+        <param>
+          <type>byte[]</type>
+          <declname>pubBody</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unBodyLen</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sets the body for an HTTP Post request. Will fail and return false on a GET request, and will fail if POST params</para><para>have already been set for the request. Setting this raw body makes it the only contents for the post, the pchContentType</para><para>parameter will set the content-type header for the request so the server may know how to interpret the body.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="188" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="188" bodyend="193"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1acd8e20f996d64eb3f6794f3897c13ee0" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestRequiresVerifiedCertificate</definition>
+        <argsstring>(HTTPRequestHandle hRequest, bool bRequireVerifiedCertificate)</argsstring>
+        <name>SetHTTPRequestRequiresVerifiedCertificate</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>bRequireVerifiedCertificate</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set that https request should require verified SSL certificate via machines certificate trust store</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="248" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="248" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_h_t_t_p_1ae85df79168d4e0a26c70c48efd7137c1" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamHTTP.SetHTTPRequestUserAgentInfo</definition>
+        <argsstring>(HTTPRequestHandle hRequest, string pchUserAgentInfo)</argsstring>
+        <name>SetHTTPRequestUserAgentInfo</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_h_t_t_p_request_handle" kindref="compound">HTTPRequestHandle</ref></type>
+          <declname>hRequest</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchUserAgentInfo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set the extra user agent info for a request, this doesn&apos;t clobber the normal user agent, it just adds the extra info on the end</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="238" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="238" bodyend="243"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" line="14" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamhttp.cs" bodystart="14" bodyend="269"/>
+    <listofallmembers>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a24f153907e7b4364a4950769466f6d1d" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>CreateCookieContainer</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1ad47cabf841a9a11547e44cca77184b42" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>CreateHTTPRequest</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1aedef705dc5ee855036aab797ca38687a" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>DeferHTTPRequest</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1ae547a575f3e83dea687e1dc2c29334e2" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>GetHTTPDownloadProgressPct</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a922ad14fe1c052e100153b3a6a504303" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>GetHTTPRequestWasTimedOut</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1acc04a1d44b89263524f987574be7030e" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>GetHTTPResponseBodyData</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a29acd708e5887fd9a2d42226fea5c899" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>GetHTTPResponseBodySize</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a9af5a5970ae83df850322a95d303d82f" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>GetHTTPResponseHeaderSize</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a34dff4c026c4dbeea62795575e287eca" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>GetHTTPResponseHeaderValue</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a52289546d246437d7231e340e9aa5833" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>GetHTTPStreamingResponseBodyData</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1aecae366926e4200320d25ed38dc6058e" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>PrioritizeHTTPRequest</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1acb9bc135cef2043ba9ad94819f2b26f9" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>ReleaseCookieContainer</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1aa85c5a9be2e2cfa95aa1c0a4804db000" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>ReleaseHTTPRequest</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1ada18059efcb453d71a31a1c9a1f0eb12" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SendHTTPRequest</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1ad88458b82a2a7067c752ccd8960e1eb2" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SendHTTPRequestAndStreamResponse</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1ae19bab8f8725949a2b8258b05aa34c95" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetCookie</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a7fd31ae2239c6498ee27869202e1e105" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestAbsoluteTimeoutMS</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a7b817801384c82994f0b08fbcff654fb" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestContextValue</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a1fa05372d558633bbe2a20a6f5e431ac" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestCookieContainer</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a7688b870ebd2dcf4c833a7e8ac31b22b" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestGetOrPostParameter</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a914d9a69b5cbc73c579bf4bdab7a57a9" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestHeaderValue</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1a7f08290725d26b894a9667c8f15a11ba" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestNetworkActivityTimeout</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1ab6e092a846bb3c22c76107f671caa546" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestRawPostBody</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1acd8e20f996d64eb3f6794f3897c13ee0" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestRequiresVerifiedCertificate</name></member>
+      <member refid="class_steamworks_1_1_steam_h_t_t_p_1ae85df79168d4e0a26c70c48efd7137c1" prot="public" virt="non-virtual"><scope>Steamworks::SteamHTTP</scope><name>SetHTTPRequestUserAgentInfo</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

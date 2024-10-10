@@ -1,0 +1,973 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_steamworks_1_1_steam_user_stats" kind="class" prot="public">
+    <compoundname>Steamworks::SteamUserStats</compoundname>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a9090c7a8d8cf00277ba1f319ab720cae" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.AttachLeaderboardUGC</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard, UGCHandle_t hUGC)</argsstring>
+        <name>AttachLeaderboardUGC</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_u_g_c_handle__t" kindref="compound">UGCHandle_t</ref></type>
+          <declname>hUGC</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Attaches a piece of user generated content the user&apos;s entry on a leaderboard.</para><para>hContent is a handle to a piece of user generated content that was shared using <ref refid="namespace_k_s_p_1_1_i_o_1a5e42d3bc6d310d87b608f7104611b840" kindref="member">ISteamUserRemoteStorage::FileShare()</ref>.</para><para>This call is asynchronous, with the result returned in <ref refid="struct_steamworks_1_1_leaderboard_u_g_c_set__t" kindref="compound">LeaderboardUGCSet_t</ref>.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="339" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="339" bodyend="342"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1ab14e508f454df122a96991e4976b71b3" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.ClearAchievement</definition>
+        <argsstring>(string pchName)</argsstring>
+        <name>ClearAchievement</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="81" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="81" bodyend="86"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1aa1b2aacda6b4a07a9a68753b7378553a" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.DownloadLeaderboardEntries</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard, ELeaderboardDataRequest eLeaderboardDataRequest, int nRangeStart, int nRangeEnd)</argsstring>
+        <name>DownloadLeaderboardEntries</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_steamworks_1a8c5b40b8ae447af5417b756a74d18915" kindref="member">ELeaderboardDataRequest</ref></type>
+          <declname>eLeaderboardDataRequest</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nRangeStart</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nRangeEnd</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Asks the Steam back-end for a set of rows in the leaderboard.</para><para>This call is asynchronous, with the result returned in <ref refid="struct_steamworks_1_1_leaderboard_scores_downloaded__t" kindref="compound">LeaderboardScoresDownloaded_t</ref></para><para><ref refid="struct_steamworks_1_1_leaderboard_scores_downloaded__t" kindref="compound">LeaderboardScoresDownloaded_t</ref> will contain a handle to pull the results from GetDownloadedLeaderboardEntries() (below)</para><para>You can ask for more entries than exist, and it will return as many as do exist.</para><para>k_ELeaderboardDataRequestGlobal requests rows in the leaderboard from the full table, with nRangeStart &amp; nRangeEnd in the range [1, TotalEntries]</para><para>k_ELeaderboardDataRequestGlobalAroundUser requests rows around the current user, nRangeStart being negate</para><para>e.g. DownloadLeaderboardEntries( hLeaderboard, k_ELeaderboardDataRequestGlobalAroundUser, -3, 3 ) will return 7 rows, 3 before the user, 3 after</para><para>k_ELeaderboardDataRequestFriends requests all the rows for friends of the current user</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="287" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="287" bodyend="290"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a9753a85c6ce5ff2443f6aa0dd127cc88" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.DownloadLeaderboardEntriesForUsers</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard, CSteamID[] prgUsers, int cUsers)</argsstring>
+        <name>DownloadLeaderboardEntriesForUsers</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_c_steam_i_d" kindref="compound">CSteamID</ref>[]</type>
+          <declname>prgUsers</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cUsers</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>as above, but downloads leaderboard entries for an arbitrary set of users - ELeaderboardDataRequest is k_ELeaderboardDataRequestUsers</para><para>if a user doesn&apos;t have a leaderboard entry, they won&apos;t be included in the result</para><para>a max of 100 users can be downloaded at a time, with only one outstanding call at a time</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="297" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="297" bodyend="300"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a45c1ae1a2b26bcb84f37fae70c964bf4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.FindLeaderboard</definition>
+        <argsstring>(string pchLeaderboardName)</argsstring>
+        <name>FindLeaderboard</name>
+        <param>
+          <type>string</type>
+          <declname>pchLeaderboardName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>as above, but won&apos;t create the leaderboard if it&apos;s not found</para><para>This call is asynchronous, with the result returned in <ref refid="struct_steamworks_1_1_leaderboard_find_result__t" kindref="compound">LeaderboardFindResult_t</ref></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="238" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="238" bodyend="243"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a13931681533228fb625ac8ec7119b864" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.FindOrCreateLeaderboard</definition>
+        <argsstring>(string pchLeaderboardName, ELeaderboardSortMethod eLeaderboardSortMethod, ELeaderboardDisplayType eLeaderboardDisplayType)</argsstring>
+        <name>FindOrCreateLeaderboard</name>
+        <param>
+          <type>string</type>
+          <declname>pchLeaderboardName</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_steamworks_1a4ac25dad5d86c657715ea4336237eedd" kindref="member">ELeaderboardSortMethod</ref></type>
+          <declname>eLeaderboardSortMethod</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_steamworks_1ad04bd3b65ba8cd6b36508b6aa0f2bc83" kindref="member">ELeaderboardDisplayType</ref></type>
+          <declname>eLeaderboardDisplayType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Leaderboard functions</para><para>asks the Steam back-end for a leaderboard by name, and will create it if it&apos;s not yet</para><para>This call is asynchronous, with the result returned in <ref refid="struct_steamworks_1_1_leaderboard_find_result__t" kindref="compound">LeaderboardFindResult_t</ref></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="227" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="227" bodyend="232"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a7336ac54029aadd3069a7e6303235617" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetAchievement</definition>
+        <argsstring>(string pchName, out bool pbAchieved)</argsstring>
+        <name>GetAchievement</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbAchieved</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Achievement flag accessors</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="67" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="67" bodyend="72"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a9c04de3412f4192a88c471b03357aac9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetAchievementAchievedPercent</definition>
+        <argsstring>(string pchName, out float pflPercent)</argsstring>
+        <name>GetAchievementAchievedPercent</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out float</type>
+          <declname>pflPercent</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns the percentage of users who have achieved the specified achievement.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="394" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="394" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a6e93860a28eca9d5073b7413a1871ef6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetAchievementAndUnlockTime</definition>
+        <argsstring>(string pchName, out bool pbAchieved, out uint punUnlockTime)</argsstring>
+        <name>GetAchievementAndUnlockTime</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbAchieved</declname>
+        </param>
+        <param>
+          <type>out uint</type>
+          <declname>punUnlockTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the achievement status, and the time it was unlocked if unlocked.</para><para>If the return value is true, but the unlock time is zero, that means it was unlocked before Steam</para><para>began tracking achievement unlock times (December 2009). Time is seconds since January 1, 1970.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="93" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="93" bodyend="98"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1aa7acf1b77315857c07af8b734c062ed7" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Steamworks.SteamUserStats.GetAchievementDisplayAttribute</definition>
+        <argsstring>(string pchName, string pchKey)</argsstring>
+        <name>GetAchievementDisplayAttribute</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchKey</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get general attributes for an achievement. Accepts the following keys:</para><para>- &quot;name&quot; and &quot;desc&quot; for retrieving the localized achievement name and description (returned in UTF8)</para><para>- &quot;hidden&quot; for retrieving if an achievement is hidden (returns &quot;0&quot; when not hidden, &quot;1&quot; when hidden)</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="132" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="132" bodyend="138"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1ac5f36f5e92ffc91541e7a39ef35a7752" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Steamworks.SteamUserStats.GetAchievementIcon</definition>
+        <argsstring>(string pchName)</argsstring>
+        <name>GetAchievementIcon</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Achievement / GroupAchievement metadata</para><para>Gets the icon of the achievement, which is a handle to be used in ISteamUtils::GetImageRGBA(), or 0 if none set.</para><para>A return value of 0 may indicate we are still fetching data, and you can wait for the <ref refid="struct_steamworks_1_1_user_achievement_icon_fetched__t" kindref="compound">UserAchievementIconFetched_t</ref> callback</para><para>which will notify you when the bits are ready. If the callback still returns zero, then there is no image set for the</para><para>specified achievement.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="120" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="120" bodyend="125"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a4d01517046635f49019e31ab39052cdb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Steamworks.SteamUserStats.GetAchievementName</definition>
+        <argsstring>(uint iAchievement)</argsstring>
+        <name>GetAchievementName</name>
+        <param>
+          <type>uint</type>
+          <declname>iAchievement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get achievement name iAchievement in [0,GetNumAchievements)</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="163" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="163" bodyend="166"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a41ffd4f29293e7b6080e9b4f9ea24632" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetDownloadedLeaderboardEntry</definition>
+        <argsstring>(SteamLeaderboardEntries_t hSteamLeaderboardEntries, int index, out LeaderboardEntry_t pLeaderboardEntry, int[] pDetails, int cDetailsMax)</argsstring>
+        <name>GetDownloadedLeaderboardEntry</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard_entries__t" kindref="compound">SteamLeaderboardEntries_t</ref></type>
+          <declname>hSteamLeaderboardEntries</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>index</declname>
+        </param>
+        <param>
+          <type>out <ref refid="struct_steamworks_1_1_leaderboard_entry__t" kindref="compound">LeaderboardEntry_t</ref></type>
+          <declname>pLeaderboardEntry</declname>
+        </param>
+        <param>
+          <type>int[]</type>
+          <declname>pDetails</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cDetailsMax</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Returns data about a single leaderboard entry</para><para>use a for loop from 0 to <ref refid="struct_steamworks_1_1_leaderboard_scores_downloaded__t_1a1f6041bcd4db28e47fcdf6427b0da9a6" kindref="member">LeaderboardScoresDownloaded_t::m_cEntryCount</ref> to get all the downloaded entries</para><para>e.g.</para><para>void OnLeaderboardScoresDownloaded( LeaderboardScoresDownloaded_t *pLeaderboardScoresDownloaded )</para><para>{</para><para>for ( int index = 0; index &lt; pLeaderboardScoresDownloaded-&gt;m_cEntryCount; index++ )</para><para>{</para><para><ref refid="struct_steamworks_1_1_leaderboard_entry__t" kindref="compound">LeaderboardEntry_t</ref> leaderboardEntry;</para><para>int32 details[3]; // we know this is how many we&apos;ve stored previously</para><para>GetDownloadedLeaderboardEntry( pLeaderboardScoresDownloaded-&gt;m_hSteamLeaderboardEntries, index, &amp;leaderboardEntry, details, 3 );</para><para>assert( leaderboardEntry.m_cDetails == 3 );</para><para>...</para><para>}</para><para>once you&apos;ve accessed all the entries, the data will be free&apos;d, and the <ref refid="struct_steamworks_1_1_steam_leaderboard_entries__t" kindref="compound">SteamLeaderboardEntries_t</ref> handle will become invalid</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="318" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="318" bodyend="321"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1ab4afdc13744de1a1d460dfea8ae93a8e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetGlobalStat</definition>
+        <argsstring>(string pchStatName, out long pData)</argsstring>
+        <name>GetGlobalStat</name>
+        <param>
+          <type>string</type>
+          <declname>pchStatName</declname>
+        </param>
+        <param>
+          <type>out long</type>
+          <declname>pData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets the lifetime totals for an aggregated stat</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="415" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="415" bodyend="420"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1ad9d8626cfdd04c6ee2b92f7fc1ab4f70" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetGlobalStat</definition>
+        <argsstring>(string pchStatName, out double pData)</argsstring>
+        <name>GetGlobalStat</name>
+        <param>
+          <type>string</type>
+          <declname>pchStatName</declname>
+        </param>
+        <param>
+          <type>out double</type>
+          <declname>pData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="422" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="422" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a3742b40c202a87374626f2a5fd172670" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Steamworks.SteamUserStats.GetGlobalStatHistory</definition>
+        <argsstring>(string pchStatName, long[] pData, uint cubData)</argsstring>
+        <name>GetGlobalStatHistory</name>
+        <param>
+          <type>string</type>
+          <declname>pchStatName</declname>
+        </param>
+        <param>
+          <type>long[]</type>
+          <declname>pData</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>cubData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Gets history for an aggregated stat. pData will be filled with daily values, starting with today.</para><para>So when called, pData[0] will be today, pData[1] will be yesterday, and pData[2] will be two days ago,</para><para>etc. cubData is the size in bytes of the pubData buffer. Returns the number of</para><para>elements actually set.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="435" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="435" bodyend="440"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a296d4e7f3fc43f08f57f68062d88a331" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Steamworks.SteamUserStats.GetGlobalStatHistory</definition>
+        <argsstring>(string pchStatName, double[] pData, uint cubData)</argsstring>
+        <name>GetGlobalStatHistory</name>
+        <param>
+          <type>string</type>
+          <declname>pchStatName</declname>
+        </param>
+        <param>
+          <type>double[]</type>
+          <declname>pData</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>cubData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="442" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="442" bodyend="447"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a5756fa0c61313f28e8204637b65c345f" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_steamworks_1ad04bd3b65ba8cd6b36508b6aa0f2bc83" kindref="member">ELeaderboardDisplayType</ref></type>
+        <definition>static ELeaderboardDisplayType Steamworks.SteamUserStats.GetLeaderboardDisplayType</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard)</argsstring>
+        <name>GetLeaderboardDisplayType</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the display type of the leaderboard</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="272" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="272" bodyend="275"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a0658042a1558cb2bb3e470e4a1e596b4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Steamworks.SteamUserStats.GetLeaderboardEntryCount</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard)</argsstring>
+        <name>GetLeaderboardEntryCount</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the total number of entries in a leaderboard, as of the last request</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="256" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="256" bodyend="259"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a75cad7c3d2287bfa73a9d24040f0e1bf" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>string</type>
+        <definition>static string Steamworks.SteamUserStats.GetLeaderboardName</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard)</argsstring>
+        <name>GetLeaderboardName</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the name of a leaderboard</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="248" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="248" bodyend="251"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1afeef39bad0368579a80ad3359fa79778" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="namespace_steamworks_1a4ac25dad5d86c657715ea4336237eedd" kindref="member">ELeaderboardSortMethod</ref></type>
+        <definition>static ELeaderboardSortMethod Steamworks.SteamUserStats.GetLeaderboardSortMethod</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard)</argsstring>
+        <name>GetLeaderboardSortMethod</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>returns the sort method of the leaderboard</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="264" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="264" bodyend="267"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a29e86ccadab83efc780a43106de8a085" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Steamworks.SteamUserStats.GetMostAchievedAchievementInfo</definition>
+        <argsstring>(out string pchName, uint unNameBufLen, out float pflPercent, out bool pbAchieved)</argsstring>
+        <name>GetMostAchievedAchievementInfo</name>
+        <param>
+          <type>out string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unNameBufLen</declname>
+        </param>
+        <param>
+          <type>out float</type>
+          <declname>pflPercent</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbAchieved</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the info on the most achieved achievement for the game, returns an iterator index you can use to fetch</para><para>the next most achieved afterwards. Will return -1 if there is no data on achievement</para><para>percentages (ie, you haven&apos;t called RequestGlobalAchievementPercentages and waited on the callback).</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="368" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="368" bodyend="375"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a0d88245ee98167ad476f39c5ae5414d4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>static int Steamworks.SteamUserStats.GetNextMostAchievedAchievementInfo</definition>
+        <argsstring>(int iIteratorPrevious, out string pchName, uint unNameBufLen, out float pflPercent, out bool pbAchieved)</argsstring>
+        <name>GetNextMostAchievedAchievementInfo</name>
+        <param>
+          <type>int</type>
+          <declname>iIteratorPrevious</declname>
+        </param>
+        <param>
+          <type>out string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>unNameBufLen</declname>
+        </param>
+        <param>
+          <type>out float</type>
+          <declname>pflPercent</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbAchieved</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Get the info on the next most achieved achievement for the game. Call this after GetMostAchievedAchievementInfo or another</para><para>GetNextMostAchievedAchievementInfo call passing the iterator from the previous call. Returns -1 after the last</para><para>achievement has been iterated.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="382" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="382" bodyend="389"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1adf0f0f25b27a5317642be393ee95d354" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>uint</type>
+        <definition>static uint Steamworks.SteamUserStats.GetNumAchievements</definition>
+        <argsstring>()</argsstring>
+        <name>GetNumAchievements</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Used for iterating achievements. In general games should not need these functions because they should have a</para><para>list of existing achievements compiled into them</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="155" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="155" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a556f0777c9b818f798cb39332ddbb3bc" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.GetNumberOfCurrentPlayers</definition>
+        <argsstring>()</argsstring>
+        <name>GetNumberOfCurrentPlayers</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Retrieves the number of players currently playing your game (online + offline)</para><para>This call is asynchronous, with the result returned in <ref refid="struct_steamworks_1_1_number_of_current_players__t" kindref="compound">NumberOfCurrentPlayers_t</ref></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="348" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="348" bodyend="351"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1aa841aa7ac8b35ca985385797794e2164" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetStat</definition>
+        <argsstring>(string pchName, out int pData)</argsstring>
+        <name>GetStat</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out int</type>
+          <declname>pData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Data accessors</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="26" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="26" bodyend="31"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a67a38d0fbed2bf18fbcb2793c5851e9c" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetStat</definition>
+        <argsstring>(string pchName, out float pData)</argsstring>
+        <name>GetStat</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out float</type>
+          <declname>pData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="33" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="33" bodyend="38"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a7ce340da0868d91e013dd24125ba567d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetUserAchievement</definition>
+        <argsstring>(CSteamID steamIDUser, string pchName, out bool pbAchieved)</argsstring>
+        <name>GetUserAchievement</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_c_steam_i_d" kindref="compound">CSteamID</ref></type>
+          <declname>steamIDUser</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbAchieved</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="197" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="197" bodyend="202"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a37fcad66ede6c2cca3ad84e3c42d82d6" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetUserAchievementAndUnlockTime</definition>
+        <argsstring>(CSteamID steamIDUser, string pchName, out bool pbAchieved, out uint punUnlockTime)</argsstring>
+        <name>GetUserAchievementAndUnlockTime</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_c_steam_i_d" kindref="compound">CSteamID</ref></type>
+          <declname>steamIDUser</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out bool</type>
+          <declname>pbAchieved</declname>
+        </param>
+        <param>
+          <type>out uint</type>
+          <declname>punUnlockTime</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>See notes for GetAchievementAndUnlockTime above</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="207" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="207" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1aaeb9564fbe86e47f47b3f9c6ca37463e" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetUserStat</definition>
+        <argsstring>(CSteamID steamIDUser, string pchName, out int pData)</argsstring>
+        <name>GetUserStat</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_c_steam_i_d" kindref="compound">CSteamID</ref></type>
+          <declname>steamIDUser</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out int</type>
+          <declname>pData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>requests stat information for a user, usable after a successful call to <ref refid="class_steamworks_1_1_steam_user_stats_1a69c99c13e81161df191e34688367ecd5" kindref="member">RequestUserStats()</ref></para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="183" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="183" bodyend="188"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1ad2c683e0421c8d47255852bc79134dee" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.GetUserStat</definition>
+        <argsstring>(CSteamID steamIDUser, string pchName, out float pData)</argsstring>
+        <name>GetUserStat</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_c_steam_i_d" kindref="compound">CSteamID</ref></type>
+          <declname>steamIDUser</declname>
+        </param>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>out float</type>
+          <declname>pData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="190" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="190" bodyend="195"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a2cad42f42c78164c0b4bfb24a6b21299" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.IndicateAchievementProgress</definition>
+        <argsstring>(string pchName, uint nCurProgress, uint nMaxProgress)</argsstring>
+        <name>IndicateAchievementProgress</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>nCurProgress</declname>
+        </param>
+        <param>
+          <type>uint</type>
+          <declname>nMaxProgress</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Achievement progress - triggers an AchievementProgress callback, that is all.</para><para>Calling this w/ N out of N progress will NOT set the achievement, the game must still do that.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="144" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="144" bodyend="149"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a4b052e005111a61d45ff5147315747cb" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.RequestCurrentStats</definition>
+        <argsstring>()</argsstring>
+        <name>RequestCurrentStats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Ask the server to send down this user&apos;s data and achievements for this game</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="18" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="18" bodyend="21"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a2c7b3c3a90ab7538f15cb88e06727e1d" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.RequestGlobalAchievementPercentages</definition>
+        <argsstring>()</argsstring>
+        <name>RequestGlobalAchievementPercentages</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Requests that Steam fetch data on the percentage of players who have received each achievement</para><para>for the game globally.</para><para>This call is asynchronous, with the result returned in <ref refid="struct_steamworks_1_1_global_achievement_percentages_ready__t" kindref="compound">GlobalAchievementPercentagesReady_t</ref>.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="358" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="358" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a1d1077e576e5ca0b3e69ab2ba923cfb9" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.RequestGlobalStats</definition>
+        <argsstring>(int nHistoryDays)</argsstring>
+        <name>RequestGlobalStats</name>
+        <param>
+          <type>int</type>
+          <declname>nHistoryDays</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Requests global stats data, which is available for stats marked as &quot;aggregated&quot;.</para><para>This call is asynchronous, with the results returned in <ref refid="struct_steamworks_1_1_global_stats_received__t" kindref="compound">GlobalStatsReceived_t</ref>.</para><para>nHistoryDays specifies how many days of day-by-day history to retrieve in addition</para><para>to the overall totals. The limit is 60.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="407" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="407" bodyend="410"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a69c99c13e81161df191e34688367ecd5" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.RequestUserStats</definition>
+        <argsstring>(CSteamID steamIDUser)</argsstring>
+        <name>RequestUserStats</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_c_steam_i_d" kindref="compound">CSteamID</ref></type>
+          <declname>steamIDUser</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Friends stats &amp; achievements</para><para>downloads stats for the user</para><para>returns a <ref refid="struct_steamworks_1_1_user_stats_received__t" kindref="compound">UserStatsReceived_t</ref> received when completed</para><para>if the other user has no stats, <ref refid="struct_steamworks_1_1_user_stats_received__t_1a85197635e1f180b9b2618848185ae111" kindref="member">UserStatsReceived_t.m_eResult</ref> will be set to k_EResultFail</para><para>these stats won&apos;t be auto-updated; you&apos;ll need to call <ref refid="class_steamworks_1_1_steam_user_stats_1a69c99c13e81161df191e34688367ecd5" kindref="member">RequestUserStats()</ref> again to refresh any data</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="175" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="175" bodyend="178"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1ab62aa0a354d51bb1962a9eb588519880" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.ResetAllStats</definition>
+        <argsstring>(bool bAchievementsToo)</argsstring>
+        <name>ResetAllStats</name>
+        <param>
+          <type>bool</type>
+          <declname>bAchievementsToo</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Reset stats</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="217" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="217" bodyend="220"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a79bc53f9a20a2d63c607982eee7497a4" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.SetAchievement</definition>
+        <argsstring>(string pchName)</argsstring>
+        <name>SetAchievement</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="74" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="74" bodyend="79"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1ae721b0c1af0864660e10bc9d3d498969" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.SetStat</definition>
+        <argsstring>(string pchName, int nData)</argsstring>
+        <name>SetStat</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Set / update data</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="43" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="43" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a0a63a7b981b9d0949cec948ad42ede05" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.SetStat</definition>
+        <argsstring>(string pchName, float fData)</argsstring>
+        <name>SetStat</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>fData</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="50" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="50" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a64de77947720e4bf6cd8b32f384b7481" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.StoreStats</definition>
+        <argsstring>()</argsstring>
+        <name>StoreStats</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Store the current data on the server, will get a callback when set</para><para>And one callback for every new achievement</para><para>If the callback has a result of k_EResultInvalidParam, one or more stats</para><para>uploaded has been rejected, either because they broke constraints</para><para>or were out of date. In this case the server sends back updated values.</para><para>The stats should be re-iterated to keep in sync.</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="108" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="108" bodyend="111"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a6191ae65fca45096f6b791af78c5e423" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>static bool Steamworks.SteamUserStats.UpdateAvgRateStat</definition>
+        <argsstring>(string pchName, float flCountThisSession, double dSessionLength)</argsstring>
+        <name>UpdateAvgRateStat</name>
+        <param>
+          <type>string</type>
+          <declname>pchName</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>flCountThisSession</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>dSessionLength</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="57" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="57" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="class_steamworks_1_1_steam_user_stats_1a82b33fb1be6fdfbec7b9f1722ba10865" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="struct_steamworks_1_1_steam_a_p_i_call__t" kindref="compound">SteamAPICall_t</ref></type>
+        <definition>static SteamAPICall_t Steamworks.SteamUserStats.UploadLeaderboardScore</definition>
+        <argsstring>(SteamLeaderboard_t hSteamLeaderboard, ELeaderboardUploadScoreMethod eLeaderboardUploadScoreMethod, int nScore, int[] pScoreDetails, int cScoreDetailsCount)</argsstring>
+        <name>UploadLeaderboardScore</name>
+        <param>
+          <type><ref refid="struct_steamworks_1_1_steam_leaderboard__t" kindref="compound">SteamLeaderboard_t</ref></type>
+          <declname>hSteamLeaderboard</declname>
+        </param>
+        <param>
+          <type><ref refid="namespace_steamworks_1ae7b9e59d359fb88133537fca8fd49769" kindref="member">ELeaderboardUploadScoreMethod</ref></type>
+          <declname>eLeaderboardUploadScoreMethod</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>nScore</declname>
+        </param>
+        <param>
+          <type>int[]</type>
+          <declname>pScoreDetails</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>cScoreDetailsCount</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Uploads a user score to the Steam back-end.</para><para>This call is asynchronous, with the result returned in <ref refid="struct_steamworks_1_1_leaderboard_score_uploaded__t" kindref="compound">LeaderboardScoreUploaded_t</ref></para><para>Details are extra game-defined information regarding how the user got that score</para><para>pScoreDetails points to an array of int32&apos;s, cScoreDetailsCount is the number of int32&apos;s in the list</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="329" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="329" bodyend="332"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" line="14" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Plugins/Steamworks.NET/autogen/isteamuserstats.cs" bodystart="14" bodyend="487"/>
+    <listofallmembers>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a9090c7a8d8cf00277ba1f319ab720cae" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>AttachLeaderboardUGC</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1ab14e508f454df122a96991e4976b71b3" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>ClearAchievement</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1aa1b2aacda6b4a07a9a68753b7378553a" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>DownloadLeaderboardEntries</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a9753a85c6ce5ff2443f6aa0dd127cc88" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>DownloadLeaderboardEntriesForUsers</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a45c1ae1a2b26bcb84f37fae70c964bf4" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>FindLeaderboard</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a13931681533228fb625ac8ec7119b864" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>FindOrCreateLeaderboard</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a7336ac54029aadd3069a7e6303235617" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetAchievement</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a9c04de3412f4192a88c471b03357aac9" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetAchievementAchievedPercent</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a6e93860a28eca9d5073b7413a1871ef6" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetAchievementAndUnlockTime</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1aa7acf1b77315857c07af8b734c062ed7" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetAchievementDisplayAttribute</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1ac5f36f5e92ffc91541e7a39ef35a7752" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetAchievementIcon</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a4d01517046635f49019e31ab39052cdb" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetAchievementName</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a41ffd4f29293e7b6080e9b4f9ea24632" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetDownloadedLeaderboardEntry</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1ab4afdc13744de1a1d460dfea8ae93a8e" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetGlobalStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1ad9d8626cfdd04c6ee2b92f7fc1ab4f70" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetGlobalStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a3742b40c202a87374626f2a5fd172670" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetGlobalStatHistory</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a296d4e7f3fc43f08f57f68062d88a331" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetGlobalStatHistory</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a5756fa0c61313f28e8204637b65c345f" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetLeaderboardDisplayType</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a0658042a1558cb2bb3e470e4a1e596b4" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetLeaderboardEntryCount</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a75cad7c3d2287bfa73a9d24040f0e1bf" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetLeaderboardName</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1afeef39bad0368579a80ad3359fa79778" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetLeaderboardSortMethod</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a29e86ccadab83efc780a43106de8a085" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetMostAchievedAchievementInfo</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a0d88245ee98167ad476f39c5ae5414d4" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetNextMostAchievedAchievementInfo</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1adf0f0f25b27a5317642be393ee95d354" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetNumAchievements</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a556f0777c9b818f798cb39332ddbb3bc" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetNumberOfCurrentPlayers</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1aa841aa7ac8b35ca985385797794e2164" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a67a38d0fbed2bf18fbcb2793c5851e9c" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a7ce340da0868d91e013dd24125ba567d" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetUserAchievement</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a37fcad66ede6c2cca3ad84e3c42d82d6" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetUserAchievementAndUnlockTime</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1aaeb9564fbe86e47f47b3f9c6ca37463e" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetUserStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1ad2c683e0421c8d47255852bc79134dee" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>GetUserStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a2cad42f42c78164c0b4bfb24a6b21299" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>IndicateAchievementProgress</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a4b052e005111a61d45ff5147315747cb" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>RequestCurrentStats</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a2c7b3c3a90ab7538f15cb88e06727e1d" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>RequestGlobalAchievementPercentages</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a1d1077e576e5ca0b3e69ab2ba923cfb9" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>RequestGlobalStats</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a69c99c13e81161df191e34688367ecd5" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>RequestUserStats</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1ab62aa0a354d51bb1962a9eb588519880" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>ResetAllStats</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a79bc53f9a20a2d63c607982eee7497a4" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>SetAchievement</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1ae721b0c1af0864660e10bc9d3d498969" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>SetStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a0a63a7b981b9d0949cec948ad42ede05" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>SetStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a64de77947720e4bf6cd8b32f384b7481" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>StoreStats</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a6191ae65fca45096f6b791af78c5e423" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>UpdateAvgRateStat</name></member>
+      <member refid="class_steamworks_1_1_steam_user_stats_1a82b33fb1be6fdfbec7b9f1722ba10865" prot="public" virt="non-virtual"><scope>Steamworks::SteamUserStats</scope><name>UploadLeaderboardScore</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

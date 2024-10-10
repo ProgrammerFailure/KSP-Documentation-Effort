@@ -1,0 +1,1565 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_soft_masking_1_1_soft_mask" kind="class" prot="public">
+    <compoundname>SoftMasking::SoftMask</compoundname>
+    <basecompoundref prot="public" virt="non-virtual">UIBehaviour</basecompoundref>
+    <basecompoundref refid="interface_soft_masking_1_1_i_soft_mask" prot="public" virt="non-virtual">SoftMasking.ISoftMask</basecompoundref>
+    <basecompoundref prot="public" virt="non-virtual">ICanvasRaycastFilter</basecompoundref>
+    <innerclass refid="struct_soft_masking_1_1_soft_mask_1_1_diagnostics" prot="private">SoftMasking::SoftMask::Diagnostics</innerclass>
+    <innerclass refid="struct_soft_masking_1_1_soft_mask_1_1_material_parameters" prot="private">SoftMasking::SoftMask::MaterialParameters</innerclass>
+    <innerclass refid="class_soft_masking_1_1_soft_mask_1_1_material_replacer_impl" prot="private">SoftMasking::SoftMask::MaterialReplacerImpl</innerclass>
+    <innerclass refid="class_soft_masking_1_1_soft_mask_1_1_mathr" prot="private">SoftMasking::SoftMask::Mathr</innerclass>
+    <innerclass refid="struct_soft_masking_1_1_soft_mask_1_1_source_parameters" prot="private">SoftMasking::SoftMask::SourceParameters</innerclass>
+      <sectiondef kind="public-type">
+      <memberdef kind="enum" id="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65" prot="public" static="no">
+        <name>BorderMode</name>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65a1fbb1e3943c2c6c560247ac8f9289780" prot="public">
+          <name>Simple</name>
+          <briefdescription>
+<para>Sprite should be drawn as a whole, ignoring any borders set. It works the same way as Unity&apos;s Image.Type.Simple. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65afa6a7b9fa989f179f6bbf2796bf4337c" prot="public">
+          <name>Sliced</name>
+          <briefdescription>
+<para>Sprite borders should be stretched when the drawn image is larger that the source. It works the same way as Unity&apos;s Image.Type.Sliced. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65a320af35370596a9ea75686c6624a9f07" prot="public">
+          <name>Tiled</name>
+          <briefdescription>
+<para>The same as Sliced, but border fragments will be repeated instead of stretched. It works the same way as Unity&apos;s Image.Type.Tiled. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>How Sprite&apos;s borders should be processed. It is a reduced set of Image.Type values. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="130" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="130" bodyend="146"/>
+      </memberdef>
+      <memberdef kind="enum" id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7" prot="public" static="no">
+        <name>Errors</name>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7a70a47cae4eb221930f2663fd244369ea" prot="public">
+          <name>NoError</name>
+          <initializer>= 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7a2beefe2be4ae6ded9b8b88aa501ad9e8" prot="public">
+          <name>UnsupportedShaders</name>
+          <initializer>= 1 &lt;&lt; 0</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7afa9cfe9365a1e0114a6bfa733fb04708" prot="public">
+          <name>NestedMasks</name>
+          <initializer>= 1 &lt;&lt; 1</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7a8fcf23b07e8bb6262ce4414b091022f2" prot="public">
+          <name>TightPackedSprite</name>
+          <initializer>= 1 &lt;&lt; 2</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7adb28429a55145eefa0d65fc64fe04aba" prot="public">
+          <name>AlphaSplitSprite</name>
+          <initializer>= 1 &lt;&lt; 3</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7aee3500962e715e6dbe651a983030177b" prot="public">
+          <name>UnsupportedImageType</name>
+          <initializer>= 1 &lt;&lt; 4</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7a14c56665a5472010b9c167cfc47e5a59" prot="public">
+          <name>UnreadableTexture</name>
+          <initializer>= 1 &lt;&lt; 5</initializer>
+          <briefdescription>
+          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Errors encountered during <ref refid="class_soft_masking_1_1_soft_mask" kindref="compound">SoftMask</ref> diagnostics. Mostly intended to use in Unity <ref refid="namespace_soft_masking_1_1_editor" kindref="compound">Editor</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="153" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="153" bodyend="161"/>
+      </memberdef>
+      <memberdef kind="enum" id="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751" prot="public" static="no">
+        <name>MaskSource</name>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751aaabf434277385d39ebb16ef7ad6b0e7a" prot="public">
+          <name>Graphic</name>
+          <briefdescription>
+<para>The mask image should be taken from the Graphic component of the containing GameObject. Only Image and RawImage components are supported. If there is no appropriate Graphic on the GameObject, a solid rectangle of the RectTransform dimensions will be used. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751a51f2b7b14433aa22c67d1f4fc18943cd" prot="public">
+          <name>Sprite</name>
+          <briefdescription>
+<para>The mask image should be taken from an explicitly specified Sprite. When this mode is used, spriteBorderMode can also be set to determine how to process Sprite&apos;s borders. If the sprite isn&apos;t set, a solid rectangle of the RectTransform dimensions will be used. This mode is analogous to using an Image with according sprite and type set. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <enumvalue id="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751aa3e8ae43188ae76d38f414b2bdb0077b" prot="public">
+          <name>Texture</name>
+          <briefdescription>
+<para>The mask image should be taken from an explicitly specified Texture2D. When this mode is used, textureUVRect can also be set to determine what part of the texture should be used. If the texture isn&apos;t set, a solid rectangle of the RectTransform dimensions will be used. This mode is analogous to using a RawImage with according texture and uvRect set. </para>          </briefdescription>
+          <detaileddescription>
+          </detaileddescription>
+        </enumvalue>
+        <briefdescription>
+<para>Source of the mask&apos;s image. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="100" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="100" bodyend="124"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a083cbbf236430c698a7ee3c015df43f2" prot="private" static="no" mutable="no">
+        <type>Canvas</type>
+        <definition>Canvas SoftMasking.SoftMask._canvas</definition>
+        <argsstring></argsstring>
+        <name>_canvas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="86" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="86" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a6e30298e42bf5346fa00857925de8a51" prot="private" static="no" mutable="no">
+        <type>Color</type>
+        <definition>Color SoftMasking.SoftMask._channelWeights</definition>
+        <argsstring></argsstring>
+        <name>_channelWeights</name>
+        <initializer>= <ref refid="class_soft_masking_1_1_mask_channel_1aa642653c31eb7d975457b5f729e8ca24" kindref="member">MaskChannel.alpha</ref></initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="70" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="70" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a5e7fb524ea1ba3d9c9018b990e55c3de" prot="private" static="no" mutable="no">
+        <type>Shader</type>
+        <definition>Shader SoftMasking.SoftMask._defaultETC1Shader</definition>
+        <argsstring></argsstring>
+        <name>_defaultETC1Shader</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="63" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a6bb77810716bd5e3d9cb4d65211e6c55" prot="private" static="no" mutable="no">
+        <type>Shader</type>
+        <definition>Shader SoftMasking.SoftMask._defaultShader</definition>
+        <argsstring></argsstring>
+        <name>_defaultShader</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="62" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="62" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1afde5a4d81b9214c69b76a34ea9331822" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask._destroyed</definition>
+        <argsstring></argsstring>
+        <name>_destroyed</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="80" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="80" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1adad72f1286dbfe32981d7ea65e9b1a10" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask._dirty</definition>
+        <argsstring></argsstring>
+        <name>_dirty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="81" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="81" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a46a0bf992d8dc75d686db1645d1a1779" prot="private" static="no" mutable="no">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751aaabf434277385d39ebb16ef7ad6b0e7a" kindref="member">Graphic</ref></type>
+        <definition>Graphic SoftMasking.SoftMask._graphic</definition>
+        <argsstring></argsstring>
+        <name>_graphic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="85" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1adb0b0598b6bc07bbefa44f67b588322b" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask._invertMask</definition>
+        <argsstring></argsstring>
+        <name>_invertMask</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="72" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="72" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a54eba2d05632636c3d466ec5dfe1c1f9" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask._invertOutsides</definition>
+        <argsstring></argsstring>
+        <name>_invertOutsides</name>
+        <initializer>= false</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="73" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a2853ab4ddbf1ed80fa845f14cced9900" prot="private" static="no" mutable="no">
+        <type>Rect</type>
+        <definition>Rect SoftMasking.SoftMask._lastMaskRect</definition>
+        <argsstring></argsstring>
+        <name>_lastMaskRect</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="78" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="78" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a854dffb16884c7c4778eef71d5f05d97" prot="private" static="no" mutable="no">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751a51f2b7b14433aa22c67d1f4fc18943cd" kindref="member">Sprite</ref></type>
+        <definition>Sprite SoftMasking.SoftMask._lastUsedSprite</definition>
+        <argsstring></argsstring>
+        <name>_lastUsedSprite</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="77" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="77" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a7bd8186cf6c5eb7ec7a88f60f1083f24" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask._maskingWasEnabled</definition>
+        <argsstring></argsstring>
+        <name>_maskingWasEnabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="79" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a24058925aca0500e5e1bded6ff2d3d85" prot="private" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform SoftMasking.SoftMask._maskTransform</definition>
+        <argsstring></argsstring>
+        <name>_maskTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="84" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="84" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a08cc045e3cccdb0d145866236c341024" prot="private" static="no" mutable="no">
+        <type><ref refid="class_soft_masking_1_1_material_replacements" kindref="compound">MaterialReplacements</ref></type>
+        <definition>MaterialReplacements SoftMasking.SoftMask._materials</definition>
+        <argsstring></argsstring>
+        <name>_materials</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="75" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1ae54f95979e2903ccdbbdd10c61736b26" prot="private" static="no" mutable="no">
+        <type>MaterialParameters</type>
+        <definition>MaterialParameters SoftMasking.SoftMask._parameters</definition>
+        <argsstring></argsstring>
+        <name>_parameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="76" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="76" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a5db5efb0bd63476ab2c515fc6a62f776" prot="private" static="no" mutable="no">
+        <type>float</type>
+        <definition>float SoftMasking.SoftMask._raycastThreshold</definition>
+        <argsstring></argsstring>
+        <name>_raycastThreshold</name>
+        <initializer>= 0.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="71" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="71" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a7df1851b7000ea894f33743b3ea2559b" prot="private" static="no" mutable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform SoftMasking.SoftMask._separateMask</definition>
+        <argsstring></argsstring>
+        <name>_separateMask</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="65" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a5841ce39f5be8e717c0a613f23890e53" prot="private" static="no" mutable="no">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751" kindref="member">MaskSource</ref></type>
+        <definition>MaskSource SoftMasking.SoftMask._source</definition>
+        <argsstring></argsstring>
+        <name>_source</name>
+        <initializer>= MaskSource.Graphic</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="64" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a0f430c8fa5474a4cbba5173e1c102996" prot="private" static="no" mutable="no">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751a51f2b7b14433aa22c67d1f4fc18943cd" kindref="member">Sprite</ref></type>
+        <definition>Sprite SoftMasking.SoftMask._sprite</definition>
+        <argsstring></argsstring>
+        <name>_sprite</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="66" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="66" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a0e8a5ab68ebc501a8cd060db68900817" prot="private" static="no" mutable="no">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65" kindref="member">BorderMode</ref></type>
+        <definition>BorderMode SoftMasking.SoftMask._spriteBorderMode</definition>
+        <argsstring></argsstring>
+        <name>_spriteBorderMode</name>
+        <initializer>= BorderMode.Simple</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="67" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="67" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1af7aecfba9aca1ebb9c178999cc7f2c14" prot="private" static="no" mutable="no">
+        <type>Texture2D</type>
+        <definition>Texture2D SoftMasking.SoftMask._texture</definition>
+        <argsstring></argsstring>
+        <name>_texture</name>
+        <initializer>= null</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="68" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="68" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a22ff552757274ab74737d98dc2f2f6f3" prot="private" static="no" mutable="no">
+        <type>Rect</type>
+        <definition>Rect SoftMasking.SoftMask._textureUVRect</definition>
+        <argsstring></argsstring>
+        <name>_textureUVRect</name>
+        <initializer>= DefaultUVRect</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="69" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="69" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1aabc7f4a9adc7e1119c54eb635f0c20d2" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>Canvas</type>
+        <definition>Canvas SoftMasking.SoftMask.canvas</definition>
+        <argsstring></argsstring>
+        <name>canvas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="465" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="465" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1ab25d63b17585089d8e97df8df12004a5" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Color</type>
+        <definition>Color SoftMasking.SoftMask.channelWeights</definition>
+        <argsstring></argsstring>
+        <name>channelWeights</name>
+        <briefdescription>
+<para>Specifies weights of the color channels of the mask. The color sampled from the mask texture is multiplied by this value, after what all components are summed up together. That is, the final mask value is calculated as: color = <computeroutput>pixel-from-mask</computeroutput> * channelWeights value = color.r + color.g + color.b + color.a The <computeroutput>value</computeroutput> is a number by which the resulting pixel&apos;s alpha is multiplied. As you can see, the result value isn&apos;t normalized, so, you should account it while defining custom values for this property. Static class <ref refid="class_soft_masking_1_1_mask_channel" kindref="compound">MaskChannel</ref> contains some useful predefined values. You can use they as example of how mask calculation works. The default value is <ref refid="class_soft_masking_1_1_mask_channel_1aa642653c31eb7d975457b5f729e8ca24" kindref="member">MaskChannel.alpha</ref>. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="260" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a3c42afc70ce753083a4c810752ebda96" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Shader</type>
+        <definition>Shader SoftMasking.SoftMask.defaultETC1Shader</definition>
+        <argsstring></argsstring>
+        <name>defaultETC1Shader</name>
+        <briefdescription>
+<para>Specifies a Shader that should be used as a replacement of the Unity&apos;s default UI shader with ETC1 (alpha-split) support. If you use ETC1 textures in UI and add <ref refid="class_soft_masking_1_1_soft_mask" kindref="compound">SoftMask</ref> in play-time by AddComponent(), you should set this property manually. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="178" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="178" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1aa033e1adb75f9e2983ddea5c8aa5171c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Shader</type>
+        <definition>Shader SoftMasking.SoftMask.defaultShader</definition>
+        <argsstring></argsstring>
+        <name>defaultShader</name>
+        <briefdescription>
+<para>Specifies a Shader that should be used as a replacement of the Unity&apos;s default UI shader. If you add <ref refid="class_soft_masking_1_1_soft_mask" kindref="compound">SoftMask</ref> in play-time by AddComponent(), you should set this property manually. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="168" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="168" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a008b350b45697a5f1e7b3bbc3b855508" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask.invertMask</definition>
+        <argsstring></argsstring>
+        <name>invertMask</name>
+        <briefdescription>
+<para>If set, mask values inside the mask rectangle will be inverted. In this case mask&apos;s zero value (taking <ref refid="class_soft_masking_1_1_soft_mask_1ab25d63b17585089d8e97df8df12004a5" kindref="member">channelWeights</ref> into account) will be treated as one and vice versa. The mask rectangle is the RectTransform of the GameObject this component is attached to or <ref refid="class_soft_masking_1_1_soft_mask_1a31839a6d5d6d917e82ce961d60133189" kindref="member">separateMask</ref> if it&apos;s not null. The default value is false. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_soft_masking_1_1_soft_mask_1a52a1931ff4bc0680f6c2262eb190e41b" kindref="member">invertOutsides</ref></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="289" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="289" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a52a1931ff4bc0680f6c2262eb190e41b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask.invertOutsides</definition>
+        <argsstring></argsstring>
+        <name>invertOutsides</name>
+        <briefdescription>
+<para>If set, mask values outside the mask rectangle will be inverted. By default, everything outside the mask rectangle has zero mask value. When this property is set, the mask outsides will have value one, which means that everything outside the mask will be visible. The mask rectangle is the RectTransform of the GameObject this component is attached to or <ref refid="class_soft_masking_1_1_soft_mask_1a31839a6d5d6d917e82ce961d60133189" kindref="member">separateMask</ref> if it&apos;s not null. The default value is false. </para>        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="see"><para><ref refid="class_soft_masking_1_1_soft_mask_1a008b350b45697a5f1e7b3bbc3b855508" kindref="member">invertMask</ref></para></simplesect>
+</para>        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="303" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="303" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1aa89c04d767df17ea2eacb939475297c3" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool ISoftMask.</type>
+        <definition>bool ISoftMask. SoftMasking.SoftMask.isAlive</definition>
+        <argsstring></argsstring>
+        <name>isAlive</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="471" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="471" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a85821c3f7821ec90cea66651307f7c53" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask.isBasedOnGraphic</definition>
+        <argsstring></argsstring>
+        <name>isBasedOnGraphic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="469" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="469" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a47d4f5f7c4914c3ecfadf8af13ff81db" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask.isMaskingEnabled</definition>
+        <argsstring></argsstring>
+        <name>isMaskingEnabled</name>
+        <briefdescription>
+<para>Returns true if masking is currently active. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="319" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="319" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a7e270a1813174edef6176b93ae6746ac" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask.isUsingRaycastFiltering</definition>
+        <argsstring></argsstring>
+        <name>isUsingRaycastFiltering</name>
+        <briefdescription>
+<para>Returns true if Soft Mask does raycast filtering, that is if the masked areas are transparent to input. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="312" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="312" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1ad2bd0a3d6ddf863ef63454e8d6d3170d" prot="private" static="no" readable="no" writable="no" gettable="yes" settable="no">
+        <type>RectTransform</type>
+        <definition>RectTransform SoftMasking.SoftMask.maskTransform</definition>
+        <argsstring></argsstring>
+        <name>maskTransform</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="456" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="456" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a4841c9cbcb0bd19f60cd8202ec39d0d3" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>float</type>
+        <definition>float SoftMasking.SoftMask.raycastThreshold</definition>
+        <argsstring></argsstring>
+        <name>raycastThreshold</name>
+        <briefdescription>
+<para>Specifies the minimum mask value that the point should have for an input event to pass. If the value sampled from the mask is greater or equal this value, the input event is considered &apos;hit&apos;. The mask value is compared with raycastThreshold after channelWeights applied. The default value is 0, which means that any pixel belonging to RectTransform is considered in input events. If you specify the value greater than 0, the mask&apos;s texture should be readable. Accepts values in range [0..1]. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="275" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="275" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a31839a6d5d6d917e82ce961d60133189" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>RectTransform</type>
+        <definition>RectTransform SoftMasking.SoftMask.separateMask</definition>
+        <argsstring></argsstring>
+        <name>separateMask</name>
+        <briefdescription>
+<para>Specifies a RectTransform that defines the bounds of the mask. Use of a separate RectTransform allows to move or resize mask bounds not affecting children. When null, the RectTransform of the current object is used. Default value is null. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="197" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="197" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1affe7085b1bc50dd3a2d35bf5017ed65b" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751" kindref="member">MaskSource</ref></type>
+        <definition>MaskSource SoftMasking.SoftMask.source</definition>
+        <argsstring></argsstring>
+        <name>source</name>
+        <briefdescription>
+<para>Determines from where the mask image should be taken. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="186" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="186" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1af6684c6fac4a8a52d0398b22370de20a" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751a51f2b7b14433aa22c67d1f4fc18943cd" kindref="member">Sprite</ref></type>
+        <definition>Sprite SoftMasking.SoftMask.sprite</definition>
+        <argsstring></argsstring>
+        <name>sprite</name>
+        <briefdescription>
+<para>Specifies a Sprite that should be used as the mask image. This property takes effect only when the source is MaskSource.Sprite. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="213" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="213" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a62df1e677f7e75bf71a1445b1f5f4090" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65" kindref="member">BorderMode</ref></type>
+        <definition>BorderMode SoftMasking.SoftMask.spriteBorderMode</definition>
+        <argsstring></argsstring>
+        <name>spriteBorderMode</name>
+        <briefdescription>
+<para>Specifies the draw mode of sprite borders. This property takes effect only when the source is MaskSource.Sprite. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="222" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="222" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1a3fc1bf7bf0397ef8cc6f6548a08c9a2c" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Texture2D</type>
+        <definition>Texture2D SoftMasking.SoftMask.texture</definition>
+        <argsstring></argsstring>
+        <name>texture</name>
+        <briefdescription>
+<para>Specifies a Texture2D that should be used as the mask image. This property takes effect only when the source is MaskSource.Texture. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="231" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="231" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_soft_masking_1_1_soft_mask_1af86e024bd1b3395b8036e0a09a1efbff" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>Rect</type>
+        <definition>Rect SoftMasking.SoftMask.textureUVRect</definition>
+        <argsstring></argsstring>
+        <name>textureUVRect</name>
+        <briefdescription>
+<para>Specifies a normalized UV-space rectangle defining the image part that should be used as the mask image. This property takes effect only when the source is MaskSource.Texture. A value is set in normalized coordinates. The default value is (0, 0, 1, 1), which means that the whole texture is used. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="242" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="242" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-attrib">
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a36576a13ebd287972dde8567d4b007f1" prot="private" static="yes" mutable="no">
+        <type>readonly Rect</type>
+        <definition>readonly Rect SoftMasking.SoftMask.DefaultUVRect</definition>
+        <argsstring></argsstring>
+        <name>DefaultUVRect</name>
+        <initializer>= new Rect(0, 0, 1, 1)</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="454" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="454" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a28354e4b896f40eb53a5856e4fd5bdf8" prot="private" static="yes" mutable="no">
+        <type>readonly List&lt; <ref refid="class_soft_masking_1_1_soft_maskable" kindref="compound">SoftMaskable</ref> &gt;</type>
+        <definition>readonly List&lt;SoftMaskable&gt; SoftMasking.SoftMask.s_maskables</definition>
+        <argsstring></argsstring>
+        <name>s_maskables</name>
+        <initializer>= new List&lt;<ref refid="class_soft_masking_1_1_soft_maskable" kindref="compound">SoftMaskable</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="735" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="735" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_soft_masking_1_1_soft_mask_1a3083421dcb91c2d8e1d87921d9cbe449" prot="private" static="yes" mutable="no">
+        <type>readonly List&lt; <ref refid="class_soft_masking_1_1_soft_mask" kindref="compound">SoftMask</ref> &gt;</type>
+        <definition>readonly List&lt;SoftMask&gt; SoftMasking.SoftMask.s_masks</definition>
+        <argsstring></argsstring>
+        <name>s_masks</name>
+        <initializer>= new List&lt;<ref refid="class_soft_masking_1_1_soft_mask" kindref="compound">SoftMask</ref>&gt;()</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="734" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="734" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a0384349e03d515b6eaeca84ed59b7481" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool SoftMasking.SoftMask.IsRaycastLocationValid</definition>
+        <argsstring>(Vector2 sp, Camera cam)</argsstring>
+        <name>IsRaycastLocationValid</name>
+        <param>
+          <type>Vector2</type>
+          <declname>sp</declname>
+        </param>
+        <param>
+          <type><ref refid="_viewport_controller_8cs_1a8bc166d5dce2d4d9a440c02e1d2df8aea967d35e40f3f95b1f538bd248640bf3b" kindref="member">Camera</ref></type>
+          <declname>cam</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="330" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="330" bodyend="347"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ac12120e986cd11b7035561f9b89f6024" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7" kindref="member">Errors</ref></type>
+        <definition>Errors SoftMasking.SoftMask.PollErrors</definition>
+        <argsstring>()</argsstring>
+        <name>PollErrors</name>
+        <briefdescription>
+<para>Checks for errors and returns them as flags. It is used in the editor to determine which warnings should be displayed. </para>        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="327" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="327" bodyend="327"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a9f8b8e48933cdf40a91cc2d0ecbe021a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>SoftMasking.SoftMask.SoftMask</definition>
+        <argsstring>()</argsstring>
+        <name>SoftMask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="88" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="88" bodyend="94"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="protected-func">
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a998ca759c5da74ddb281add819810c94" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="virtual">
+        <type>void</type>
+        <definition>virtual void SoftMasking.SoftMask.LateUpdate</definition>
+        <argsstring>()</argsstring>
+        <name>LateUpdate</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="382" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="382" bodyend="394"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ae6b4d187d6c30019c6997982af840447" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.OnCanvasHierarchyChanged</definition>
+        <argsstring>()</argsstring>
+        <name>OnCanvasHierarchyChanged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="421" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="421" bodyend="426"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a901d195f65b68d2c27abb9893e188527" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.OnDestroy</definition>
+        <argsstring>()</argsstring>
+        <name>OnDestroy</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="376" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="376" bodyend="380"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a14450c8420dcbece7a622ef865b0f613" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.OnDidApplyAnimationProperties</definition>
+        <argsstring>()</argsstring>
+        <name>OnDidApplyAnimationProperties</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="401" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="401" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1af602cedb02bf57b565e2a04b213d3154" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.OnDisable</definition>
+        <argsstring>()</argsstring>
+        <name>OnDisable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="364" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="364" bodyend="374"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a9b8047988711855d9463063667656c69" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.OnEnable</definition>
+        <argsstring>()</argsstring>
+        <name>OnEnable</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="354" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="354" bodyend="362"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1accae76801532d65dfa06f65c1b08d340" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.OnRectTransformDimensionsChange</definition>
+        <argsstring>()</argsstring>
+        <name>OnRectTransformDimensionsChange</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="396" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="396" bodyend="399"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a0847290e71cb3b30ecf36112f52ff216" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.OnTransformParentChanged</definition>
+        <argsstring>()</argsstring>
+        <name>OnTransformParentChanged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="415" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="415" bodyend="419"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ade83da8a65a53a73ae910b2b4cc36ab0" prot="protected" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>override void</type>
+        <definition>override void SoftMasking.SoftMask.Start</definition>
+        <argsstring>()</argsstring>
+        <name>Start</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="349" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="349" bodyend="352"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a548ebc2e235ccc5e4f7194f324e09548" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.CalculateMaskParameters</definition>
+        <argsstring>()</argsstring>
+        <name>CalculateMaskParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="607" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="607" bodyend="615"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ae0803a2f8c5f569a065c60ec8ac3fc79" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.CalculateSolidFill</definition>
+        <argsstring>()</argsstring>
+        <name>CalculateSolidFill</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="677" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="677" bodyend="679"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1afe2939fbd1bc50fdc9fb0cef138aa8dc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.CalculateSpriteBased</definition>
+        <argsstring>(Sprite sprite, BorderMode borderMode)</argsstring>
+        <name>CalculateSpriteBased</name>
+        <param>
+          <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751a51f2b7b14433aa22c67d1f4fc18943cd" kindref="member">Sprite</ref></type>
+          <declname>sprite</declname>
+        </param>
+        <param>
+          <type><ref refid="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65" kindref="member">BorderMode</ref></type>
+          <declname>borderMode</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="617" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="617" bodyend="650"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ae1f2c7bd4175a2c9bd7d4e03621dfd0a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.CalculateTextureBased</definition>
+        <argsstring>(Texture2D texture, Rect uvRect)</argsstring>
+        <name>CalculateTextureBased</name>
+        <param>
+          <type>Texture2D</type>
+          <declname>texture</declname>
+        </param>
+        <param>
+          <type>Rect</type>
+          <declname>uvRect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="669" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="669" bodyend="675"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a13ace22cee8f7ac85897d69875e74cdf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>SourceParameters</type>
+        <definition>SourceParameters SoftMasking.SoftMask.DeduceSourceParameters</definition>
+        <argsstring>()</argsstring>
+        <name>DeduceSourceParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="562" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="562" bodyend="591"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a1a20d5d7f2d02bbc09317b06a15d003a" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.DestroyMaterials</definition>
+        <argsstring>()</argsstring>
+        <name>DestroyMaterials</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="550" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="550" bodyend="552"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a7adf135cd455f9c0c152530ad9d08f58" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.FillCommonParameters</definition>
+        <argsstring>()</argsstring>
+        <name>FillCommonParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="681" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="681" bodyend="686"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ab707d33ce47cd02a3c5b537c3444d950" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.FindGraphic</definition>
+        <argsstring>()</argsstring>
+        <name>FindGraphic</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="491" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="491" bodyend="499"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a5cace851d53345d27db72cf27e274fd4" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.ForEachChildMaskable</definition>
+        <argsstring>(Action&lt; SoftMaskable &gt; f)</argsstring>
+        <name>ForEachChildMaskable</name>
+        <param>
+          <type>Action&lt; <ref refid="class_soft_masking_1_1_soft_maskable" kindref="compound">SoftMaskable</ref> &gt;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="540" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="540" bodyend="548"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a24fa28c0aa2fed1cde71165b64f4e153" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Material ISoftMask.</type>
+        <definition>Material ISoftMask. SoftMasking.SoftMask.GetReplacement</definition>
+        <argsstring>(Material original)</argsstring>
+        <name>GetReplacement</name>
+        <reimplements refid="interface_soft_masking_1_1_i_soft_mask_1adffec95a91efac1c9ceef2618dd11809">GetReplacement</reimplements>
+        <param>
+          <type>Material</type>
+          <declname>original</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="473" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="473" bodyend="476"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1aff81c7cc8c045c3e32a1a1a201ebe7e7" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.InvalidateChildren</definition>
+        <argsstring>()</argsstring>
+        <name>InvalidateChildren</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="532" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="532" bodyend="534"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a3921d807059c9197a6ebec30992f70cd" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector4</type>
+        <definition>Vector4 SoftMasking.SoftMask.LocalMaskRect</definition>
+        <argsstring>(Vector4 border)</argsstring>
+        <name>LocalMaskRect</name>
+        <param>
+          <type>Vector4</type>
+          <declname>border</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="698" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="698" bodyend="700"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a508929308089feec9e1809e880ddac7e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector2</type>
+        <definition>Vector2 SoftMasking.SoftMask.MaskRepeat</definition>
+        <argsstring>(Sprite sprite, Vector4 centralPart)</argsstring>
+        <name>MaskRepeat</name>
+        <param>
+          <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751a51f2b7b14433aa22c67d1f4fc18943cd" kindref="member">Sprite</ref></type>
+          <declname>sprite</declname>
+        </param>
+        <param>
+          <type>Vector4</type>
+          <declname>centralPart</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="702" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="702" bodyend="705"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a67d05f3b4cb3d9c775d14671a1dc279d" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Canvas</type>
+        <definition>Canvas SoftMasking.SoftMask.NearestEnabledCanvas</definition>
+        <argsstring>()</argsstring>
+        <name>NearestEnabledCanvas</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="501" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="501" bodyend="508"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ac6756354e7874eb58a46df84406317be" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.NotifyChildrenThatMaskMightChanged</definition>
+        <argsstring>()</argsstring>
+        <name>NotifyChildrenThatMaskMightChanged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="536" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="536" bodyend="538"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ae4497a42a60f11bec4a0a01eea5a1d96" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.OnGraphicDirty</definition>
+        <argsstring>()</argsstring>
+        <name>OnGraphicDirty</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="486" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="486" bodyend="489"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a21a7fd583f22e56a2a8468d8a5d2ce38" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.OnTransformChildrenChanged</definition>
+        <argsstring>()</argsstring>
+        <name>OnTransformChildrenChanged</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="428" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="428" bodyend="430"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a2b364190fab9c6b272e16fbd41106380" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.OnWillRenderCanvases</definition>
+        <argsstring>()</argsstring>
+        <name>OnWillRenderCanvases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="444" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="444" bodyend="450"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a537396aecfb13404225687fbb95ce7b6" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void ISoftMask.</type>
+        <definition>void ISoftMask. SoftMasking.SoftMask.ReleaseReplacement</definition>
+        <argsstring>(Material replacement)</argsstring>
+        <name>ReleaseReplacement</name>
+        <reimplements refid="interface_soft_masking_1_1_i_soft_mask_1a370585c2eab434bb74edc1b2707592a2">ReleaseReplacement</reimplements>
+        <param>
+          <type>Material</type>
+          <declname>replacement</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="478" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="478" bodyend="480"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ae7722768c1bb0973426993283fae7d9c" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.Set&lt; T &gt;</definition>
+        <argsstring>(ref T field, T value)</argsstring>
+        <name>Set&lt; T &gt;</name>
+        <param>
+          <type>ref T</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>T</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="719" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="719" bodyend="722"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1aea879f55bf36873dcd783af03680bd71" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.SetShader</definition>
+        <argsstring>(ref Shader field, Shader value, bool warnIfNotSet=true)</argsstring>
+        <name>SetShader</name>
+        <param>
+          <type>ref Shader</type>
+          <declname>field</declname>
+        </param>
+        <param>
+          <type>Shader</type>
+          <declname>value</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>warnIfNotSet</declname>
+          <defval>true</defval>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="724" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="724" bodyend="732"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a37af382d7ab801e075611fe56e708eb2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.SpawnMaskablesInChildren</definition>
+        <argsstring>(Transform root)</argsstring>
+        <name>SpawnMaskablesInChildren</name>
+        <param>
+          <type>Transform</type>
+          <declname>root</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="521" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="521" bodyend="530"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1aff858e9aab8baaffb95c5ef9cce30d45" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>float SoftMasking.SoftMask.SpriteToCanvasScale</definition>
+        <argsstring>(Sprite sprite)</argsstring>
+        <name>SpriteToCanvasScale</name>
+        <param>
+          <type><ref refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751a51f2b7b14433aa22c67d1f4fc18943cd" kindref="member">Sprite</ref></type>
+          <declname>sprite</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="688" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="688" bodyend="692"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a611f2a89c93bf8500739590c5eada747" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.SubscribeOnWillRenderCanvases</definition>
+        <argsstring>()</argsstring>
+        <name>SubscribeOnWillRenderCanvases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="432" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="432" bodyend="438"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1aaad0750020bb72e2420b114a388cc991" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65" kindref="member">BorderMode</ref></type>
+        <definition>BorderMode SoftMasking.SoftMask.ToBorderMode</definition>
+        <argsstring>(Image.Type imageType)</argsstring>
+        <name>ToBorderMode</name>
+        <param>
+          <type>Image.Type</type>
+          <declname>imageType</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="593" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="593" bodyend="605"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a760c4a8b52ce97b8c5229518d165fa24" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.UnsubscribeFromWillRenderCanvases</definition>
+        <argsstring>()</argsstring>
+        <name>UnsubscribeFromWillRenderCanvases</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="440" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="440" bodyend="442"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a76e2d54b3169c40ab9c4a7d7b3a1fa95" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.UpdateMaskParameters</definition>
+        <argsstring>()</argsstring>
+        <name>UpdateMaskParameters</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="510" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="510" bodyend="519"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a88627b0e4425c8524ae7b41a167fe4bf" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void ISoftMask.</type>
+        <definition>void ISoftMask. SoftMasking.SoftMask.UpdateTransformChildren</definition>
+        <argsstring>(Transform transform)</argsstring>
+        <name>UpdateTransformChildren</name>
+        <reimplements refid="interface_soft_masking_1_1_i_soft_mask_1a5498cfc47a774307ca0cd644beec481f">UpdateTransformChildren</reimplements>
+        <param>
+          <type>Transform</type>
+          <declname>transform</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="482" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="482" bodyend="484"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a28c2d675c573bc9eb42b5729fd67d239" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.WarnIfDefaultShaderIsNotSet</definition>
+        <argsstring>()</argsstring>
+        <name>WarnIfDefaultShaderIsNotSet</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="707" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="707" bodyend="710"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ad54aaeec164fd2dc2fe42755fdf810bc" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void SoftMasking.SoftMask.WarnSpriteErrors</definition>
+        <argsstring>(Errors errors)</argsstring>
+        <name>WarnSpriteErrors</name>
+        <param>
+          <type><ref refid="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7" kindref="member">Errors</ref></type>
+          <declname>errors</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="712" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="712" bodyend="717"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1ad8b26da9793080a27667012f735adc64" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Matrix4x4</type>
+        <definition>Matrix4x4 SoftMasking.SoftMask.WorldToMask</definition>
+        <argsstring>()</argsstring>
+        <name>WorldToMask</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="694" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="694" bodyend="696"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1af1576dc930baadec8846b55840ca065c" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>Vector4</type>
+        <definition>static Vector4 SoftMasking.SoftMask.AdjustBorders</definition>
+        <argsstring>(Vector4 border, Vector4 rect)</argsstring>
+        <name>AdjustBorders</name>
+        <param>
+          <type>Vector4</type>
+          <declname>border</declname>
+        </param>
+        <param>
+          <type>Vector4</type>
+          <declname>rect</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="652" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="652" bodyend="667"/>
+      </memberdef>
+      <memberdef kind="function" id="class_soft_masking_1_1_soft_mask_1a92cb9057e7fbb323140ad208208e4125" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>T</type>
+        <definition>static T SoftMasking.SoftMask.Touch&lt; T &gt;</definition>
+        <argsstring>(T obj)</argsstring>
+        <name>Touch&lt; T &gt;</name>
+        <param>
+          <type>T</type>
+          <declname>obj</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="452" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="452" bodyend="452"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+<para><ref refid="class_soft_masking_1_1_soft_mask" kindref="compound">SoftMask</ref> is a component that can be added to UI elements for masking the children. It works like a standard Unity&apos;s Mask but supports alpha. </para>    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <inheritancegraph>
+      <node id="150676">
+        <label>ISoftMask</label>
+        <link refid="interface_soft_masking_1_1_i_soft_mask"/>
+      </node>
+      <node id="150675">
+        <label>UIBehaviour</label>
+      </node>
+      <node id="150677">
+        <label>ICanvasRaycastFilter</label>
+      </node>
+      <node id="150674">
+        <label>SoftMasking.SoftMask</label>
+        <link refid="class_soft_masking_1_1_soft_mask"/>
+        <childnode refid="150675" relation="public-inheritance">
+        </childnode>
+        <childnode refid="150676" relation="public-inheritance">
+        </childnode>
+        <childnode refid="150677" relation="public-inheritance">
+        </childnode>
+      </node>
+    </inheritancegraph>
+    <collaborationgraph>
+      <node id="150680">
+        <label>ISoftMask</label>
+        <link refid="interface_soft_masking_1_1_i_soft_mask"/>
+      </node>
+      <node id="150679">
+        <label>UIBehaviour</label>
+      </node>
+      <node id="150681">
+        <label>ICanvasRaycastFilter</label>
+      </node>
+      <node id="150678">
+        <label>SoftMasking.SoftMask</label>
+        <link refid="class_soft_masking_1_1_soft_mask"/>
+        <childnode refid="150679" relation="public-inheritance">
+        </childnode>
+        <childnode refid="150680" relation="public-inheritance">
+        </childnode>
+        <childnode refid="150681" relation="public-inheritance">
+        </childnode>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" line="32" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/SoftMask/Scripts/SoftMask.cs" bodystart="32" bodyend="1008"/>
+    <listofallmembers>
+      <member refid="class_soft_masking_1_1_soft_mask_1a083cbbf236430c698a7ee3c015df43f2" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_canvas</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a6e30298e42bf5346fa00857925de8a51" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_channelWeights</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a5e7fb524ea1ba3d9c9018b990e55c3de" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_defaultETC1Shader</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a6bb77810716bd5e3d9cb4d65211e6c55" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_defaultShader</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1afde5a4d81b9214c69b76a34ea9331822" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_destroyed</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1adad72f1286dbfe32981d7ea65e9b1a10" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_dirty</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a46a0bf992d8dc75d686db1645d1a1779" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_graphic</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1adb0b0598b6bc07bbefa44f67b588322b" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_invertMask</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a54eba2d05632636c3d466ec5dfe1c1f9" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_invertOutsides</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a2853ab4ddbf1ed80fa845f14cced9900" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_lastMaskRect</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a854dffb16884c7c4778eef71d5f05d97" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_lastUsedSprite</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a7bd8186cf6c5eb7ec7a88f60f1083f24" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_maskingWasEnabled</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a24058925aca0500e5e1bded6ff2d3d85" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_maskTransform</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a08cc045e3cccdb0d145866236c341024" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_materials</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ae54f95979e2903ccdbbdd10c61736b26" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_parameters</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a5db5efb0bd63476ab2c515fc6a62f776" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_raycastThreshold</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a7df1851b7000ea894f33743b3ea2559b" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_separateMask</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a5841ce39f5be8e717c0a613f23890e53" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_source</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a0f430c8fa5474a4cbba5173e1c102996" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_sprite</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a0e8a5ab68ebc501a8cd060db68900817" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_spriteBorderMode</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1af7aecfba9aca1ebb9c178999cc7f2c14" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_texture</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a22ff552757274ab74737d98dc2f2f6f3" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>_textureUVRect</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1af1576dc930baadec8846b55840ca065c" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>AdjustBorders</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a62ab236a89b062a33ff761ea62618b65" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>BorderMode</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a548ebc2e235ccc5e4f7194f324e09548" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>CalculateMaskParameters</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ae0803a2f8c5f569a065c60ec8ac3fc79" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>CalculateSolidFill</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1afe2939fbd1bc50fdc9fb0cef138aa8dc" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>CalculateSpriteBased</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ae1f2c7bd4175a2c9bd7d4e03621dfd0a" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>CalculateTextureBased</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1aabc7f4a9adc7e1119c54eb635f0c20d2" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>canvas</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ab25d63b17585089d8e97df8df12004a5" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>channelWeights</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a13ace22cee8f7ac85897d69875e74cdf" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>DeduceSourceParameters</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a3c42afc70ce753083a4c810752ebda96" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>defaultETC1Shader</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1aa033e1adb75f9e2983ddea5c8aa5171c" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>defaultShader</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a36576a13ebd287972dde8567d4b007f1" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>DefaultUVRect</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a1a20d5d7f2d02bbc09317b06a15d003a" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>DestroyMaterials</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a79a7e06f871873db4bbf651684bb7eb7" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>Errors</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a7adf135cd455f9c0c152530ad9d08f58" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>FillCommonParameters</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ab707d33ce47cd02a3c5b537c3444d950" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>FindGraphic</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a5cace851d53345d27db72cf27e274fd4" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>ForEachChildMaskable</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a24fa28c0aa2fed1cde71165b64f4e153" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>GetReplacement</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1aff81c7cc8c045c3e32a1a1a201ebe7e7" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>InvalidateChildren</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a008b350b45697a5f1e7b3bbc3b855508" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>invertMask</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a52a1931ff4bc0680f6c2262eb190e41b" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>invertOutsides</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1aa89c04d767df17ea2eacb939475297c3" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>isAlive</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a85821c3f7821ec90cea66651307f7c53" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>isBasedOnGraphic</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a47d4f5f7c4914c3ecfadf8af13ff81db" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>isMaskingEnabled</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a0384349e03d515b6eaeca84ed59b7481" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>IsRaycastLocationValid</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a7e270a1813174edef6176b93ae6746ac" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>isUsingRaycastFiltering</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a998ca759c5da74ddb281add819810c94" prot="protected" virt="virtual"><scope>SoftMasking::SoftMask</scope><name>LateUpdate</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a3921d807059c9197a6ebec30992f70cd" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>LocalMaskRect</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a508929308089feec9e1809e880ddac7e" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>MaskRepeat</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ac782194e0ca4a1ff743155475270a751" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>MaskSource</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ad2bd0a3d6ddf863ef63454e8d6d3170d" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>maskTransform</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a67d05f3b4cb3d9c775d14671a1dc279d" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>NearestEnabledCanvas</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ac6756354e7874eb58a46df84406317be" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>NotifyChildrenThatMaskMightChanged</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ae6b4d187d6c30019c6997982af840447" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnCanvasHierarchyChanged</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a901d195f65b68d2c27abb9893e188527" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnDestroy</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a14450c8420dcbece7a622ef865b0f613" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnDidApplyAnimationProperties</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1af602cedb02bf57b565e2a04b213d3154" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnDisable</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a9b8047988711855d9463063667656c69" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnEnable</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ae4497a42a60f11bec4a0a01eea5a1d96" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnGraphicDirty</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1accae76801532d65dfa06f65c1b08d340" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnRectTransformDimensionsChange</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a21a7fd583f22e56a2a8468d8a5d2ce38" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnTransformChildrenChanged</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a0847290e71cb3b30ecf36112f52ff216" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnTransformParentChanged</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a2b364190fab9c6b272e16fbd41106380" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>OnWillRenderCanvases</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ac12120e986cd11b7035561f9b89f6024" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>PollErrors</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a4841c9cbcb0bd19f60cd8202ec39d0d3" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>raycastThreshold</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a537396aecfb13404225687fbb95ce7b6" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>ReleaseReplacement</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a28354e4b896f40eb53a5856e4fd5bdf8" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>s_maskables</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a3083421dcb91c2d8e1d87921d9cbe449" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>s_masks</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a31839a6d5d6d917e82ce961d60133189" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>separateMask</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ae7722768c1bb0973426993283fae7d9c" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>Set&lt; T &gt;</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1aea879f55bf36873dcd783af03680bd71" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>SetShader</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a9f8b8e48933cdf40a91cc2d0ecbe021a" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>SoftMask</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1affe7085b1bc50dd3a2d35bf5017ed65b" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>source</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a37af382d7ab801e075611fe56e708eb2" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>SpawnMaskablesInChildren</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1af6684c6fac4a8a52d0398b22370de20a" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>sprite</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a62df1e677f7e75bf71a1445b1f5f4090" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>spriteBorderMode</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1aff858e9aab8baaffb95c5ef9cce30d45" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>SpriteToCanvasScale</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ade83da8a65a53a73ae910b2b4cc36ab0" prot="protected" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>Start</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a611f2a89c93bf8500739590c5eada747" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>SubscribeOnWillRenderCanvases</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a3fc1bf7bf0397ef8cc6f6548a08c9a2c" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>texture</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1af86e024bd1b3395b8036e0a09a1efbff" prot="public" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>textureUVRect</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1aaad0750020bb72e2420b114a388cc991" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>ToBorderMode</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a92cb9057e7fbb323140ad208208e4125" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>Touch&lt; T &gt;</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a760c4a8b52ce97b8c5229518d165fa24" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>UnsubscribeFromWillRenderCanvases</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a76e2d54b3169c40ab9c4a7d7b3a1fa95" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>UpdateMaskParameters</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a88627b0e4425c8524ae7b41a167fe4bf" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>UpdateTransformChildren</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1a28c2d675c573bc9eb42b5729fd67d239" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>WarnIfDefaultShaderIsNotSet</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ad54aaeec164fd2dc2fe42755fdf810bc" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>WarnSpriteErrors</name></member>
+      <member refid="class_soft_masking_1_1_soft_mask_1ad8b26da9793080a27667012f735adc64" prot="private" virt="non-virtual"><scope>SoftMasking::SoftMask</scope><name>WorldToMask</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

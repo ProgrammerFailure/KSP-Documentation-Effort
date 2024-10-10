@@ -1,0 +1,663 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="class_vehicle_physics_1_1_solver" kind="class" prot="public">
+    <compoundname>VehiclePhysics::Solver</compoundname>
+    <innerclass refid="class_vehicle_physics_1_1_solver_1_1_derivative_vector" prot="private">VehiclePhysics::Solver::DerivativeVector</innerclass>
+    <innerclass refid="class_vehicle_physics_1_1_solver_1_1_state_vector" prot="private">VehiclePhysics::Solver::StateVector</innerclass>
+      <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1a63c64f67cff2bcfde9d4b8778c27e200" prot="private" static="no" mutable="no">
+        <type><ref refid="class_vehicle_physics_1_1_block" kindref="compound">Block</ref>[]</type>
+        <definition>Block [] VehiclePhysics.Solver.m_blocks</definition>
+        <argsstring></argsstring>
+        <name>m_blocks</name>
+        <initializer>= new <ref refid="class_vehicle_physics_1_1_block" kindref="compound">Block</ref>[0]</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="58" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="58" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1a285edea36dc78d337537dd65d0c04703" prot="private" static="no" mutable="no">
+        <type>DerivativeVector[]</type>
+        <definition>DerivativeVector [] VehiclePhysics.Solver.m_derivatives</definition>
+        <argsstring></argsstring>
+        <name>m_derivatives</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="64" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="64" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1af120b66e2e19911273730148ed058158" prot="private" static="no" mutable="no">
+        <type>bool</type>
+        <definition>bool VehiclePhysics.Solver.m_RK4enabled</definition>
+        <argsstring></argsstring>
+        <name>m_RK4enabled</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="65" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="65" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1ad95e2860ff8807f108168e5cf554bc99" prot="private" static="no" mutable="no">
+        <type>StateVector[]</type>
+        <definition>StateVector [] VehiclePhysics.Solver.m_states</definition>
+        <argsstring></argsstring>
+        <name>m_states</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="63" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="63" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1a33d283727043ecec58ed900453fa7c70" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int VehiclePhysics.Solver.m_wheelCount</definition>
+        <argsstring></argsstring>
+        <name>m_wheelCount</name>
+        <initializer>= 0</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="59" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="59" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-attrib">
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1a7ba331fca264a62f05f6c3fc7835a3a7" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float VehiclePhysics.Solver.minInertia</definition>
+        <argsstring></argsstring>
+        <name>minInertia</name>
+        <initializer>= 0.01f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="73" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="73" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1a0e55b38fb250d289332abf9c3891716a" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float VehiclePhysics.Solver.minWheelMass</definition>
+        <argsstring></argsstring>
+        <name>minWheelMass</name>
+        <initializer>= 0.01f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="75" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="75" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1a95ccefa340138def1145db6da097e4eb" prot="public" static="no" mutable="no">
+        <type>const float</type>
+        <definition>const float VehiclePhysics.Solver.minWheelRadius</definition>
+        <argsstring></argsstring>
+        <name>minWheelRadius</name>
+        <initializer>= 0.01f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="74" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="74" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-attrib">
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1abe738d0d791a84833f020d78393dc9ac" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float VehiclePhysics.Solver.viscousCouplingRate</definition>
+        <argsstring></argsstring>
+        <name>viscousCouplingRate</name>
+        <initializer>= 100.0f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="79" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="79" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_vehicle_physics_1_1_solver_1a8af1d948b7d99943a27dccb5578d7f7d" prot="public" static="yes" mutable="no">
+        <type>float</type>
+        <definition>float VehiclePhysics.Solver.viscousLockedRatio</definition>
+        <argsstring></argsstring>
+        <name>viscousLockedRatio</name>
+        <initializer>= 0.95f</initializer>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="85" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="85" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="property">
+      <memberdef kind="property" id="class_vehicle_physics_1_1_solver_1a93adbbe9578e77793d8f9d971e9cd06a" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>float</type>
+        <definition>float VehiclePhysics.Solver.deltaTime</definition>
+        <argsstring></argsstring>
+        <name>deltaTime</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="98" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="98" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_vehicle_physics_1_1_solver_1a022fe4bb63534ee436cde9218d7c8a49" prot="public" static="no" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>string</type>
+        <definition>string VehiclePhysics.Solver.resultMessage</definition>
+        <argsstring></argsstring>
+        <name>resultMessage</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="112" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="112" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="property" id="class_vehicle_physics_1_1_solver_1a893f6cd93c5f28919d99b1c2c7dee117" prot="public" static="yes" readable="no" writable="no" gettable="yes" settable="yes">
+        <type>float</type>
+        <definition>float VehiclePhysics.Solver.time</definition>
+        <argsstring></argsstring>
+        <name>time</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="97" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-static-func">
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a35390dfb96f614dcd5fd867ceeac1310" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>float</type>
+        <definition>static float VehiclePhysics.Solver.GetViscousLockingDt</definition>
+        <argsstring>(float lockRatio)</argsstring>
+        <name>GetViscousLockingDt</name>
+        <param>
+          <type>float</type>
+          <declname>lockRatio</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="245" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="245" bodyend="262"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a44c253e8dd994a4770200f1db1339687" prot="public" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void VehiclePhysics.Solver.SetDebugTime</definition>
+        <argsstring>(float t, float dt)</argsstring>
+        <name>SetDebugTime</name>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="102" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="102" bodyend="108"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a8663129b883d9c0b66898d613654dbad" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type><ref refid="class_vehicle_physics_1_1_block" kindref="compound">Block</ref>[]</type>
+        <definition>Block [] VehiclePhysics.Solver.GetBlockArray</definition>
+        <argsstring>()</argsstring>
+        <name>GetBlockArray</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="468" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="468" bodyend="471"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a78a6ab7837b94dab81d9380a2a0a753e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>bool</type>
+        <definition>bool VehiclePhysics.Solver.Initialize</definition>
+        <argsstring>(Wheel[] wheels, bool enableRK4)</argsstring>
+        <name>Initialize</name>
+        <param>
+          <type><ref refid="class_vehicle_physics_1_1_wheel" kindref="compound">Wheel</ref>[]</type>
+          <declname>wheels</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>enableRK4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="119" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="119" bodyend="212"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a93d4cecd66bba87093d74c006ea53153" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.Integrate</definition>
+        <argsstring>(float t, float dt, int steps, bool useRK4)</argsstring>
+        <name>Integrate</name>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>steps</declname>
+        </param>
+        <param>
+          <type>bool</type>
+          <declname>useRK4</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="219" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="219" bodyend="237"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-static-func">
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a3b41ad753999cf323d64021b67327b35" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void VehiclePhysics.Solver.EulerStep</definition>
+        <argsstring>(ref Block.State In, ref Block.Derivative Der, ref Block.State Out)</argsstring>
+        <name>EulerStep</name>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref></type>
+          <declname>In</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>Der</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref></type>
+          <declname>Out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="274" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="274" bodyend="279"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a3a468304e9f42a335a8f222c5922f072" prot="private" static="yes" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>static void VehiclePhysics.Solver.EulerStepL</definition>
+        <argsstring>(ref Block.State In, ref Block.Derivative Der, ref Block.State Out)</argsstring>
+        <name>EulerStepL</name>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref></type>
+          <declname>In</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>Der</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref></type>
+          <declname>Out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="282" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="282" bodyend="286"/>
+      </memberdef>
+      </sectiondef>
+      <sectiondef kind="private-func">
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1ab3da98073f6834fc77ab097bf4ab97f9" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.ComputeDerivative</definition>
+        <argsstring>(Block.State[] S, Block.Derivative[] Out)</argsstring>
+        <name>ComputeDerivative</name>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>Out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="441" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="441" bodyend="461"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a37e62360cd76d2bc4be1726b1e15ce53" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.ComputeRK4Derivative</definition>
+        <argsstring>(ref Block.Derivative A, ref Block.Derivative B, ref Block.Derivative C, ref Block.Derivative D, ref Block.Derivative DOut)</argsstring>
+        <name>ComputeRK4Derivative</name>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>C</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>DOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="364" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="364" bodyend="369"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a33674b85df7e6f1e9566acd318683a8e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.ComputeRK4Derivative</definition>
+        <argsstring>(Block.Derivative[] A, Block.Derivative[] B, Block.Derivative[] C, Block.Derivative[] D, Block.Derivative[] DOut)</argsstring>
+        <name>ComputeRK4Derivative</name>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>C</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>DOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="379" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="379" bodyend="388"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1ad020afd24c35fac02ef63f831b12bded" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.ComputeRK4DerivativeT</definition>
+        <argsstring>(ref Block.Derivative A, ref Block.Derivative B, ref Block.Derivative C, ref Block.Derivative D, ref Block.Derivative DOut)</argsstring>
+        <name>ComputeRK4DerivativeT</name>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>A</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>B</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>C</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>ref <ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref></type>
+          <declname>DOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="372" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="372" bodyend="376"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a068e277757fff06f4f5a06c5a4f24ea2" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.EulerStep</definition>
+        <argsstring>(Block.State[] In, Block.Derivative[] Der, Block.State[] Out)</argsstring>
+        <name>EulerStep</name>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>In</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>Der</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>Out</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="289" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="289" bodyend="298"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a8e8135ed10e88fe66d163a4ea3233025" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.EvaluateRK4</definition>
+        <argsstring>(Block.State[] S, Block.State[] Stemp, Block.Derivative[] DIn, float t, float dt, Block.Derivative[] DOut)</argsstring>
+        <name>EvaluateRK4</name>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>Stemp</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>DIn</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>DOut</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="353" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="353" bodyend="361"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a13bc2a1f93cb187d3a7ef401497abdf0" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.IntegrateEuler</definition>
+        <argsstring>(Block.State[] S, Block.Derivative[] D, float t, float dt, int subSteps)</argsstring>
+        <name>IntegrateEuler</name>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>dt</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>subSteps</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="301" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="301" bodyend="345"/>
+      </memberdef>
+      <memberdef kind="function" id="class_vehicle_physics_1_1_solver_1a48d872b05f96de22f2abc69692c45a4e" prot="private" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void VehiclePhysics.Solver.IntegrateRK4</definition>
+        <argsstring>(Block.State[] S, Block.State[] Stemp, Block.Derivative[] D, Block.Derivative[] Da, Block.Derivative[] Db, Block.Derivative[] Dc, Block.Derivative[] Dd, float t, float dt)</argsstring>
+        <name>IntegrateRK4</name>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>S</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_state" kindref="compound">Block.State</ref>[]</type>
+          <declname>Stemp</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>D</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>Da</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>Db</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>Dc</declname>
+        </param>
+        <param>
+          <type><ref refid="struct_vehicle_physics_1_1_block_1_1_derivative" kindref="compound">Block.Derivative</ref>[]</type>
+          <declname>Dd</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>float</type>
+          <declname>dt</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="391" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="391" bodyend="433"/>
+      </memberdef>
+      </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <collaborationgraph>
+      <node id="150708">
+        <label>VehiclePhysics.Solver</label>
+        <link refid="class_vehicle_physics_1_1_solver"/>
+        <childnode refid="150709" relation="usage">
+          <edgelabel>viscousLockedRatio</edgelabel>
+          <edgelabel>viscousCouplingRate</edgelabel>
+        </childnode>
+      </node>
+      <node id="150709">
+        <label>static</label>
+      </node>
+    </collaborationgraph>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" line="21" column="1" bodyfile="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/Solver.cs" bodystart="20" bodyend="472"/>
+    <listofallmembers>
+      <member refid="class_vehicle_physics_1_1_solver_1ab3da98073f6834fc77ab097bf4ab97f9" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>ComputeDerivative</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a37e62360cd76d2bc4be1726b1e15ce53" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>ComputeRK4Derivative</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a33674b85df7e6f1e9566acd318683a8e" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>ComputeRK4Derivative</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1ad020afd24c35fac02ef63f831b12bded" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>ComputeRK4DerivativeT</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a93adbbe9578e77793d8f9d971e9cd06a" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>deltaTime</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a3b41ad753999cf323d64021b67327b35" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>EulerStep</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a068e277757fff06f4f5a06c5a4f24ea2" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>EulerStep</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a3a468304e9f42a335a8f222c5922f072" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>EulerStepL</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a8e8135ed10e88fe66d163a4ea3233025" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>EvaluateRK4</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a8663129b883d9c0b66898d613654dbad" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>GetBlockArray</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a35390dfb96f614dcd5fd867ceeac1310" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>GetViscousLockingDt</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a78a6ab7837b94dab81d9380a2a0a753e" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>Initialize</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a93d4cecd66bba87093d74c006ea53153" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>Integrate</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a13bc2a1f93cb187d3a7ef401497abdf0" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>IntegrateEuler</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a48d872b05f96de22f2abc69692c45a4e" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>IntegrateRK4</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a63c64f67cff2bcfde9d4b8778c27e200" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>m_blocks</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a285edea36dc78d337537dd65d0c04703" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>m_derivatives</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1af120b66e2e19911273730148ed058158" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>m_RK4enabled</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1ad95e2860ff8807f108168e5cf554bc99" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>m_states</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a33d283727043ecec58ed900453fa7c70" prot="private" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>m_wheelCount</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a7ba331fca264a62f05f6c3fc7835a3a7" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>minInertia</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a0e55b38fb250d289332abf9c3891716a" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>minWheelMass</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a95ccefa340138def1145db6da097e4eb" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>minWheelRadius</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a022fe4bb63534ee436cde9218d7c8a49" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>resultMessage</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a44c253e8dd994a4770200f1db1339687" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>SetDebugTime</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a893f6cd93c5f28919d99b1c2c7dee117" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>time</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1abe738d0d791a84833f020d78393dc9ac" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>viscousCouplingRate</name></member>
+      <member refid="class_vehicle_physics_1_1_solver_1a8af1d948b7d99943a27dccb5578d7f7d" prot="public" virt="non-virtual"><scope>VehiclePhysics::Solver</scope><name>viscousLockedRatio</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

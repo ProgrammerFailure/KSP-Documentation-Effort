@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.8.7">
+  <compounddef id="_ground_material_8cs" kind="file">
+    <compoundname>GroundMaterial.cs</compoundname>
+    <innerclass refid="class_vehicle_physics_1_1_ground_material" prot="public">VehiclePhysics::GroundMaterial</innerclass>
+    <innerclass refid="struct_vehicle_physics_1_1_ground_material_hit" prot="public">VehiclePhysics::GroundMaterialHit</innerclass>
+    <innerclass refid="class_vehicle_physics_1_1_ground_material_manager_base" prot="public">VehiclePhysics::GroundMaterialManagerBase</innerclass>
+    <innernamespace refid="namespace_vehicle_physics">VehiclePhysics</innernamespace>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>Vehicle<sp/>Physics<sp/>Pro:<sp/>advanced<sp/>vehicle<sp/>physics<sp/>kit</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>Copyright<sp/>©<sp/>2011-2019<sp/>Angel<sp/>Garcia<sp/>&quot;Edy&quot;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="4"><highlight class="normal"></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>http://vehiclephysics.com<sp/>|<sp/>@VehiclePhysics</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"></highlight><highlight class="comment">//--------------------------------------------------------------</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GroundMaterial:<sp/>Properties<sp/>of<sp/>the<sp/>ground<sp/>materials<sp/>when<sp/>interacting<sp/>with<sp/>the<sp/>vehicle</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="comment">//<sp/>GroundMaterialManagerBase:<sp/>abstract<sp/>component<sp/>for<sp/>managing<sp/>GroundMaterials</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="9"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"></highlight><highlight class="comment">//<sp/>VehicleBase<sp/>looks<sp/>for<sp/>an<sp/>implementation<sp/>of<sp/>GroundMaterialManagerBase<sp/>in<sp/>the<sp/>scene</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="comment">//<sp/>and<sp/>queries<sp/>it<sp/>for<sp/>GroundMaterial<sp/>references.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="comment">//<sp/>VPGroundMaterialManager<sp/>is<sp/>the<sp/>default<sp/>implementation<sp/>of<sp/>this<sp/>component<sp/>in<sp/>VPP.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="14"><highlight class="normal"></highlight><highlight class="comment">//<sp/>You<sp/>can<sp/>write<sp/>your<sp/>own<sp/>manager<sp/>of<sp/>ground<sp/>materials<sp/>by<sp/>creating<sp/>a<sp/>component</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="comment">//<sp/>inheriting<sp/>from<sp/>GroundMaterialManagerBase.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>UnityEngine;</highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="keyword">using</highlight><highlight class="normal"><sp/>System;</highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight><highlight class="keyword">namespace<sp/></highlight><highlight class="normal">VehiclePhysics</highlight></codeline>
+<codeline lineno="22"><highlight class="normal">{</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal">[Serializable]</highlight></codeline>
+<codeline lineno="25" refid="class_vehicle_physics_1_1_ground_material" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="27"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Unity<sp/>PhysicMaterial<sp/>this<sp/>ground<sp/>material<sp/>is<sp/>bound<sp/>to.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight></codeline>
+<codeline lineno="29"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>PhysicMaterial<sp/><ref refid="class_vehicle_physics_1_1_ground_material_1a063b40203d2eb5cba6a2159872db132a" kindref="member">physicMaterial</ref>;</highlight></codeline>
+<codeline lineno="30"><highlight class="normal"></highlight></codeline>
+<codeline lineno="31"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Grip<sp/>multiplies<sp/>the<sp/>tire<sp/>friction<sp/>on<sp/>this<sp/>ground<sp/>material.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="32"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Drag<sp/>applies<sp/>a<sp/>force<sp/>that<sp/>opposes<sp/>the<sp/>movement<sp/>based<sp/>on<sp/>the<sp/>downforce<sp/>in<sp/>kN:</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="33"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="34"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/><sp/><sp/><sp/><sp/><sp/>dragForce<sp/>=<sp/>downforce<sp/>*<sp/>0.001<sp/>*<sp/>drag<sp/>*<sp/>velocity^2</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="35"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1adf0a50ed2f6edb19b86c65da757b1541" kindref="member">grip</ref><sp/>=<sp/>1.0f;</highlight></codeline>
+<codeline lineno="37"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">float</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1a03987be31337b60781410dd3d44bb3a8" kindref="member">drag</ref><sp/>=<sp/>0.0f;</highlight></codeline>
+<codeline lineno="38"><highlight class="normal"></highlight></codeline>
+<codeline lineno="39"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Wheel<sp/>trails<sp/>and<sp/>particle<sp/>emitters<sp/>triggered<sp/>on<sp/>this<sp/>ground<sp/>material.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="40"><highlight class="normal"></highlight></codeline>
+<codeline lineno="41"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#if<sp/>!VPP_LIMITED</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="42"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_marks_renderer" kindref="compound">VPGroundMarksRenderer</ref><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1ae6436cec0496d466a376414ffc99d626" kindref="member">marksRenderer</ref>;</highlight></codeline>
+<codeline lineno="43"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_v_p_ground_particle_emitter" kindref="compound">VPGroundParticleEmitter</ref><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1ac5878c79e1c4be1ef8c1469e954f0656" kindref="member">particleEmitter</ref>;</highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="preprocessor"><sp/><sp/><sp/><sp/>#endif</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="46"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Surface<sp/>type<sp/>affects<sp/>the<sp/>audio<sp/>clips<sp/>and<sp/>other<sp/>effects<sp/>that<sp/>are<sp/>invoked</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="47"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>depending<sp/>on<sp/>the<sp/>surface.<sp/>See<sp/>the<sp/>VPAudio<sp/>component.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="48"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="49"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Hard:<sp/>tire<sp/>skid<sp/>audio,<sp/>hard<sp/>impacts,<sp/>hard<sp/>body<sp/>drag,<sp/>body<sp/>scratches</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="50"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Soft:<sp/>offroad<sp/>rumble,<sp/>soft<sp/>impacts,<sp/>soft<sp/>body<sp/>drag</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="51"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">enum</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1a727cf61a872e54159116762a8efc4eb9" kindref="member">SurfaceType</ref><sp/>{<sp/><ref refid="class_vehicle_physics_1_1_ground_material_1a727cf61a872e54159116762a8efc4eb9a3656183169810334a96b91129dc9d881" kindref="member">Hard</ref>,<sp/><ref refid="class_vehicle_physics_1_1_ground_material_1a727cf61a872e54159116762a8efc4eb9a682160fc6ad12f783f70608a9b46b9b9" kindref="member">Soft</ref><sp/>};</highlight></codeline>
+<codeline lineno="53"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1a727cf61a872e54159116762a8efc4eb9" kindref="member">SurfaceType</ref><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1af5045e416ca7fd080c4fcf592eb19f5c" kindref="member">surfaceType</ref><sp/>=<sp/>SurfaceType.Hard;</highlight></codeline>
+<codeline lineno="54"><highlight class="normal"></highlight></codeline>
+<codeline lineno="55"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Custom<sp/>pointer<sp/>to<sp/>be<sp/>used<sp/>from<sp/>scripting<sp/>when<sp/>you<sp/>need<sp/>to<sp/>reference<sp/>additional</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="56"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>data<sp/>per<sp/>ground<sp/>material<sp/>in<sp/>your<sp/>own<sp/>custom<sp/>ground<sp/>material<sp/>manager.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="57"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Thus,<sp/>you<sp/>would<sp/>be<sp/>able<sp/>to<sp/>access<sp/>this<sp/>data<sp/>from<sp/>your<sp/>own<sp/>scripts.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="58"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>This<sp/>field<sp/>won&apos;t<sp/>appear<sp/>in<sp/>the<sp/>inspector.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="59"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">object</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_ground_material_1ab955907cc3df9c25363e7c452fc073a4" kindref="member">customData</ref><sp/>=<sp/>null;</highlight></codeline>
+<codeline lineno="61"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight></codeline>
+<codeline lineno="63"><highlight class="normal"></highlight></codeline>
+<codeline lineno="64" refid="struct_vehicle_physics_1_1_ground_material_hit" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">struct<sp/></highlight><highlight class="normal"><ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref></highlight></codeline>
+<codeline lineno="65"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="67"><highlight class="normal"></highlight></codeline>
+<codeline lineno="68"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>PhysicMaterial<sp/><ref refid="struct_vehicle_physics_1_1_ground_material_hit_1a3d5e4a4a0d2bffb6a3f11e105865c25a" kindref="member">physicMaterial</ref>;</highlight></codeline>
+<codeline lineno="69"><highlight class="normal"></highlight></codeline>
+<codeline lineno="71"><highlight class="normal"></highlight></codeline>
+<codeline lineno="72"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Collider<sp/><ref refid="struct_vehicle_physics_1_1_ground_material_hit_1a8a3c548b6be57cf032f1e484ccef6bc3" kindref="member">collider</ref>;</highlight></codeline>
+<codeline lineno="73"><highlight class="normal"></highlight></codeline>
+<codeline lineno="75"><highlight class="normal"></highlight></codeline>
+<codeline lineno="76"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/>Vector3<sp/><ref refid="struct_vehicle_physics_1_1_ground_material_hit_1a6f752154c8087c18a40aaed8164f0be8" kindref="member">hitPoint</ref>;</highlight></codeline>
+<codeline lineno="77"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="78"><highlight class="normal"></highlight></codeline>
+<codeline lineno="79"><highlight class="normal"></highlight></codeline>
+<codeline lineno="83"><highlight class="normal"></highlight></codeline>
+<codeline lineno="84" refid="class_vehicle_physics_1_1_ground_material_manager_base" refkind="compound"><highlight class="normal"></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">abstract</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">class<sp/></highlight><highlight class="normal"><ref refid="class_vehicle_physics_1_1_ground_material_manager_base" kindref="compound">GroundMaterialManagerBase</ref><sp/>:<sp/>MonoBehaviour</highlight></codeline>
+<codeline lineno="85"><highlight class="normal"><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="92"><highlight class="normal"></highlight></codeline>
+<codeline lineno="93"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">abstract</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref><sp/><ref refid="class_vehicle_physics_1_1_ground_material_manager_base_1adf380b5534cb835194aa8802eb6ec057" kindref="member">GetGroundMaterial</ref><sp/>(<ref refid="class_vehicle_physics_1_1_vehicle_base" kindref="compound">VehicleBase</ref><sp/>vehicle,<sp/><ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref><sp/>groundHit);</highlight></codeline>
+<codeline lineno="94"><highlight class="normal"></highlight></codeline>
+<codeline lineno="104"><highlight class="normal"></highlight></codeline>
+<codeline lineno="105"><highlight class="normal"><sp/><sp/><sp/><sp/></highlight><highlight class="keyword">public</highlight><highlight class="normal"><sp/></highlight><highlight class="keyword">virtual</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="class_vehicle_physics_1_1_ground_material_manager_base_1adcbe0e74c0eab51a514ff6b26fb8f8c3" kindref="member">GetGroundMaterialCached</ref><sp/>(<ref refid="class_vehicle_physics_1_1_vehicle_base" kindref="compound">VehicleBase</ref><sp/>vehicle,<sp/><ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref><sp/>groundHit,<sp/>ref<sp/><ref refid="struct_vehicle_physics_1_1_ground_material_hit" kindref="compound">GroundMaterialHit</ref><sp/>cachedGroundHit,<sp/>ref<sp/><ref refid="class_vehicle_physics_1_1_ground_material" kindref="compound">GroundMaterial</ref><sp/>groundMaterial)</highlight></codeline>
+<codeline lineno="106"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="107"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Query<sp/>the<sp/>ground<sp/>material<sp/>(typically<sp/>slow,<sp/>table<sp/>look-up)<sp/>only<sp/>when<sp/>the<sp/>physic<sp/>material<sp/>changes.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="108"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>Otherwise<sp/>do<sp/>not<sp/>change<sp/>actual<sp/>ground<sp/>material<sp/>reference.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="109"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="110"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>NOTE:<sp/>This<sp/>default<sp/>implementation<sp/>verifies<sp/>the<sp/>physic<sp/>material<sp/>only.<sp/>collider<sp/>and<sp/>hitPoint</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="111"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>are<sp/>ignored.<sp/>This<sp/>method<sp/>must<sp/>be<sp/>overridden<sp/>with<sp/>a<sp/>proper<sp/>implementation<sp/>if<sp/>a<sp/>custom</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="112"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="comment">//<sp/>GetGroundMaterial<sp/>implementation<sp/>uses<sp/>collider<sp/>and/or<sp/>hitPoint.</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="113"><highlight class="normal"></highlight></codeline>
+<codeline lineno="114"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/></highlight><highlight class="keywordflow">if</highlight><highlight class="normal"><sp/>(groundHit.<ref refid="struct_vehicle_physics_1_1_ground_material_hit_1a3d5e4a4a0d2bffb6a3f11e105865c25a" kindref="member">physicMaterial</ref><sp/>!=<sp/>cachedGroundHit.physicMaterial)</highlight></codeline>
+<codeline lineno="115"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>{</highlight></codeline>
+<codeline lineno="116"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>cachedGroundHit<sp/>=<sp/>groundHit;</highlight></codeline>
+<codeline lineno="117"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>groundMaterial<sp/>=<sp/><ref refid="class_vehicle_physics_1_1_ground_material_manager_base_1adf380b5534cb835194aa8802eb6ec057" kindref="member">GetGroundMaterial</ref>(vehicle,<sp/>groundHit);</highlight></codeline>
+<codeline lineno="118"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="119"><highlight class="normal"><sp/><sp/><sp/><sp/><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="120"><highlight class="normal"><sp/><sp/><sp/><sp/>}</highlight></codeline>
+<codeline lineno="121"><highlight class="normal">}</highlight></codeline>
+    </programlisting>
+    <location file="D:/Workspace/KSP1/KSP/KSP/Assets/Packages/VehiclePhysicsPro/Core/Vehicle Physics core/Base/GroundMaterial.cs"/>
+  </compounddef>
+</doxygen>
