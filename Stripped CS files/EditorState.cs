@@ -1,7 +1,0 @@
-public enum EditorState
-{
-	GUI_UNSELECTED,
-	GUI_SELECTED,
-	PAD_UNSELECTED,
-	PAD_SELECTED
-}
