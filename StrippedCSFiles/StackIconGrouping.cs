@@ -1,0 +1,8 @@
+public enum StackIconGrouping
+{
+	SAME_MODULE,
+	SAME_TYPE,
+	SAME_HIERARCHY,
+	SYM_COUNTERPARTS,
+	NONE
+}
