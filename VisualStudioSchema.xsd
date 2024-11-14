@@ -1,0 +1,154 @@
+<?xml version="1.0"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="doc">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="assembly">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="members">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element maxOccurs="unbounded" name="member">
+                <xs:complexType mixed="true">
+                  <xs:sequence>
+                    <xs:choice maxOccurs="unbounded">
+                      <xs:element name="summary">
+                        <xs:complexType mixed="true">
+                          <xs:sequence minOccurs="0">
+                            <xs:element minOccurs="0" name="seealso">
+                              <xs:complexType>
+                                <xs:attribute name="cref" type="xs:string" use="required" />
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" name="c" type="xs:string" />
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="para">
+                              <xs:complexType mixed="true">
+                                <xs:sequence minOccurs="0">
+                                  <xs:element minOccurs="0" maxOccurs="unbounded" name="para">
+                                    <xs:complexType mixed="true">
+                                      <xs:sequence>
+                                        <xs:element name="list">
+                                          <xs:complexType>
+                                            <xs:sequence>
+                                              <xs:element maxOccurs="unbounded" name="item">
+                                                <xs:complexType mixed="true">
+                                                  <xs:sequence>
+                                                    <xs:element name="description" type="xs:string" />
+                                                  </xs:sequence>
+                                                </xs:complexType>
+                                              </xs:element>
+                                            </xs:sequence>
+                                            <xs:attribute name="type" type="xs:string" use="required" />
+                                          </xs:complexType>
+                                        </xs:element>
+                                      </xs:sequence>
+                                    </xs:complexType>
+                                  </xs:element>
+                                  <xs:element minOccurs="0" name="code" type="xs:string" />
+                                </xs:sequence>
+                              </xs:complexType>
+                            </xs:element>
+                            <xs:element minOccurs="0" maxOccurs="unbounded" name="code" type="xs:string" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="typeparam">
+                        <xs:complexType>
+                          <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:extension>
+                          </xs:simpleContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="remarks">
+                        <xs:complexType mixed="true">
+                          <xs:sequence minOccurs="0">
+                            <xs:choice maxOccurs="unbounded">
+                              <xs:element maxOccurs="unbounded" name="c" type="xs:string" />
+                              <xs:element maxOccurs="unbounded" name="code" type="xs:string" />
+                              <xs:element name="param">
+                                <xs:complexType>
+                                  <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                      <xs:attribute name="name" type="xs:string" use="required" />
+                                    </xs:extension>
+                                  </xs:simpleContent>
+                                </xs:complexType>
+                              </xs:element>
+                              <xs:element name="paramref">
+                                <xs:complexType>
+                                  <xs:attribute name="name" type="xs:string" use="required" />
+                                </xs:complexType>
+                              </xs:element>
+                              <xs:element name="returns" type="xs:string" />
+                              <xs:element name="seealso">
+                                <xs:complexType>
+                                  <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                      <xs:attribute name="cref" type="xs:string" use="required" />
+                                    </xs:extension>
+                                  </xs:simpleContent>
+                                </xs:complexType>
+                              </xs:element>
+                            </xs:choice>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element maxOccurs="unbounded" name="param">
+                        <xs:complexType>
+                          <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                              <xs:attribute name="name" type="xs:string" use="required" />
+                            </xs:extension>
+                          </xs:simpleContent>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="returns">
+                        <xs:complexType mixed="true">
+                          <xs:sequence minOccurs="0">
+                            <xs:element minOccurs="0" name="example" type="xs:string" />
+                            <xs:element minOccurs="0" name="paramref">
+                              <xs:complexType>
+                                <xs:attribute name="name" type="xs:string" use="required" />
+                              </xs:complexType>
+                            </xs:element>
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="example">
+                        <xs:complexType mixed="true">
+                          <xs:sequence minOccurs="0">
+                            <xs:element name="code" type="xs:string" />
+                          </xs:sequence>
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="invariant" type="xs:string" />
+                      <xs:element name="see">
+                        <xs:complexType>
+                          <xs:attribute name="cref" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="seealso">
+                        <xs:complexType>
+                          <xs:attribute name="cref" type="xs:string" use="required" />
+                        </xs:complexType>
+                      </xs:element>
+                      <xs:element name="warning" type="xs:string" />
+                    </xs:choice>
+                  </xs:sequence>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
